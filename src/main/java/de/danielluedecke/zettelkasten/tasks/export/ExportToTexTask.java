@@ -1005,7 +1005,11 @@ public class ExportToTexTask extends org.jdesktop.application.Task<Object, Void>
         dummy = dummy.replaceAll(Pattern.quote("$"), Matcher.quoteReplacement("\\$"));
         dummy = dummy.replaceAll(Pattern.quote("%"), Matcher.quoteReplacement("\\%"));
         dummy = dummy.replaceAll(Pattern.quote("&"), Matcher.quoteReplacement("\\&"));
-        dummy = dummy.replaceAll(Pattern.quote("_"), Matcher.quoteReplacement("\\_"));
+        // Remove underscores except in filenames of images such that the document compiles ...
+        // Define regex to match underscores outside [img]...[/img] - dummy is still UBB-file!
+        String regex = "_(?!(?:(?!img\\]).)*\\[/img)";
+        // Replace using regex
+        dummy = dummy.replaceAll(regex, "\\\\_");
         dummy = dummy.replaceAll(Pattern.quote("→"), Matcher.quoteReplacement("\\textrightarrow"));
         dummy = dummy.replaceAll(Pattern.quote("←"), Matcher.quoteReplacement("\\textleftarrow"));
         dummy = dummy.replaceAll(Pattern.quote("↑"), Matcher.quoteReplacement("\\textuparrow"));
@@ -1031,7 +1035,9 @@ public class ExportToTexTask extends org.jdesktop.application.Task<Object, Void>
             dummy = dummy.replaceAll(Pattern.quote("»"), Matcher.quoteReplacement("\\guillemotright"));
             dummy = dummy.replaceAll(Pattern.quote("«"), Matcher.quoteReplacement("\\guillemotleft"));
         }
+
         return dummy;
+
     }
 
     private String convertSpecialChars2(String dummy) {
