@@ -117,10 +117,6 @@ public class Settings {
 		return PlatformUtil.isMacOS() & getLookAndFeel().contains("Aqua");
 	}
 
-	public boolean isSeaGlass() {
-		return getLookAndFeel().equals(Constants.seaGlassLookAndFeelClassName);
-	}
-
 	public boolean isNimbus() {
 		return getLookAndFeel().contains("nimbus");
 	}
@@ -618,6 +614,16 @@ public class Settings {
 		// Default font is the "SansSerif" logical font name.
 		String defaultFont = Font.SANS_SERIF;
 
+        //On Linux, point to Fallback-Zkn3 (Auxilium.zkn3) in user.home, avoiding start without zkn3-File
+        //
+        if (PlatformUtil.isLinux()) {
+            String auxilium = System.getProperty("user.home") + File.separatorChar + ".Zettelkasten" + File.separatorChar + "Auxilium.zkn3";
+            genericElementInitIfMissing(SETTING_FILEPATH, auxilium);
+        }
+        else {
+            genericElementInitIfMissing(SETTING_FILEPATH, "");
+        }
+
 		String pandoc = "pandoc";
 		if (PlatformUtil.isMacOS()) {
 			pandoc = "/usr/local/bin/pandoc";
@@ -629,7 +635,8 @@ public class Settings {
 				PlatformUtil.isMacOS() ? "1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,0,0,1,1,1,1,1"
 						: "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
 		genericElementInitIfMissing(SETTING_LOCALE, Locale.getDefault().getLanguage());
-		genericElementInitIfMissing(SETTING_FILEPATH, "");
+		//genericElementInitIfMissing(SETTING_FILEPATH, "");
+        //genericElementInitIfMissing(SETTING_FILEPATH, "/home/tobias/Mein_Zettelkasten.zkn3");
 		genericElementInitIfMissing(SETTING_SEARCHFRAMESPLITLAYOUT, String.valueOf(JSplitPane.VERTICAL_SPLIT));
 		genericElementInitIfMissing(SETTING_CUSTOMCSSENTRY, "");
 		genericElementInitIfMissing(SETTING_CUSTOMCSSDESKTOP, "");
@@ -4906,7 +4913,7 @@ public class Settings {
 		// get default path
 		String defpath = Constants.standardIconThemePath;
 		// check whether we have os x
-		if (isMacAqua() || isSeaGlass()) {
+		if (isMacAqua()) {
 			defpath = defpath + "osx/";
 		} else {
 			defpath = defpath + Constants.iconThemes[theme];

@@ -162,12 +162,7 @@ public class CImport extends javax.swing.JDialog {
                 cancelImport();
             }
         };
-        getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);                
-        if (settingsObj.isSeaGlass()) {
-            jButton1.putClientProperty("JComponent.sizeVariant", "small");
-            jButton2.putClientProperty("JComponent.sizeVariant", "small");
-            jButton3.putClientProperty("JComponent.sizeVariant", "small");
-        }
+        getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
 

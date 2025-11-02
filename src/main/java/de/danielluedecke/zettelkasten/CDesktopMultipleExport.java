@@ -92,10 +92,6 @@ public class CDesktopMultipleExport extends javax.swing.JDialog {
         initBorders(settingsObj);
         initListeners();
         initList();
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
     }
 
     private void initBorders(Settings settingsObj) {

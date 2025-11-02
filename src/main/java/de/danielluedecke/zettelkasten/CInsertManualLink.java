@@ -35,10 +35,6 @@ public class CInsertManualLink extends javax.swing.JDialog {
         // disbale apply button
         jButtonApply.setEnabled(false);
         getRootPane().setDefaultButton(jButtonApply);
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // check for param
         if (selection!=null && !selection.isEmpty()) {
             // trim spaces

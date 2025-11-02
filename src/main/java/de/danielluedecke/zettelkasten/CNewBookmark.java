@@ -94,9 +94,6 @@ public class CNewBookmark extends javax.swing.JDialog {
         initComboBox();
         initListeners();
         initBorders(settingsObj);
-        if (settingsObj.isSeaGlass()) {
-            setupSeaGlassStyle();
-        }
         // when the user wants to edit a bookmark, init fields
         if (editbookmark) {
             // get the bookmark
@@ -119,12 +116,6 @@ public class CNewBookmark extends javax.swing.JDialog {
             // finally, reset modified state
             setModified(false);
         }
-    }
-
-    private void setupSeaGlassStyle() {
-        jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-        jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        jButtonAddCat.putClientProperty("JComponent.sizeVariant", "small");
     }
 
     private void initBorders(Settings settingsObj) {

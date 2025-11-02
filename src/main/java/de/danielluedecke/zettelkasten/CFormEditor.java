@@ -88,11 +88,7 @@ public class CFormEditor extends javax.swing.JDialog {
         // init listeners
         initListeners();
         // init textfield
-        jTextField4.setEnabled(jCheckBoxReentry.isSelected());        
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
+        jTextField4.setEnabled(jCheckBoxReentry.isSelected());
     }
     
     

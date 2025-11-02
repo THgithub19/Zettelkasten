@@ -92,10 +92,6 @@ public class CErrorLog extends javax.swing.JDialog {
             }
         };
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
-        if (settingsObj.isSeaGlass()) {
-            jButton1.putClientProperty("JComponent.sizeVariant", "small");
-            jButton2.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // add change listener to tabbed pane
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             @Override

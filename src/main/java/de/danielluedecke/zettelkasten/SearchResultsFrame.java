@@ -228,9 +228,6 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		if (settingsObj.isMacAqua()) {
 			setupMacOSXLeopardStyle();
 		}
-		if (settingsObj.isSeaGlass()) {
-			setupSeaGlassStyle();
-		}
 		// init toggle-items
 		viewMenuHighlight.setSelected(settingsObj.getHighlightSearchResults());
 		tb_highlight.setSelected(settingsObj.getHighlightSearchResults());
@@ -288,21 +285,6 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			jListKeywords.setBackground(
 					(settingsObj.isMacAqua()) ? ColorUtil.colorJTreeBackground : ColorUtil.colorJTreeLighterBackground);
 			jListKeywords.setForeground(ColorUtil.colorJTreeDarkText);
-		}
-		if (settingsObj.isSeaGlass()) {
-			jPanel3.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-			jPanel4.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			jListKeywords.setBorder(ZknMacWidgetFactory
-					.getTitledBorder(resourceMap.getString("jListKeywords.border.title"), settingsObj));
-			if (settingsObj.getSearchFrameSplitLayout() == JSplitPane.HORIZONTAL_SPLIT) {
-				jPanel1.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-				jPanel2.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			} else {
-				jPanel1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-				jPanel2.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			}
-			// jPanel3.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1,
-			// ColorUtil.getBorderGray(settingsObj)));
 		}
 		if (settingsObj.isMacAqua()) {
 			ZknMacWidgetFactory.updateSplitPane(jSplitPaneSearch1);
@@ -364,16 +346,6 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		}
 		if (settingsObj.isMacAqua())
 			makeMacToolBar();
-		if (settingsObj.isSeaGlass())
-			makeSeaGlassToolbar();
-	}
-
-	private void setupSeaGlassStyle() {
-		getRootPane().setBackground(ColorUtil.colorSeaGlassGray);
-		jTextFieldFilterList.putClientProperty("JTextField.variant", "search");
-		jEditorPaneSearchEntry.setBackground(Color.white);
-		jButtonDeleteSearch.setBorderPainted(true);
-		jButtonDeleteSearch.putClientProperty("JButton.buttonType", "textured");
 	}
 
 	/**
@@ -387,24 +359,6 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		MacWidgetFactory.makeEmphasizedLabel(jLabelHits);
 	}
 
-	private void makeSeaGlassToolbar() {
-		Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_selectall, Tools.SEGMENT_POSITION_LAST);
-		Tools.makeTexturedToolBarButton(tb_editentry, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_remove, Tools.SEGMENT_POSITION_LAST);
-		Tools.makeTexturedToolBarButton(tb_manlinks, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_luhmann, Tools.SEGMENT_POSITION_MIDDLE);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_bookmark, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_desktop, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_bookmark, Tools.SEGMENT_POSITION_LAST);
-		}
-		Tools.makeTexturedToolBarButton(tb_highlight, Tools.SEGMENT_POSITION_ONLY);
-		searchToolbar.setPreferredSize(
-				new java.awt.Dimension(searchToolbar.getSize().width, Constants.seaGlassToolbarHeight));
-		searchToolbar.add(new javax.swing.JToolBar.Separator(), 0);
-	}
 
 	private void makeMacToolBar() {
 		// hide default toolbr
@@ -964,16 +918,8 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		int currentlayout = settingsObj.getSearchFrameSplitLayout();
 		if (JSplitPane.HORIZONTAL_SPLIT == currentlayout) {
 			currentlayout = JSplitPane.VERTICAL_SPLIT;
-			if (settingsObj.isSeaGlass()) {
-				jPanel1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-				jPanel2.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			}
 		} else {
 			currentlayout = JSplitPane.HORIZONTAL_SPLIT;
-			if (settingsObj.isSeaGlass()) {
-				jPanel1.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-				jPanel2.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			}
 		}
 		settingsObj.setSearchFrameSplitLayout(currentlayout);
 		jSplitPaneSearch1.setOrientation(currentlayout);

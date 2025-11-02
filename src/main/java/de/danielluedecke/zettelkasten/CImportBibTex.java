@@ -164,17 +164,11 @@ public class CImportBibTex extends javax.swing.JDialog {
         // initially, disable apply button
         jButtonApply.setEnabled(false);
         // if we have mac os x with aqua-look&feel, make certain components look like mac...
-        if (settingsObj.isMacAqua() || settingsObj.isSeaGlass()) {
+        if (settingsObj.isMacAqua()) {
             // make button smaller...
             jButtonSelectAll.putClientProperty("JButton.buttonType", "roundRect");
             // textfield should look like search-textfield...
             jTextFieldFilterTable.putClientProperty("JTextField.variant", "search");
-            if (settingsObj.isSeaGlass()) {
-                jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-                jButtonBrowseBibtex.putClientProperty("JComponent.sizeVariant", "small");
-                jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-                jButtonSelectAll.putClientProperty("JComponent.sizeVariant", "small");
-            }
         }
         if (jRadioButtonSourceFile.isSelected()) {
             // retrieve filepath of currently attached file, if any...

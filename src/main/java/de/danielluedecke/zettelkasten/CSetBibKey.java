@@ -164,13 +164,9 @@ public class CSetBibKey extends javax.swing.JDialog {
         }
 
         // in case we have mac os x with aqua look&feel, make components look more mac-like...
-        if (settingsObj.isMacAqua() || settingsObj.isSeaGlass()) {
+        if (settingsObj.isMacAqua()) {
             // textfield should look like search-textfield...
             jTextFieldFilterTable.putClientProperty("JTextField.variant", "search");
-            if (settingsObj.isSeaGlass()) {
-                jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-                jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-            }
         }
         fillBibtexTable();
     }

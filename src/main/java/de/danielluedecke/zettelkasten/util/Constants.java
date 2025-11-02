@@ -159,10 +159,6 @@ public class Constants {
 	 */
 	public static final String archivedDesktopFileName = "archivedDesktop.xml";
 
-	public static final String seaGlassLookAndFeelClassName = "Sea Glass";
-	public static final Dimension seaGlassButtonDimension = new Dimension(42, 29);
-	public static final int seaGlassToolbarHeight = 42;
-
 	/**
 	 * Constant for the filename of the settings-xml-file
 	 */
@@ -1129,12 +1125,11 @@ public class Constants {
 	/**
 	 *
 	 */
-	public static final String[] iconThemes = { "", "yaru/", "crystal/", "tango/", "osx/", "crystal/small/", "tango/small/" };
+	public static final String[] iconThemes = { "", "classic/", "crystal/", "tango/", "osx/" };
 	/**
 	 *
 	 */
-	public static final String[] iconThemesNames = { "Standard", "Yaru", "Crystal", "Tango", "Standard (small)", "Yaru (small)",
-			"Crystal (small)", "Tango (small)" };
+	public static final String[] iconThemesNames = { "Standard", "Classic", "Crystal", "Tango" };
 
 	/**
 	 *

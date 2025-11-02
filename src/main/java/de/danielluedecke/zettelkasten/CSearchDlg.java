@@ -304,10 +304,6 @@ public class CSearchDlg extends javax.swing.JDialog {
 		initListener();
 		// set application icon
 		setIconImage(Constants.zknicon.getImage());
-		if (settingsObj.isSeaGlass()) {
-			jButtonSearch.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-		}
 		// init the checkboxes
 		int w = settingsObj.getSearchWhere();
 		jCheckBoxSTitles.setSelected((w & Constants.SEARCH_TITLE) != 0);

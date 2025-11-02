@@ -84,10 +84,6 @@ public class CBiggerEditField extends javax.swing.JDialog {
         // usually, the tab key inserts a tab in the textarea-fields, while a ctrl+tab moves
         // the focus to the next component. here we override this setting, changing the tab-key
         // to change the focus.
-        if (settings.isSeaGlass()) {
-            jButton1.putClientProperty("JComponent.sizeVariant", "small");
-            jButton2.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // bind our new forward focus traversal keys
         Set<AWTKeyStroke> newForwardKeys = new HashSet<>(1);
         newForwardKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_TAB, 0));

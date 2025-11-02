@@ -145,9 +145,6 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
         if (settingsObj.isMacAqua()) {
             setupMacOSXLeopardStyle();
         }
-        if (settingsObj.isSeaGlass()) {
-            setupSeaGlassStyle();
-        }
         // init default font-size for tables, lists and textfields...
         initDefaultFontSize();
         // init the accelerator table
@@ -463,14 +460,6 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
             tb_strike.setVisible(settingsObj.getShowAllIcons());
         }
         if (settingsObj.isMacAqua()) makeMacToolbar();
-        if (settingsObj.isSeaGlass()) makeSeaGlassToolbar();
-    }
-
-
-    private void setupSeaGlassStyle() {
-        getRootPane().setBackground(ColorUtil.colorSeaGlassGray);
-        jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-        jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
     }
 
     /**
@@ -479,21 +468,6 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
      */
     private void setupMacOSXLeopardStyle() {
 
-    }
-
-    private void makeSeaGlassToolbar() {
-        Tools.makeTexturedToolBarButton(tb_cut, Tools.SEGMENT_POSITION_FIRST);
-        Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_MIDDLE);
-        Tools.makeTexturedToolBarButton(tb_paste, Tools.SEGMENT_POSITION_LAST);
-        Tools.makeTexturedToolBarButton(tb_selectall, Tools.SEGMENT_POSITION_ONLY);
-        Tools.makeTexturedToolBarButton(tb_undo, Tools.SEGMENT_POSITION_FIRST);
-        Tools.makeTexturedToolBarButton(tb_redo, Tools.SEGMENT_POSITION_LAST);
-        Tools.makeTexturedToolBarButton(tb_bold, Tools.SEGMENT_POSITION_FIRST);
-        Tools.makeTexturedToolBarButton(tb_italic, Tools.SEGMENT_POSITION_MIDDLE);
-        Tools.makeTexturedToolBarButton(tb_underline, Tools.SEGMENT_POSITION_MIDDLE);
-        Tools.makeTexturedToolBarButton(tb_strike, Tools.SEGMENT_POSITION_LAST);
-        jToolBar1.setPreferredSize(new java.awt.Dimension(jToolBar1.getSize().width,Constants.seaGlassToolbarHeight));
-        jToolBar1.add(new javax.swing.JToolBar.Separator(), 0);
     }
 
     

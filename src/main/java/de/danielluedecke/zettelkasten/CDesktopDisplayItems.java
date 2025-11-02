@@ -90,10 +90,6 @@ public class CDesktopDisplayItems extends javax.swing.JDialog {
         setIconImage(Constants.zknicon.getImage());
 
         settingsObj = s;
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // these codelines add an escape-listener to the dialog. so, when the user
         // presses the escape-key, the same action is performed as if the user
         // presses the cancel button...
