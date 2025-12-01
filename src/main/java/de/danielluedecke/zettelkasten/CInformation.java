@@ -106,15 +106,6 @@ public class CInformation extends javax.swing.JDialog {
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
         // set default button
         getRootPane().setDefaultButton(jButtonClose);
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonClose.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonBrowseAttachmentPath.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonBrowseImagePath.putClientProperty("JComponent.sizeVariant", "small");
-            // set new border text
-            jTextAreaDescription.setBorder(ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextAreaDescription.border.title"), null, settingsObj));
-            jTextAreaSysInfo.setBorder(ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextAreaSysInfo.border.title"), null, settingsObj));
-        }
         if (settingsObj.isMacAqua()) {
             jTextAreaDescription.setBorder(ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextAreaDescription.border.title"), ColorUtil.colorJTreeText, settingsObj));
             jTextAreaSysInfo.setBorder(ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextAreaSysInfo.border.title"), ColorUtil.colorJTreeText, settingsObj));

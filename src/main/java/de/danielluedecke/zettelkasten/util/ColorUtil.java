@@ -51,20 +51,10 @@ public class ColorUtil {
      */
     public static final Color colorJTreeLighterBackground = new Color(240, 244, 248);
     /**
-     * Color value, needed for setting border-color of the matte-top and -bottom-border
-     * Color(136,173,224)
-     */
-    public static final Color colorNormalSeaGlassBlue = new Color(136, 173, 224);
-    /**
      * Color value, needed for setting label-shadow-color mac-os-x-jtrees
      * Color(238,238,238)
      */
     public static final Color colorDarkLabelShadowGray = new Color(238, 238, 238);
-    /**
-     * Color value, needed for setting border-color of the matte-top and -bottom-border
-     * Color(89,135,192)
-     */
-    public static final Color colorDarkLineSeaGlassBlue = new Color(89, 135, 192);
     /**
      * Color value, needed for setting the snow-leopard-style on mac os x
      * new Color(218,218,218)
@@ -111,16 +101,6 @@ public class ColorUtil {
      */
     public static final Color colorHudGray = new Color(94, 94, 94);
     /**
-     * Color value, background color for sea glass style
-     * Color(240,240,240)
-     */
-    public static final Color colorSeaGlassGray = new Color(240, 240, 240);
-    /**
-     * Color value, needed for setting the sea-glass-matte-style
-     * Color(206,206,206)
-     */
-    public static final Color colorSeaGlassLineGray = new Color(206, 206, 206);
-    /**
      * Color value, needed for setting the leopard-style on mac os x
      */
     public static final Color colorNoFocusGray = new Color(229, 229, 221);
@@ -138,9 +118,6 @@ public class ColorUtil {
     public static Color getBorderGray(Settings settings) {
         if (settings.isMacAqua()) {
             return colorDarkBorderGray;
-        }
-        if (settings.isSeaGlass()) {
-            return colorSeaGlassLineGray;
         }
         if (settings.isNimbus()) {
             return colorDarkLineNimbusGray;

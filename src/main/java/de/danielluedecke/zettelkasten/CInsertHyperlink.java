@@ -66,10 +66,6 @@ public class CInsertHyperlink extends javax.swing.JDialog {
     public CInsertHyperlink(java.awt.Frame parent, String selection, Settings settingsObj) {
         super(parent);
         initComponents();
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // set application icon
         setIconImage(Constants.zknicon.getImage());
         // disbale apply button

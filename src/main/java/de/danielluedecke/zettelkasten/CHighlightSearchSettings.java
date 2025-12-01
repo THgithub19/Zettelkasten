@@ -105,12 +105,6 @@ public class CHighlightSearchSettings extends javax.swing.JDialog {
 
         jLabelColor.setForeground(new Color(Integer.parseInt(settingsObj.getHighlightSearchStyle(Settings.FONTCOLOR, highlightstyle), 16)));
         if (settingsObj.getShowHighlightBackground(highlightstyle)) jLabelColor.setBackground(new Color(Integer.parseInt(settingsObj.getHighlightBackgroundColor(highlightstyle), 16)));
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonBackgroundColor.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonChangeColor.putClientProperty("JComponent.sizeVariant", "small");
-        }
     }
 
     private String chooseColor(String col) {

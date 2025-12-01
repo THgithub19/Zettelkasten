@@ -378,9 +378,6 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		if (settingsObj.isMacAqua()) {
 			setupMacOSXLeopardStyle();
 		}
-		if (settingsObj.isSeaGlass()) {
-			setupSeaGlassStyle();
-		}
 		// init default font-size for tables, lists and textfields...
 		initDefaultFontSize();
 		// disable add- and remove-buttons
@@ -443,33 +440,6 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		jScrollPane5.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
 		jScrollPane6.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
 		jScrollPane7.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-		if (settingsObj.isSeaGlass()) {
-			jScrollPane1.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane2.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane4.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane5.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane6.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane7.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jSplitPaneNewEntry2
-					.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-			jSplitPaneNewEntry3
-					.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-			jSplitPaneNewEntry4
-					.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			jTabbedPaneNewEntry1
-					.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			jPanel4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorUtil.getBorderGray(settingsObj)));
-			jTextAreaEntry.setBorder(ZknMacWidgetFactory
-					.getTitledBorder(resourceMap.getString("jTextAreaEntry.border.title"), settingsObj));
-			jTextAreaAuthor.setBorder(ZknMacWidgetFactory
-					.getTitledBorder(resourceMap.getString("jTextAreaAuthor.border.title"), settingsObj));
-			jListKeywords.setBorder(ZknMacWidgetFactory
-					.getTitledBorder(resourceMap.getString("jListKeywords.border.title"), settingsObj));
-			jTextAreaRemarks.setBorder(ZknMacWidgetFactory
-					.getTitledBorder(resourceMap.getString("jTextAreaRemarks.border.title"), settingsObj));
-			jListLinks.setBorder(
-					ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jListLinks.border.title"), settingsObj));
-		}
 		if (settingsObj.isMacAqua()) {
 			ZknMacWidgetFactory.updateSplitPane(jSplitPaneNewEntry1);
 			ZknMacWidgetFactory.updateSplitPane(jSplitPaneNewEntry2);
@@ -1247,14 +1217,6 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		if (settingsObj.isMacAqua()) {
 			makeMacToolbar();
 		}
-		if (settingsObj.isSeaGlass()) {
-			makeSeaGlassToolbar();
-		}
-	}
-
-	private void setupSeaGlassStyle() {
-		getRootPane().setBackground(ColorUtil.colorSeaGlassGray);
-		componentVariants();
 	}
 
 	/**
@@ -1284,50 +1246,6 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		jTextFieldFilterKeywordlist.putClientProperty("JTextField.variant", "search");
 		jTextFieldFilterAuthorlist.putClientProperty("JTextField.variant", "search");
 		// change button size
-		if (settingsObj.isSeaGlass()) {
-			jButtonAddKeywords.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonQuickKeyword.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonAddAuthors.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonOK.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-		}
-	}
-
-	private void makeSeaGlassToolbar() {
-		Tools.makeTexturedToolBarButton(tb_cut, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_paste, Tools.SEGMENT_POSITION_LAST);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_selectall, Tools.SEGMENT_POSITION_ONLY);
-		}
-		Tools.makeTexturedToolBarButton(tb_undo, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_redo, Tools.SEGMENT_POSITION_LAST);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_newauthor, Tools.SEGMENT_POSITION_ONLY);
-		}
-		Tools.makeTexturedToolBarButton(tb_footnote, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_manlink, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_insertimage, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_inserttable, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_insertattachment, Tools.SEGMENT_POSITION_LAST);
-
-		Tools.makeTexturedToolBarButton(tb_bold, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_italic, Tools.SEGMENT_POSITION_MIDDLE);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_underline, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_strike, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_underline, Tools.SEGMENT_POSITION_LAST);
-		}
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_textcolor, Tools.SEGMENT_POSITION_FIRST);
-			Tools.makeTexturedToolBarButton(tb_highlight, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_textcolor, Tools.SEGMENT_POSITION_ONLY);
-		}
-		jToolBarNewEntry.setPreferredSize(
-				new java.awt.Dimension(jToolBarNewEntry.getSize().width, Constants.seaGlassToolbarHeight));
-		jToolBarNewEntry.add(new javax.swing.JToolBar.Separator(), 0);
 	}
 
 	private void makeMacToolbar() {

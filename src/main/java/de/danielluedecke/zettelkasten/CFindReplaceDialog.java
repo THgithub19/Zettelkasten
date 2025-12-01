@@ -80,12 +80,6 @@ public class CFindReplaceDialog extends javax.swing.JDialog {
         setIconImage(Constants.zknicon.getImage());
         textarea = ta;
         initListeners();
-        if (settingsObj.isSeaGlass()) {
-            jButtonFindNext.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonFindPrev.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonReplace.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonReplaceAll.putClientProperty("JComponent.sizeVariant", "small");
-        }
     }
 
 

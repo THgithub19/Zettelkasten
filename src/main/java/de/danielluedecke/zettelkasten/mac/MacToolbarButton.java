@@ -56,7 +56,6 @@ public class MacToolbarButton {
         }
         button.setText(null);
         button.setBorderPainted(true);
-        button.setPreferredSize(Constants.seaGlassButtonDimension);
 
         return button;
     }

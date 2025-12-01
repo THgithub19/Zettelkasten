@@ -77,10 +77,6 @@ public class CTexExportSettings extends javax.swing.JDialog {
         initComboBox();
         // init listeners
         initListeners();
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // set last user settings
         jCheckBoxCreateFormTags.setSelected(settingsObj.getLatexExportCreateFormTags());
         jCheckBoxUseFootnote.setSelected(settingsObj.getLatexExportFootnoteRef());

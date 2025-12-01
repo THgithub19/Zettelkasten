@@ -459,15 +459,11 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		createToolbarSearchbox();
 
 		// Some LookAndFeel needs to happen after initialization.
-		if (settings.isSeaGlass()) {
-			ZettelkastenView.super.getFrame().getRootPane().setBackground(ColorUtil.colorSeaGlassGray);
-		}
+
 		if (settings.isMacAqua()) {
 			setupMacOSXLeopardStyle();
 		}
-		if (settings.isSeaGlass()) {
-			setupSeaGlassStyle();
-		}
+
 
 		initTrees();
 		initTables();
@@ -1636,7 +1632,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		// init a search textfield that is added to the toolbar
 		tb_searchTextfield = new JTextField(15);
 		// on mac, make textfield look like a search box
-		if (settings.isMacAqua() || settings.isSeaGlass()) {
+		if (settings.isMacAqua()) {
 			tb_searchTextfield.putClientProperty("JTextField.variant", "search");
 		} else {
 			tb_searchTextfield.setPreferredSize(new Dimension(150, 26));
@@ -1696,9 +1692,9 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 										GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(20, Short.MAX_VALUE)));
-		toolBar.add(settings.isSeaGlass() ? tb_searchTextfield : jPanelSearchBox);
+		toolBar.add(jPanelSearchBox);
 		// hide label on mac
-		jLabelLupe.setVisible(!settings.isMacAqua() && !settings.isSeaGlass());
+		jLabelLupe.setVisible(!settings.isMacAqua());
 	}
 
 	/**
@@ -1767,9 +1763,6 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			}
 			if (settings.isMacAqua() && bottomBarNeedsUdpate) {
 				makeMacToolbar();
-			}
-			if (settings.isSeaGlass()) {
-				makeSeaGlassToolbar();
 			}
 		} else {
 			// if not, hide it and leave.
@@ -8624,11 +8617,11 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		File documentFile = settings.getMainDataFile();
 		if (documentFile == null) {
 			Constants.zknlogger.log(Level.WARNING, "Could not open file! Filepath is null!");
-			return false;
+            //documentFile = new File("Mein_Zettelkasten.zkn3");
+            return false;
 		}
 		if (!documentFile.exists()) {
-			Constants.zknlogger.log(Level.WARNING, "Could not open file {0}: it doesn't exist!",
-					documentFile.toString());
+			Constants.zknlogger.log(Level.WARNING, "Could not open file {0}: it doesn't exist!", documentFile.toString());
 			return false;
 		}
 
@@ -10878,12 +10871,6 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						.getScaledInstance(16, 16, Image.SCALE_SMOOTH)));
 	}
 
-	private void setupSeaGlassStyle() {
-		setSearchTextFieldMacStyle();
-		jEditorPaneClusterEntries.setBackground(Color.white);
-		jEditorPaneIsFollower.setBackground(Color.white);
-	}
-
 	private void setSearchTextFieldMacStyle() {
 		jTextFieldLiveSearch.putClientProperty("JTextField.variant", "search");
 		jTextFieldFilterKeywords.putClientProperty("JTextField.variant", "search");
@@ -10891,47 +10878,6 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		jTextFieldFilterTitles.putClientProperty("JTextField.variant", "search");
 		jTextFieldFilterCluster.putClientProperty("JTextField.variant", "search");
 		jTextFieldFilterAttachments.putClientProperty("JTextField.variant", "search");
-	}
-
-	private void makeSeaGlassToolbar() {
-		Tools.makeTexturedToolBarButton(tb_newEntry, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_open, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_save, Tools.SEGMENT_POSITION_LAST);
-
-		if (settings.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_edit, Tools.SEGMENT_POSITION_FIRST);
-			Tools.makeTexturedToolBarButton(tb_delete, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_paste, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_selectall, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_FIRST);
-			Tools.makeTexturedToolBarButton(tb_paste, Tools.SEGMENT_POSITION_LAST);
-		}
-
-		Tools.makeTexturedToolBarButton(tb_addmanlinks, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_addluhmann, Tools.SEGMENT_POSITION_MIDDLE);
-
-		if (settings.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_addbookmark, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_addtodesktop, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_addbookmark, Tools.SEGMENT_POSITION_LAST);
-		}
-
-		if (settings.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_find, Tools.SEGMENT_POSITION_FIRST);
-			Tools.makeTexturedToolBarButton(tb_first, Tools.SEGMENT_POSITION_MIDDLE);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_first, Tools.SEGMENT_POSITION_FIRST);
-		}
-
-		Tools.makeTexturedToolBarButton(tb_prev, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_next, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_last, Tools.SEGMENT_POSITION_LAST);
-
-		toolBar.setPreferredSize(new Dimension(toolBar.getSize().width, Constants.seaGlassToolbarHeight));
-		toolBar.add(new JToolBar.Separator(), 0);
 	}
 
 	/**

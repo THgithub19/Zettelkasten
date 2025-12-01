@@ -573,7 +573,10 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
                 // get the zettelcontent
                 String zettelcontent = dataObj.getZettelContent(zettelnummer, true).replace("<", "&lt;").replace(">", "&gt;");
                 // init paragraph with class-attribute, so the user may change style aftwerwards
-                sb.append("<p class=\"zettelcontent\">");
+                // original
+                //sb.append("<p class=\"zettelcontent\">");
+                // test for replacement of <br> with <p>, see HtmlUbbUtil
+                sb.append("<p class=\"zettelcontent\"/>");
                 // if we have content, add it.
                 if (!zettelcontent.isEmpty()) {
                     /*
@@ -597,7 +600,10 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
                     // else add remark that entry is deleted
                     sb.append("<i>").append(resourceMap.getString("deletedEntry")).append("</i>").append(System.lineSeparator());
                 }
-                sb.append("</p>");
+                // original
+                //sb.append("</p>");
+                // empty string to test replacement of <br> with paragrafs, see HtmlUbbUtil UbbToHtml
+                sb.append("");
             }
             // if the user wants to export remarks, do this here.
             if ((exportparts & Constants.EXPORT_REMARKS) != 0) {

@@ -132,11 +132,6 @@ public class CDesktopExport extends javax.swing.JDialog {
         // set application icon
         setIconImage(Constants.zknicon.getImage());
         initComboBox();
-        if (settingsObj.isSeaGlass()) {
-            jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonBrowse.putClientProperty("JComponent.sizeVariant", "small");
-        }
         // first, disable all components, so the user
         // goes through this dialog step by step
         jCheckBoxExportBibTex.setEnabled(false);

@@ -335,9 +335,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		if (settingsObj.isMacAqua()) {
 			setupMacOSXLeopardStyle();
 		}
-		if (settingsObj.isSeaGlass()) {
-			setupSeaGlassStyle();
-		}
+
 		// hide live-searchpanel on init.
 		jPanelLiveSearch.setVisible(false);
 		// retrieve system's line-separator
@@ -372,17 +370,6 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		 * bottom, int right, Color matteColor)
 		 */
 		jPanelLiveSearch.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-		if (settingsObj.isSeaGlass()) {
-			jSplitPaneDesktop2
-					.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorUtil.getBorderGray(settingsObj)));
-			jScrollPane1.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ColorUtil.getBorderGray(settingsObj)));
-			jTextArea1.setBorder(
-					ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextArea1.border.title"), settingsObj));
-			jTextArea2.setBorder(
-					ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextArea2.border.title"), settingsObj));
-			jTextArea3.setBorder(
-					ZknMacWidgetFactory.getTitledBorder(resourceMap.getString("jTextArea3.border.title"), settingsObj));
-		}
 		if (settingsObj.isMacAqua()) {
 			ZknMacWidgetFactory.updateSplitPane(jSplitPaneDesktop1);
 			ZknMacWidgetFactory.updateSplitPane(jSplitPaneDesktop2);
@@ -833,15 +820,6 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		if (settingsObj.isMacAqua()) {
 			makeMacToolbar();
 		}
-		if (settingsObj.isSeaGlass()) {
-			makeSeaGlassToolbar();
-		}
-	}
-
-	private void setupSeaGlassStyle() {
-		getRootPane().setBackground(ColorUtil.colorSeaGlassGray);
-		jTextFieldLiveSearch.putClientProperty("JTextField.variant", "search");
-		jEditorPaneMain.setBackground(Color.white);
 	}
 
 	/**
@@ -864,33 +842,6 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 				new ImageIcon(Toolkit.getDefaultToolkit().getImage("NSImage://NSStopProgressFreestandingTemplate")
 						.getScaledInstance(16, 16, Image.SCALE_SMOOTH)));
 		// </editor-fold>
-	}
-
-	private void makeSeaGlassToolbar() {
-		Tools.makeTexturedToolBarButton(tb_newbullet, Tools.SEGMENT_POSITION_FIRST);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_newentry, Tools.SEGMENT_POSITION_MIDDLE);
-			Tools.makeTexturedToolBarButton(tb_addluhmann, Tools.SEGMENT_POSITION_LAST);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_newentry, Tools.SEGMENT_POSITION_LAST);
-		}
-		Tools.makeTexturedToolBarButton(tb_modifyentry, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_cut, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_copy, Tools.SEGMENT_POSITION_MIDDLE);
-		Tools.makeTexturedToolBarButton(tb_paste, Tools.SEGMENT_POSITION_LAST);
-		Tools.makeTexturedToolBarButton(tb_moveup, Tools.SEGMENT_POSITION_FIRST);
-		Tools.makeTexturedToolBarButton(tb_movedown, Tools.SEGMENT_POSITION_LAST);
-		if (settingsObj.getShowAllIcons()) {
-			Tools.makeTexturedToolBarButton(tb_rename, Tools.SEGMENT_POSITION_FIRST);
-			Tools.makeTexturedToolBarButton(tb_comment, Tools.SEGMENT_POSITION_MIDDLE);
-		} else {
-			Tools.makeTexturedToolBarButton(tb_comment, Tools.SEGMENT_POSITION_FIRST);
-		}
-		Tools.makeTexturedToolBarButton(tb_delete, Tools.SEGMENT_POSITION_LAST);
-		Tools.makeTexturedToolBarButton(tb_refresh, Tools.SEGMENT_POSITION_ONLY);
-		jToolBarDesktop.setPreferredSize(
-				new java.awt.Dimension(jToolBarDesktop.getSize().width, Constants.seaGlassToolbarHeight));
-		jToolBarDesktop.add(new javax.swing.JToolBar.Separator(), 0);
 	}
 
 	private void makeMacToolbar() {

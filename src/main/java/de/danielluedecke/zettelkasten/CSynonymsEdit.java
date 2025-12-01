@@ -132,14 +132,10 @@ public class CSynonymsEdit extends javax.swing.JDialog {
         };
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
         // when we have aqua-style, change scrollbars
-        if (settingsObj.isMacAqua() || settingsObj.isSeaGlass()) {
+        if (settingsObj.isMacAqua()) {
             jButtonFindNext.putClientProperty("JButton.buttonType", "segmentedRoundRect");
             jButtonFindNext.putClientProperty("JButton.segmentPosition", "only");
             jTextFieldFind.putClientProperty("JTextField.variant", "search");
-            if (settingsObj.isSeaGlass()) {
-                jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-                jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-            }
         }
         
         // Set font.

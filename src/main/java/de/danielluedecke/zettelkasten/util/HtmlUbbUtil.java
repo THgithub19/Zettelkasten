@@ -1391,6 +1391,7 @@ public class HtmlUbbUtil {
         dummy = dummy.replaceAll("\\`(.*?)\\`", "<code>$1</code>");
         // new line
         dummy = dummy.replace("[br]", "<br>");
+        //now all [br] should be replaced by <br> - later after introduction of paragrafs they will be removed
         // hyperlinks
         dummy = dummy.replaceAll("\\[([^\\[]+)\\]\\(http([^\\)]+)\\)", "<a href=\"http$2\" title=\"http$2\">$1</a>");
         // bold formatting: [f] becomes <b>
@@ -1451,8 +1452,18 @@ public class HtmlUbbUtil {
         dummy = dummy.replaceAll("\\[\\*\\](.*?)\\[/\\*\\]", "<li>$1</li>");
         // manual links
         dummy = dummy.replaceAll("\\[z ([^\\[]*)\\](.*?)\\[/z\\]", "<a class=\"manlink\" href=\"#z_$1\">$2</a>");
+        // replace triple or higher multiples of <br> with <br><br>
+        dummy = dummy.replaceAll("(<br>){3,}", "<br><br>");
+        // now we want paragrafs for better exports due to better markup
+        // replace certain <br> with <p>: place characters between two <br> in <p> </p> if
+        // no head or pre tag follows the first <br> and no tag precedes the closing <br>
+        dummy = dummy.replaceAll("<br>(?!<h|<p)(.*?)(?<!>)(<br>|$)", "<p>$1</p>");
         // remove all new lines after headlines
         dummy = dummy.replaceAll("\\</h([^\\<]*)\\>\\<br\\>", "</h$1>");
+        // remove remaining single <br>
+        dummy = dummy.replaceAll("<br>", "");
+        // for observing string build
+        // System.out.println(dummy);
         return dummy;
     }
 

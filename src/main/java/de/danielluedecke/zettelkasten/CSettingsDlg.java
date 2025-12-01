@@ -213,26 +213,6 @@ public class CSettingsDlg extends javax.swing.JDialog {
 		stenoObj = stn;
 		initComponents();
 		// make extra style for combo-boxes
-		if (settings.isSeaGlass()) {
-			jButtonApply.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonBrowseAttachmentPath.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonBrowseBackup.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonBrowseImagePath.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonBrowsePandoc.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonDesktopCSS.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonEditAutokorrekt.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonEditSteno.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonEntryCss.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonHighlightKeywordStyle.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonHighlightLivesearchStyle.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonHighlightStyle.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonListFont.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonDesktopFont.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonResetDesktopCSS.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonResetEntryCSS.putClientProperty("JComponent.sizeVariant", "small");
-			jButtonSynonymEdit.putClientProperty("JComponent.sizeVariant", "small");
-		}
 		if (!SystemTray.isSupported() || PlatformUtil.isMacOS()) {
 			jCheckBoxSystray.setText(jCheckBoxSystray.getText() + resourceMap.getString("systrayNotSupported"));
 			jCheckBoxSystray.setEnabled(false);
@@ -343,7 +323,10 @@ public class CSettingsDlg extends javax.swing.JDialog {
 		// init formatted textfields with resize-preferences
 		jFormattedTextFieldImgWidth.setValue(settings.getImageResizeWidth());
 		jFormattedTextFieldImgHeight.setValue(settings.getImageResizeHeight());
-		jCheckBoxRegistry.setSelected(initRegCheckBox());
+        // to remove a spurious message in the log concerning unsupported os if not on windows
+        if (PlatformUtil.isWindows()) {
+            jCheckBoxRegistry.setSelected(initRegCheckBox());
+        }
 		// get value for cell spacing
 		Dimension cellspacing = settings.getCellSpacing();
 		jSpinnerDistHor.setValue(cellspacing.width);
@@ -1620,8 +1603,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 		// save all the settings
 		int selectedlaf = jComboBoxLAF.getSelectedIndex();
 		String laf;
-		if (selectedlaf >= installed_laf.length) laf = Constants.seaGlassLookAndFeelClassName;
-		else laf = installed_laf[jComboBoxLAF.getSelectedIndex()].getClassName();
+        laf = installed_laf[jComboBoxLAF.getSelectedIndex()].getClassName();
 		settings.setLookAndFeel(laf);
 		settings.setShowAtStartup(jComboBoxShowAtStartup.getSelectedIndex());
 		settings.setManualTimestamp(jComboBoxManualTimestamp.getSelectedIndex());

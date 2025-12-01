@@ -135,10 +135,6 @@ public class CReplaceDialog extends javax.swing.JDialog {
             jCheckBoxReplaceAuthors.setEnabled(false);
             jCheckBoxReplaceKeywords.setEnabled(false);
         }
-        if (settingsObj.isSeaGlass()) {
-            jButtonCancel.putClientProperty("JComponent.sizeVariant", "small");
-            jButtonReplace.putClientProperty("JComponent.sizeVariant", "small");
-        }
     }
 
     private void initMnemonics() {
