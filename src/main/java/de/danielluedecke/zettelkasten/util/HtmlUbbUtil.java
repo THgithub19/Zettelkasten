@@ -37,15 +37,12 @@ import de.danielluedecke.zettelkasten.util.classes.Comparer;
 import de.danielluedecke.zettelkasten.database.Daten;
 import de.danielluedecke.zettelkasten.database.Settings;
 import de.danielluedecke.zettelkasten.tasks.export.ExportTools;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,6 +50,8 @@ import java.util.regex.PatternSyntaxException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import org.jdom2.Element;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  * This class is responsible for the creation of a html page of an zettelkasten
@@ -1317,6 +1316,609 @@ public class HtmlUbbUtil {
         return dummy;
     }
 
+
+// This method converts divs styling text alignment into proper paragraphs
+public static String convertTextAlignStyle(String input) {
+    // 1) Muster für <div ...>...</div> (DOTALL damit . auch newlines matched)
+    Pattern divPattern = Pattern.compile("(?is)<div([^>]*)>(.*?)</div>");
+    Matcher divMatcher = divPattern.matcher(input);
+
+    StringBuffer out = new StringBuffer();
+    Pattern alignPattern = Pattern.compile("(?i)text-align\\s*:\\s*(right|left|center|justify)");
+
+    while (divMatcher.find()) {
+        String divAttrs = divMatcher.group(1);   // alles in <div ...>
+        String innerHtml = divMatcher.group(2);  // Inhalt zwischen <div> und </div>
+
+        // Finde text-align in den div-Attributes
+        Matcher a = alignPattern.matcher(divAttrs);
+        if (!a.find()) {
+            // kein text-align — behalte den original-div
+            divMatcher.appendReplacement(out, Matcher.quoteReplacement(divMatcher.group(0)));
+            continue;
+        }
+        String align = a.group(1).toLowerCase();
+
+        // Split an <br><br> (erkennt <br>, <br/> und <br />) — case-insensitive
+        String[] parts = innerHtml.split("(?i)<br\\s*/?>\\s*<br\\s*/?>");
+
+        StringBuilder replacement = new StringBuilder();
+        for (String p : parts) {
+            String trimmed = p.trim();
+            if (!trimmed.isEmpty()) {
+                replacement.append("<p style=\"text-align:").append(align).append("\">")
+                        .append(trimmed)
+                        .append("</p>\n");
+            }
+        }
+
+        divMatcher.appendReplacement(out, Matcher.quoteReplacement(replacement.toString()));
+    }
+    divMatcher.appendTail(out);
+
+    return out.toString();
+}
+
+    // This method converts quote divs into proper paragraphs, currently not used as on export <blockquote> is used
+    public static String convertQuoteDivs(String input) {
+        // 1) Muster für <div ...>...</div> (DOTALL damit . auch newlines matched)
+        Pattern divPattern = Pattern.compile("(?is)<div([^>]*)>(.*?)</div>");
+        Matcher divMatcher = divPattern.matcher(input);
+
+        StringBuffer out = new StringBuffer();
+        Pattern alignPattern = Pattern.compile("(?i)class=\"(zitat\"|quote\")");
+
+        while (divMatcher.find()) {
+            String divAttrs = divMatcher.group(1);   // alles in <div ...>
+            String innerHtml = divMatcher.group(2);  // Inhalt zwischen <div> und </div>
+
+            // Finde text-align in den div-Attributes
+            Matcher a = alignPattern.matcher(divAttrs);
+            if (!a.find()) {
+                // kein text-align — behalte den original-div
+                divMatcher.appendReplacement(out, Matcher.quoteReplacement(divMatcher.group(0)));
+                continue;
+            }
+            String align = a.group(1).toLowerCase();
+
+            // Split an <br><br> (erkennt <br>, <br/> und <br />) — case-insensitive
+            String[] parts = innerHtml.split("(?i)<br\\s*/?>\\s*<br\\s*/?>");
+
+            StringBuilder replacement = new StringBuilder();
+            for (String p : parts) {
+                String trimmed = p.trim();
+                if (!trimmed.isEmpty()) {
+                    replacement.append("<p class=\"").append(align).append(">")
+                            .append(trimmed)
+                            .append("</p>\n");
+                }
+            }
+
+            divMatcher.appendReplacement(out, Matcher.quoteReplacement(replacement.toString()));
+        }
+        divMatcher.appendTail(out);
+
+        return out.toString();
+    }
+
+    // This method converts qutoe divs styling into proper paragraphs
+    public static String convertMarginStyle(String input) {
+        Pattern divPattern = Pattern.compile("(?is)<div([^>]*)>(.*?)</div>");
+        Matcher divMatcher = divPattern.matcher(input);
+
+        StringBuffer out = new StringBuffer();
+        Pattern alignPattern = Pattern.compile("(?i)margin-left:([^\\[]*)cm;margin-right:([^\\[]*)cm");
+
+        while (divMatcher.find()) {
+            String divAttrs = divMatcher.group(1);   // alles in <div ...>
+            String innerHtml = divMatcher.group(2);  // Inhalt zwischen <div> und </div>
+
+            // Finde text-align in den div-Attributes
+            Matcher a = alignPattern.matcher(divAttrs);
+            if (!a.find()) {
+                // kein text-align — behalte den original-div
+                divMatcher.appendReplacement(out, Matcher.quoteReplacement(divMatcher.group(0)));
+                continue;
+            }
+            String align = a.group(1).toLowerCase();
+
+            // Split an <br><br> (erkennt <br>, <br/> und <br />) — case-insensitive
+            String[] parts = innerHtml.split("(?i)<br\\s*/?>\\s*<br\\s*/?>");
+
+            StringBuilder replacement = new StringBuilder();
+            for (String p : parts) {
+                String trimmed = p.trim();
+                if (!trimmed.isEmpty()) {
+                    replacement.append("<p style=\"margin-left:").append(align).append("cm;margin-right:").append(align).append("cm\">")
+                            .append(trimmed)
+                            .append("</p>\n");
+                }
+            }
+
+            divMatcher.appendReplacement(out, Matcher.quoteReplacement(replacement.toString()));
+        }
+        divMatcher.appendTail(out);
+
+        return out.toString();
+
+    }
+
+    public static String transformToParagraphs(String input) {
+        // Define the string to work with
+        String temp = input;
+        // Have at most two consecutive <br>
+        temp = temp.replaceAll("(<br>){3,}", "<br><br>");
+        // remove new lines between headlines
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<h3\\>", "</h2><h3>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<h2\\>", "</h3><h2>");
+// remove new lines between headlines and lists, code, quotes
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<ul\\>", "</h2><ul>");
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<ol\\>", "</h2><ol>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<ul\\>", "</h3><ul>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<ol\\>", "</h3><ol>");
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<pre\\>", "</h2><pre>");
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<blockquote(.*?)>", "</h2><blockquote$1>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<pre\\>", "</h3><pre>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<blockquote(.*?)>", "</h3><blockquote$1>");
+        temp = temp.replaceAll("\\</div\\>(<br>){1,}\\<div", "</div><div"); // last > not forgotten!
+// replace double new lines before headlines, lists, code, quotes
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<h2\\>", "<br><h2>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<h3\\>", "<br><h3>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<ol\\>", "<br><ol>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<ul\\>", "<br><ul>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<pre\\>", "<br><pre>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<blockquote(.*?)>", "<br><blockquote$1>");
+        temp = temp.replaceAll("\\<br\\>\\<br\\>\\<div", "<br><div"); // last > not forgotten!
+// replace double new lines after headlines, lists, code, quotes
+        temp = temp.replaceAll("\\</h2\\>\\<br\\>\\<br\\>", "</h2><br>");
+        temp = temp.replaceAll("\\</h3\\>\\<br\\>\\<br\\>", "</h3><br>");
+        temp = temp.replaceAll("\\</ol\\>\\<br\\>\\<br\\>", "</ol><br>");
+        temp = temp.replaceAll("\\</ul\\>\\<br\\>\\<br\\>", "</ul><br>");
+        temp = temp.replaceAll("\\</pre\\>\\<br\\>\\<br\\>", "</pre><br>");
+        temp = temp.replaceAll("\\</blockquote>\\<br\\>\\<br\\>", "</blockquote><br>");
+        temp = temp.replaceAll("\\</div\\>\\<br\\>\\<br\\>", "</div><br>");
+
+        // Protect headlines, quotes, code and lists and introduce linebreaks for split operation later
+
+        temp = temp.replaceAll("<h2>(.*?)</h2>", "§H2START§$1§H2END§\n");
+
+        temp = temp.replaceAll("<h3>(.*?)</h3>", "§H3START§$1§H3END§\n");
+
+        temp = temp.replaceAll("<blockquote(.*?)>(.*?)</blockquote>", "§QSTART§$1>$2§QEND§\n");
+
+        temp = temp.replaceAll("<pre>(.*?)</pre>", "§CODESTART§$1§CODEEND§\n");
+
+        temp = temp.replaceAll("<ol>(.*?)</ol>", "§OLISTSTART§$1§OLISTEND§\n");
+
+        temp = temp.replaceAll("<ul>(.*?)</ul>", "§ULISTSTART§$1§ULISTEND§\n");
+        // Introduce linebreak after <br> if followed by a protecting group
+        temp = temp.replaceAll("<br>§([\\S]{1,5}START)","<br>\n§$1");
+        // Introduce linebreak after character followed by a protecting group
+        temp = temp.replaceAll("(.)§([\\S]{1,5}START)","$1\n§$2");
+
+        // Lets get rid of divs to style paragraphs
+        // First replace text-aligning divs by proper paragraphs
+        temp = convertTextAlignStyle(temp);
+        // Next, replace margin style divs by proper paragraphs
+        temp = convertMarginStyle(temp);
+        // Next, replace qutoe divs by proper paragraphing (currently not used, as there are no quote divs on export)
+        temp = convertQuoteDivs(temp);
+
+        // Split into entities between <br> and <br>:
+        // Split between <br><br>
+        temp = temp.replaceAll("<br><br>", "<br>\n<br>");
+        // Add <br> to the very beginning of the string, if it does not start with a headline
+        temp = temp.replaceAll("(^.*?)<br>","<br>$1<br>\n");
+
+        // Now we place every line within <br> and <br> into proper <p> and </p> pairs
+        // First split string at linebreaks and trim resulting parts
+        StringBuilder result = new StringBuilder();
+        for (String part : temp.split("\n")) {
+            part = part.trim();
+            if (part.isEmpty()) continue;
+            // For parts not in protecting groups ....
+            if (!part.matches(".*§(H2|H3|Q|CODE|OL|UL).*§.*")) {
+                // .... replace <br> tags with paragraph tags <p> and </p>
+                part = part.replaceAll("<br>(.*?)<br>","<p>$1</p>");
+                // .... replace string beginnings followed by <br>
+                part = part.replaceAll("(.+)<br>","<p>$1</p>");
+                // .... do the same for parts between <br> and end of string without <br>
+                part = part.replaceAll("(?s)(?:.*<br>)(.*)$","<p>$1</p>");
+
+                result.append(part);
+
+            } else {
+                result.append(part);
+            }
+        }
+        // Replace protecting groups with proper HTML tags
+        String finalText = result.toString();
+
+        finalText = finalText.replaceAll("§H2START§", "<h2>");
+        finalText = finalText.replaceAll("§H2END§", "</h2>");
+        finalText = finalText.replaceAll("§H3START§", "<h3>");
+        finalText = finalText.replaceAll("§H3END§", "</h3>");
+        finalText = finalText.replaceAll("§QSTART§", "<blockquote"); // last > not forgotten!
+        finalText = finalText.replaceAll("§QEND§", "</blockquote>");
+        finalText = finalText.replaceAll("§CODESTART§", "<pre>");
+        finalText = finalText.replaceAll("§CODEEND§", "</pre>");
+        finalText = finalText.replaceAll("§OLISTSTART§", "<ol>");
+        finalText = finalText.replaceAll("§OLISTEND§", "</ol>");
+        finalText = finalText.replaceAll("§ULISTSTART§", "<ul>");
+        finalText = finalText.replaceAll("§ULISTEND§", "</ul>");
+
+        return finalText;
+    }
+
+
+    // This method adapts span regions of textcolor and background-color to the use of paragraphs,
+    // that is, if a span covers more than one paragraph, end the span in the first paragraph and resume it
+    // again in the next
+    // First find content in paragraphs <p ...> ... </p> and in spans
+    private static final Pattern P_PATTERN = Pattern.compile("(?i)(<p[^>]*>)(.*?)(</p>)", Pattern.DOTALL);
+    private static final Pattern SPAN_PATTERN = Pattern.compile("(?i)(<span[^>]*>)|(</span>)");
+
+    // Proof if span is related to background color
+    private static boolean isRelevantBgColorSpan(String tag) {
+        String lower = tag.toLowerCase();
+        //return lower.contains("style=\"color") || lower.contains("style=\"background-color");
+        return lower.contains("style=\"background-color");
+    }
+
+    // Proof if span is related to text color
+    private static boolean isRelevantTextColorSpan(String tag) {
+        String lower = tag.toLowerCase();
+        //return lower.contains("style=\"color") || lower.contains("style=\"background-color");
+        return lower.contains("style=\"color");
+    }
+
+    // Proof if span is related to font family
+    private static boolean isRelevantFontFamilySpan(String tag) {
+        String lower = tag.toLowerCase();
+        //return lower.contains("style=\"color") || lower.contains("style=\"background-color");
+        return lower.contains("style=\"font-family");
+    }
+
+    // Now use the patterns defined before to normalize background color spans into paragraphs
+    public static String normalizeBgColorSpanTags(String html) {
+        Matcher pMatcher = P_PATTERN.matcher(html);
+        LinkedList<String> carry = new LinkedList<>(); // Tags, die über Absatzgrenzen fortgeführt werden
+        StringBuilder result = new StringBuilder();
+
+        int lastEnd = 0; // Position des letzten Endes im Originalstring
+
+        while (pMatcher.find()) {
+            // 1) Alles zwischen dem vorherigen Match-Ende und dem aktuellen <p>-Start
+            //    unverändert übernehmen (dazu gehören <h2>, <ul>, Text, etc.)
+            if (pMatcher.start() > lastEnd) {
+                result.append(html, lastEnd, pMatcher.start());
+            }
+
+            // 2) Jetzt die gefundene <p>-Gruppe verarbeiten (wie bisher)
+            String openP = pMatcher.group(1);
+            String inner = pMatcher.group(2);
+            String closeP = pMatcher.group(3);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(openP); // <p>
+
+            // Reopen carry direkt nach <p>
+            for (String c : carry) sb.append(c);
+            LinkedList<String> localStack = new LinkedList<>(carry); // lokale Kopie
+
+            // Tokenize <span> und </span>
+            Matcher spanMatcher = SPAN_PATTERN.matcher(inner);
+            int last = 0;
+            while (spanMatcher.find()) {
+                if (spanMatcher.start() > last) sb.append(inner, last, spanMatcher.start());
+
+                String opening = spanMatcher.group(1);
+                String closing = spanMatcher.group(2);
+
+                if (opening != null) {
+                    if (isRelevantBgColorSpan(opening)) localStack.addLast(opening);
+                    sb.append(opening);
+                } else if (closing != null) {
+                    if (!localStack.isEmpty()) localStack.removeLast();
+                    sb.append(closing);
+                }
+
+                last = spanMatcher.end();
+            }
+
+            // Resttext im <p>
+            if (last < inner.length()) sb.append(inner.substring(last));
+
+            // Offene Tags am Ende des Absatzes schließen (vor </p>)
+            // Achtung: localStack enthält die noch offenen öffner in Reihenfolge outer..inner
+            for (int i = localStack.size() - 1; i >= 0; i--) {
+                sb.append("</span>");
+            }
+
+            sb.append(closeP); // </p>
+            result.append(sb.toString());
+
+            // carry für nächsten Absatz: nur die Tags, die noch offen waren (in originaler order)
+            carry = new LinkedList<>(localStack);
+
+            // Update lastEnd auf das Ende des aktuellen <p>-Matchs
+            lastEnd = pMatcher.end();
+        }
+
+        // 3) Alles nach dem letzten <p> ebenfalls anhängen (z. B. finale <h3>, Listen, etc.)
+        if (lastEnd < html.length()) {
+            result.append(html.substring(lastEnd));
+        }
+
+        return result.toString();
+    }
+
+    // Now use the patterns defined before to normalize text color spans into paragraphs
+    public static String normalizeTextColorSpanTags(String html) {
+        Matcher pMatcher = P_PATTERN.matcher(html);
+        LinkedList<String> carry = new LinkedList<>(); // Tags, die über Absatzgrenzen fortgeführt werden
+        StringBuilder result = new StringBuilder();
+
+        int lastEnd = 0; // Position des letzten Endes im Originalstring
+
+        while (pMatcher.find()) {
+            // 1) Alles zwischen dem vorherigen Match-Ende und dem aktuellen <p>-Start
+            //    unverändert übernehmen (dazu gehören <h2>, <ul>, Text, etc.)
+            if (pMatcher.start() > lastEnd) {
+                result.append(html, lastEnd, pMatcher.start());
+            }
+
+            // 2) Jetzt die gefundene <p>-Gruppe verarbeiten (wie bisher)
+            String openP = pMatcher.group(1);
+            String inner = pMatcher.group(2);
+            String closeP = pMatcher.group(3);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(openP); // <p>
+
+            // Reopen carry direkt nach <p>
+            for (String c : carry) sb.append(c);
+            LinkedList<String> localStack = new LinkedList<>(carry); // lokale Kopie
+
+            // Tokenize <span> und </span>
+            Matcher spanMatcher = SPAN_PATTERN.matcher(inner);
+            int last = 0;
+            while (spanMatcher.find()) {
+                if (spanMatcher.start() > last) sb.append(inner, last, spanMatcher.start());
+
+                String opening = spanMatcher.group(1);
+                String closing = spanMatcher.group(2);
+
+                if (opening != null) {
+                    if (isRelevantTextColorSpan(opening)) localStack.addLast(opening);
+                    sb.append(opening);
+                } else if (closing != null) {
+                    if (!localStack.isEmpty()) localStack.removeLast();
+                    sb.append(closing);
+                }
+
+                last = spanMatcher.end();
+            }
+
+            // Resttext im <p>
+            if (last < inner.length()) sb.append(inner.substring(last));
+
+            // Offene Tags am Ende des Absatzes schließen (vor </p>)
+            // Achtung: localStack enthält die noch offenen öffner in Reihenfolge outer..inner
+            for (int i = localStack.size() - 1; i >= 0; i--) {
+                sb.append("</span>");
+            }
+
+            sb.append(closeP); // </p>
+            result.append(sb.toString());
+
+            // carry für nächsten Absatz: nur die Tags, die noch offen waren (in originaler order)
+            carry = new LinkedList<>(localStack);
+
+            // Update lastEnd auf das Ende des aktuellen <p>-Matchs
+            lastEnd = pMatcher.end();
+        }
+
+        // 3) Alles nach dem letzten <p> ebenfalls anhängen (z. B. finale <h3>, Listen, etc.)
+        if (lastEnd < html.length()) {
+            result.append(html.substring(lastEnd));
+        }
+
+        return result.toString();
+    }
+
+    // Now use the patterns defined before to normalize font family spans into paragraphs
+    public static String normalizeFontFamilySpanTags(String html) {
+        Matcher pMatcher = P_PATTERN.matcher(html);
+        LinkedList<String> carry = new LinkedList<>(); // Tags, die über Absatzgrenzen fortgeführt werden
+        StringBuilder result = new StringBuilder();
+
+        int lastEnd = 0; // Position des letzten Endes im Originalstring
+
+        while (pMatcher.find()) {
+            // 1) Alles zwischen dem vorherigen Match-Ende und dem aktuellen <p>-Start
+            //    unverändert übernehmen (dazu gehören <h2>, <ul>, Text, etc.)
+            if (pMatcher.start() > lastEnd) {
+                result.append(html, lastEnd, pMatcher.start());
+            }
+
+            // 2) Jetzt die gefundene <p>-Gruppe verarbeiten (wie bisher)
+            String openP = pMatcher.group(1);
+            String inner = pMatcher.group(2);
+            String closeP = pMatcher.group(3);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(openP); // <p>
+
+            // Reopen carry direkt nach <p>
+            for (String c : carry) sb.append(c);
+            LinkedList<String> localStack = new LinkedList<>(carry); // lokale Kopie
+
+            // Tokenize <span> und </span>
+            Matcher spanMatcher = SPAN_PATTERN.matcher(inner);
+            int last = 0;
+            while (spanMatcher.find()) {
+                if (spanMatcher.start() > last) sb.append(inner, last, spanMatcher.start());
+
+                String opening = spanMatcher.group(1);
+                String closing = spanMatcher.group(2);
+
+                if (opening != null) {
+                    if (isRelevantFontFamilySpan(opening)) localStack.addLast(opening);
+                    sb.append(opening);
+                } else if (closing != null) {
+                    if (!localStack.isEmpty()) localStack.removeLast();
+                    sb.append(closing);
+                }
+
+                last = spanMatcher.end();
+            }
+
+            // Resttext im <p>
+            if (last < inner.length()) sb.append(inner.substring(last));
+
+            // Offene Tags am Ende des Absatzes schließen (vor </p>)
+            // Achtung: localStack enthält die noch offenen öffner in Reihenfolge outer..inner
+            for (int i = localStack.size() - 1; i >= 0; i--) {
+                sb.append("</span>");
+            }
+
+            sb.append(closeP); // </p>
+            result.append(sb.toString());
+
+            // carry für nächsten Absatz: nur die Tags, die noch offen waren (in originaler order)
+            carry = new LinkedList<>(localStack);
+
+            // Update lastEnd auf das Ende des aktuellen <p>-Matchs
+            lastEnd = pMatcher.end();
+        }
+
+        // 3) Alles nach dem letzten <p> ebenfalls anhängen (z. B. finale <h3>, Listen, etc.)
+        if (lastEnd < html.length()) {
+            result.append(html.substring(lastEnd));
+        }
+
+        return result.toString();
+    }
+
+    // This method adapts formattings such as bold, italic, underlined, striked to the use of paragraphs,
+    // that is, if a formatting covers more than one paragraph, end the formatting in the first paragraph
+    // and resume it again in the next paragraph
+    private static final Pattern TAG_PATTERN = Pattern.compile("(?i)</?\\s*(b|i|u|strike)\\s*>");
+
+    public static String normalizeInlineTags(String html) {
+        Document doc = Jsoup.parseBodyFragment(html);
+        List<org.jsoup.nodes.Element> paragraphs = doc.select("p");
+
+        // carryStack: Reihenfolge der geöffneten Tags, die am Ende des vorherigen Paragraphen offen blieben.
+        // Beispiel: ["b","i"] bedeutet: zuerst <b>, dann <i> geöffnet (also <b><i>...)
+        LinkedList<String> carryStack = new LinkedList<>();
+
+        for (org.jsoup.nodes.Element p : paragraphs) {
+            String inner = p.html(); // inner HTML des Paragraphen
+            StringBuilder out = new StringBuilder();
+
+            // 1) öffne die carry-Stack Tags am Anfang des Paragraphen (wiederherstellen)
+            for (String t : carryStack) {
+                out.append("<").append(t).append(">");
+            }
+
+            // 2) tokenisiere inner HTML nach TEXT und Tag-Token (<b>, </b>, <i>, </i>)
+            // Wir verwenden Matcher, der zwischen Tag-Matches die Textstücke ausgibt.
+            Matcher m = TAG_PATTERN.matcher(inner);
+            int last = 0;
+
+            // Lokaler Stack zur Simulation (initial mit carryStack vorbefüllt, in gleicher Reihenfolge)
+            LinkedList<String> localStack = new LinkedList<>(carryStack);
+
+            while (m.find()) {
+                // Text zwischen last und m.start()
+                if (m.start() > last) {
+                    out.append(inner.substring(last, m.start()));
+                }
+
+                String tagToken = m.group();           // z.B. "<b>" oder "</i>"
+                String tagName = m.group(1).toLowerCase(); // "b" oder "i"
+                boolean isClosing = tagToken.startsWith("</") || tagToken.matches("(?i)</\\s*(b|i|u|strike)\\s*>");
+
+                if (!isClosing) {
+                    // opening tag
+                    localStack.addLast(tagName); // push
+                    out.append("<").append(tagName).append(">");
+                } else {
+                    // closing tag
+                    // Falls der lokale Stack top das gleiche Tag ist -> pop und benutze das schließende Tag
+                    if (!localStack.isEmpty() && localStack.getLast().equals(tagName)) {
+                        localStack.removeLast();
+                        out.append("</").append(tagName).append(">");
+                    } else {
+                        // Es schließt ein Tag, das nicht auf dem lokalen Stack-Top liegt.
+                        // Das bedeutet: das schließende Tag gehört zu einer Öffnung aus früheren Paragraphen
+                        // oder die Struktur ist inkonsistent. Wir behandeln es so:
+                        // - Wenn die localStack irgendwo das tagName enthält, schließen wir bis dahin.
+                        // - Falls nicht, dann interpretieren wir: es war ein "späteres" Schließen -> wir nehmen es mit.
+                        int idx = lastIndexOf(localStack, tagName);
+                        if (idx >= 0) {
+                            // schließe bis zu idx
+                            while (localStack.size() > idx + 1) {
+                                String toClose = localStack.removeLast();
+                                out.append("</").append(toClose).append(">");
+                            }
+                            // Jetzt top == tagName
+                            localStack.removeLast();
+                            out.append("</").append(tagName).append(">");
+                        } else {
+                            // Kein passendes Opening in localStack: das Schließen gehört zu einem Opening
+                            // das noch vor diesem Paragraphen stand – aber wir haben carry-Opens bereits
+                            // am Paragraphenanfang eingefügt. Somit sollte localStack schon enthalten haben.
+                            // Falls nicht (sehr inkonsistente Eingabe), wir fügen das schließende Tag einfach ein.
+                            out.append("</").append(tagName).append(">");
+                        }
+                    }
+                }
+
+                last = m.end();
+            }
+
+            // Rest-Text nach letztem Match
+            if (last < inner.length()) {
+                out.append(inner.substring(last));
+            }
+
+            // 3) Am Ende des Paragraphen: alle noch offenen Tags in localStack schließen (in umgekehrter Reihenfolge).
+            //    Diese offenen Tags erzeugen für den nächsten Paragraphen die carryStack (Reopen dort).
+            LinkedList<String> newCarry = new LinkedList<>();
+            if (!localStack.isEmpty()) {
+                // schließen in umgekehrter Reihenfolge
+                ListIterator<String> it = localStack.listIterator(localStack.size());
+                while (it.hasPrevious()) {
+                    String t = it.previous();
+                    out.append("</").append(t).append(">");
+                    // Für den nächsten Paragraphen sollen diese Tags wieder geöffnet werden (in gleicher Reihenfolge wie original)
+                    // localStack hat die Reihenfolge [open1, open2, ...], wir wollen dieselbe Reihenfolge in carryStack
+                    newCarry.addFirst(t); // build so that newCarry = original order
+                }
+            }
+
+            // setze neuen Inhalt des p
+            p.html(out.toString());
+
+            // carryStack für nächsten Paragraphen setzen
+            carryStack = newCarry;
+        }
+
+        // serialisiere die ganze Struktur (nur body inner HTML zurückgeben)
+        return doc.body().html();
+    }
+
+    // Hilfsfunktion: letzte Position eines Elements in LinkedList, -1 wenn nicht vorhanden
+    private static int lastIndexOf(LinkedList<String> list, String value) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (list.get(i).equals(value)) return i;
+        }
+        return -1;
+    }
+
     private static String replaceUbbToHtml(String dummy, boolean isMarkdownActivated, boolean isDesktop, boolean isExport) {
         // replace headlines
         String head1, head2, head3, head4;
@@ -1391,7 +1993,6 @@ public class HtmlUbbUtil {
         dummy = dummy.replaceAll("\\`(.*?)\\`", "<code>$1</code>");
         // new line
         dummy = dummy.replace("[br]", "<br>");
-        //now all [br] should be replaced by <br> - later after introduction of paragrafs they will be removed
         // hyperlinks
         dummy = dummy.replaceAll("\\[([^\\[]+)\\]\\(http([^\\)]+)\\)", "<a href=\"http$2\" title=\"http$2\">$1</a>");
         // bold formatting: [f] becomes <b>
@@ -1452,18 +2053,22 @@ public class HtmlUbbUtil {
         dummy = dummy.replaceAll("\\[\\*\\](.*?)\\[/\\*\\]", "<li>$1</li>");
         // manual links
         dummy = dummy.replaceAll("\\[z ([^\\[]*)\\](.*?)\\[/z\\]", "<a class=\"manlink\" href=\"#z_$1\">$2</a>");
-        // replace triple or higher multiples of <br> with <br><br>
-        dummy = dummy.replaceAll("(<br>){3,}", "<br><br>");
-        // now we want paragrafs for better exports due to better markup
-        // replace certain <br> with <p>: place characters between two <br> in <p> </p> if
-        // no head or pre tag follows the first <br> and no tag precedes the closing <br>
-        dummy = dummy.replaceAll("<br>(?!<h|<p)(.*?)(?<!>)(<br>|$)", "<p>$1</p>");
         // remove all new lines after headlines
         dummy = dummy.replaceAll("\\</h([^\\<]*)\\>\\<br\\>", "</h$1>");
-        // remove remaining single <br>
-        dummy = dummy.replaceAll("<br>", "");
-        // for observing string build
-        // System.out.println(dummy);
+        // This is good for viewing within the Zettelkasten Zkn3 application, but not so good for export to HTML (and ODT via HTML).
+        // Now we want HTML good for viewing and better suited for export:
+        if (isExport) {
+            // First, we introduce proper paragraphs with <p> and </p> tags and remove a lot of hard breaks <br>
+            dummy = transformToParagraphs(dummy);
+            // Second, we make span inline tags <span style:"background-color:#123abc"> stick within paragraphs
+            dummy = normalizeBgColorSpanTags(dummy);
+            // Third, we make span inline tags referring to textcolor <span style:"color:#abc123"> stick within paragraphs
+            dummy = normalizeTextColorSpanTags(dummy);
+            // forth, we make span inline tags referring to font family <span style:"font-family"> stick within paragraphs
+            dummy = normalizeFontFamilySpanTags(dummy);
+            // Fifth, we make inline tags <b>, <i>, <u>, <strike> stick within paragraphs
+            dummy = normalizeInlineTags(dummy);
+        }
         return dummy;
     }
 

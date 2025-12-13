@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.danielluedecke</groupId>
     <artifactId>Zettelkasten</artifactId>
-    <version>3.2025.11</version>
+    <version>3.2025.12</version>
     <name>Zettelkasten</name>
     <properties>
         <zkn.launch4jVersion>${project.version}.0</zkn.launch4jVersion>
@@ -356,6 +356,12 @@
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
             <version>3.2.5</version>
+        </dependency>
+        <dependency>
+            <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.21.2</version>
         </dependency>
     </dependencies>
     <repositories>
