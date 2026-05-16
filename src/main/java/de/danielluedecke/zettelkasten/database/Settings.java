@@ -579,11 +579,13 @@ public class Settings {
 		}
 
 		{
-			// Install FlatLafs Light and Dark with Ubuntu accent colour (Todo: make colors / themeing flexible, not hardcoded)
+			// Install FlatLafs Light and Dark
 			UIManager.installLookAndFeel("FlatLightLaf", "com.formdev.flatlaf.FlatLightLaf");
-			FlatLightLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#ea5420"));
+			// Colors and sizes for FlatLightLaf in /src/main/resources/themes
+			FlatLightLaf.registerCustomDefaultsSource( "themes" );
 			UIManager.installLookAndFeel("FlatDarkLaf", "com.formdev.flatlaf.FlatDarkLaf");
-			FlatDarkLaf.setGlobalExtraDefaults(Collections.singletonMap("@accentColor", "#ea5420"));
+			// Same sizes for FlatDarkLaf in /src/main/resources/themes
+			FlatDarkLaf.registerCustomDefaultsSource("themes");
 			// Retrieve all installed LookAndFeels
 			UIManager.LookAndFeelInfo[] installed_laf = UIManager.getInstalledLookAndFeels();
 			boolean lafAquaFound = false;
