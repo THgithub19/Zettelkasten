@@ -1,4 +1,4 @@
-Schlage mir Namen für eine App vor, die die folgenden Funktionen hat:
+
 Die App dient der Erstellung, Sammlung und Durchsuchung von digitalen Zetteln.
 Die App ermöglicht die freie Verknüpfung von Zetteln zu Sinn- und Gedankensträngen ohne Zuordnung in eine bestimmte Kategorie.
 Die App ermöglicht die Erzeugung von Entwürfen (Outlines) von Dokumenten aus der Zettelsammlung, ohne dass bereits geschriebene Texte und referenzierte Quellen, Abbildungen etc. neu erfasst werden müssen.
@@ -12,11 +12,6 @@ Il metodo prevede di creare una serie di schede, o “zettel” in tedesco, su c
 Zettelkasten, Zettelkartei Schedario
 Zettel lat. scida
 Notizbuch codicillus
-
-logseq
-synapsen
-zettlr
-obsidian
 
 erfassen
 bearbeiten
