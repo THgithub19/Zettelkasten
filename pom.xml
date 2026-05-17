@@ -2,7 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.danielluedecke</groupId>
+    <organization>
+        <name>Zettelkasten Team</name>
+    </organization>
     <artifactId>Zettelkasten</artifactId>
+    <inceptionYear>2004</inceptionYear>
+    <description>Zettelkasten is a program for knowledge management. It is inspired by the note-taking system of Niklas Luhmann (Zettelkasten is German for slip-box).</description>
     <version>3.2026.5</version>
     <name>Zettelkasten</name>
     <properties>
@@ -196,7 +201,7 @@
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
                 <artifactId>launch4j-maven-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>2.5.0</version>
                 <executions>
                     <execution>
                         <id>launch4j</id>
@@ -215,13 +220,12 @@
                             <stayAlive>false</stayAlive>
                             <restartOnCrash>false</restartOnCrash>
                             <manifest/>
-                            <icon>zkn2.ico</icon>
+                            <icon>zkn3.ico</icon>
                             <jre>
-                                <minVersion>1.7.0</minVersion>
-                                <bundledJre64Bit>false</bundledJre64Bit>
-                                <bundledJreAsFallback>false</bundledJreAsFallback>
-                                <jdkPreference>preferJre</jdkPreference>
-                                <runtimeBits>32/64</runtimeBits>
+                                <minVersion>1.8.0</minVersion>
+                                <requiresJdk>preferJre</requiresJdk>
+                                <path>%JAVA_HOME%;%PATH%</path>
+                                <requires64Bit>true</requires64Bit>
                             </jre>
                             <splash>
                                 <file>splash.bmp</file>

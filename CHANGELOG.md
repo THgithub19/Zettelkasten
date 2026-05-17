@@ -1,4 +1,26 @@
+# 3.2026.5
+
+## Changes
+
+* Prepared for first start after installation with an introductory Zettelkasten
+* Add Look and Feel FlatLightLaf and FlatDarkLaf
+
+* Add configuration for FlatLightLaf and FlatDarkLaf with a properties file
+
+* Add icon theme Yaru as new standard and Breeze Dark
+
+* Replace icon themes Crystal and Tango with Breeze and Colibre, respectively
+
+* Improved export to LibreOffice odt and Microsoft docx, due to markup of exported HTML with proper paragraphs instead of hard breaks
+
+* Corrected some inconsistent or non-orthographic spelling
+
+* Remove Sea Glass Look and Feel
+
+
+
 # [Unreleased]
+
 ### Changes
 - Add Go to first parent note action
 - Importing zkx3 files with ID duplicates was unreliable ([215](https://github.com/Zettelkasten-Team/Zettelkasten/issues/215))
