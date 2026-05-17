@@ -1,0 +1,22 @@
+Die App dient der Erstellung, Sammlung und Durchsuchung von digitalen Zetteln.
+Die App ermöglicht die freie Verknüpfung von Zetteln zu Sinn- und Gedankensträngen ohne Zuordnung in eine bestimmte Kategorie.
+Die App ermöglicht die Erzeugung von Entwürfen (Outlines) von Dokumenten aus der Zettelsammlung, ohne dass bereits geschriebene Texte und referenzierte Quellen, Abbildungen etc. neu erfasst werden müssen.
+Die App kann Quellenangaben, Anmerkungen, Anhänge (Dateitypen verschiedener Art) und Schlagwörter mit Zetteln verknüpfen.
+Die App erlaubt die Suche nach Zetteln anhand von Schlagwörtern, beliebigen Begriffen und Quellenangaben.
+Die App ist nützlich, um Gedanken und Ideen festhalten und ordnen ohne Redundanzen und ohne eine passende Schublade finden zu müssen.
+Die App kann Material sammeln, wiederfinden und unter verschiedenen Gesichtspunkten miteinander verknüpfen. Beispiele: Unterrichtsreihen, kleinere und größere Facharbeiten, Rezepte, Liedtexte, genealogische Quellen.
+
+
+erfassen
+bearbeiten
+auswählen
+anzeigen
+durchsuchen
+sammeln
+wiederfinden
+kommentieren
+verbinden, verknüpfen, vernetzen, zusammenfügen, zusammenführen
+entwerfen
+belegen
+
+
