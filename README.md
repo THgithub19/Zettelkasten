@@ -28,7 +28,7 @@ My Personal Edition of Zettelkasten ("Zettelkasten MPE") is based on  the applic
 
 I use the Zettelkasten app Zkn3 since the beginning of 2020. However, after a while, certain shortcomings of the Zettelkasten app Zkn3 on Ubuntu Linux with Gnome desktop regarding appearance of fonts and visual integration put me on the track of ways to overcome these issues. Apart from outer appearance I wanted an improved export to HTML and to the native document formats of LibreOffice Writer and Microsoft Word. Zettelkasten MPE is the result, which I like to share here.
 
-![screenshot](/home/tobias/IdeaProjects/Zettelkasten_20260515/Screenshot_Ubuntu_Breeze.png)
+![screenshot](Screenshot_Ubuntu_Breeze.png)
 *Zettelkasten main window on Ubuntu with FlatLightLaf and Breeze icons*
 
 ## Download
