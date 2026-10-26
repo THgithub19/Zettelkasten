@@ -15,7 +15,7 @@ Thot+Amun allows you to create, edit and collect notes with attachments, annotat
 Thot+Amun is a fork of the Zettelkasten app Zkn3 conceived and developed in most parts by Daniel Lüdecke. During a phase of stagnant Zkn3 development, certain shortcomings on Ubuntu Linux with Gnome desktop regarding appearance of fonts and visual integration put me on the track of ways to overcome these issues. Additionally, a system of help and howtos was introduced to explain the many features of the app. Visual formatting on export to HTML was reduced allowing for better editable documents for LibreOffice Writer and Microsoft Word. 
 
 ![screenshot](ThotAndAmun_Screenshot_Ubuntu.png)
-*Thot+Amun main window on Ubuntu with FlatLightLaf and Breeze icons*
+*Thot+Amun main window on Ubuntu with FlatLightLaf and Yaru icons*
 
 ## Download
 
