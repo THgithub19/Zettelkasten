@@ -33,10 +33,11 @@
 package de.danielluedecke.zettelkasten.util;
 
 import de.danielluedecke.zettelkasten.ZettelkastenView;
+
 import java.awt.Color;
-import java.awt.Dimension;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+
 
 /**
  * This class contains generic constant values that are used all over the
@@ -1080,6 +1081,10 @@ public class Constants {
 	public static final int RETURN_VALUE_CLOSE = 0;
 	public static final int RETURN_VALUE_CONFIRM = 1;
 
+	// Path to the help resource on first start, which explains how to setuo a first file
+	// Will be internationalized
+	public static final String HELP_RESOURCE_PATH = "/ThotAndAmun_Start/ThotAndAmun_Start.zkn3";
+
 	/**
 	 * This is a constant for the image icon for comment nodes in the desktop window
 	 */
@@ -1102,7 +1107,7 @@ public class Constants {
 	 * This is the constant for the application's icon
 	 */
 	public static final ImageIcon zknicon = new ImageIcon(
-			Constants.class.getResource("/de/danielluedecke/zettelkasten/resources/icons/zkn3_16x16.png"));
+			Constants.class.getResource("/de/danielluedecke/zettelkasten/resources/icons/taa-16.png"));
 	/**
 	 * This is the constant for the application's icon
 	 */
@@ -1117,7 +1122,7 @@ public class Constants {
 	 * This is the constant for the magnifier icon
 	 */
 	public static final ImageIcon lupeIcon = new ImageIcon(
-			Constants.class.getResource("/de/danielluedecke/zettelkasten/resources/icons/magnifier.png"));
+			Constants.class.getResource("/de/danielluedecke/zettelkasten/resources/icons/taa-32.png"));
 	/**
 	 * Resource-Path to the standard icon theme
 	 */
@@ -1125,11 +1130,11 @@ public class Constants {
 	/**
 	 *
 	 */
-	public static final String[] iconThemes = { "", "breeze/", "colibre/", "dark/", "classic/" };
+	public static final String[] iconThemes = { "", "breeze/", "colibre/", "dark/", "osx/" };
 	/**
 	 *
 	 */
-	public static final String[] iconThemesNames = { "Standard", "Breeze", "Colibre", "Dark", "Classic" };
+	public static final String[] iconThemesNames = { "Standard", "Breeze", "Colibre", "Dark", "MacOS X" };
 
 	/**
 	 *

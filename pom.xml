@@ -1,21 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.danielluedecke</groupId>
+    <groupId>de.linopus</groupId>
     <organization>
-        <name>Zettelkasten Team</name>
+        <name>Friends of Thot+Amun</name>
     </organization>
-    <artifactId>Zettelkasten</artifactId>
+    <artifactId>thot-and-amun</artifactId>
     <inceptionYear>2004</inceptionYear>
-    <description>Zettelkasten is a program for knowledge management. It is inspired by the note-taking system of Niklas Luhmann (Zettelkasten is German for slip-box).</description>
-    <version>3.2026.5</version>
-    <name>Zettelkasten</name>
+    <description>Thot+Amun is a note and knowledge organizer.</description>
+    <version>3.2026.10</version>
+    <name>ThotAndAmun</name>
     <properties>
         <zkn.launch4jVersion>${project.version}.0</zkn.launch4jVersion>
         <zkn.supportsDmg>false</zkn.supportsDmg>
         <zkn.useGenIsoImage>false</zkn.useGenIsoImage>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>8</maven.compiler.release>
         <slf4j.version>1.6.1</slf4j.version>
+        <jdeb.version>1.14</jdeb.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -85,8 +87,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+<!--                    <source>1.8</source>-->
+<!--                    <target>1.8</target>-->
+                    <release>8</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -144,7 +147,7 @@
                         <CFBundleDisplayName>${project.name}</CFBundleDisplayName>
                         <CFBundleIdentifier>de.danielluedecke.zettelkasten.ZettelkastenApp</CFBundleIdentifier>
                         <CFBundleShortVersionString>${project.version}</CFBundleShortVersionString>
-                        <CFBundleIconFile>zkn3_2.icns</CFBundleIconFile>
+                        <CFBundleIconFile>taa.icns</CFBundleIconFile>
                     </plist>
                     <dmg>
                         <generate>${zkn.supportsDmg}</generate>
@@ -216,16 +219,20 @@
                             <outfile>target/${project.build.finalName}.exe</outfile>
                             <chdir>.</chdir>
                             <priority>normal</priority>
-                            <downloadUrl>http://java.com/download</downloadUrl>
+                            <errTitle>${project.name}</errTitle>
+                            <downloadUrl>https://openjdk.net/</downloadUrl>
                             <stayAlive>false</stayAlive>
                             <restartOnCrash>false</restartOnCrash>
                             <manifest/>
-                            <icon>zkn3.ico</icon>
+                            <icon>taa.ico</icon>
                             <jre>
                                 <minVersion>1.8.0</minVersion>
-                                <requiresJdk>preferJre</requiresJdk>
+                                <requiresJdk>false</requiresJdk>
                                 <path>%JAVA_HOME%;%PATH%</path>
-                                <requires64Bit>true</requires64Bit>
+                                <requires64Bit>false</requires64Bit>
+                                <opts>
+                                    <opt>--enable-native-access=ALL-UNNAMED</opt>
+                                </opts>
                             </jre>
                             <splash>
                                 <file>splash.bmp</file>
@@ -235,15 +242,56 @@
                             </splash>
                             <versionInfo>
                                 <fileVersion>${zkn.launch4jVersion}</fileVersion>
-                                <txtFileVersion>Zettelkasten 3</txtFileVersion>
-                                <fileDescription>Zettelkasten - nach Niklas Luhmann</fileDescription>
-                                <copyright>Daniel Luedecke</copyright>
+                                <txtFileVersion>Thot+Amun</txtFileVersion>
+                                <fileDescription>Note and knowledge organizer</fileDescription>
+                                <copyright>Tobias Hilbricht</copyright>
                                 <productVersion>${zkn.launch4jVersion}</productVersion>
                                 <txtProductVersion>${project.version}</txtProductVersion>
                                 <productName>${project.build.finalName}</productName>
                                 <internalName>zkn</internalName>
                                 <originalFilename>${project.build.finalName}.exe</originalFilename>
                             </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>jdeb</artifactId>
+                <groupId>org.vafer</groupId>
+                <version>${jdeb.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jdeb</goal>
+                        </goals>
+                        <configuration>
+                            <controlDir>${basedir}/src/main/resources/deb/control</controlDir>
+                            <dataSet>
+                                <data>
+                                    <src>${project.build.directory}/${project.build.finalName}.jar</src>
+                                    <type>file</type>
+                                    <mapper>
+                                        <type>perm</type>
+                                        <prefix>/opt/${project.artifactId}</prefix>
+                                    </mapper>
+                                </data>
+                                <data>
+                                    <src>src/main/resources/${project.artifactId}</src>
+                                    <type>file</type>
+                                    <mapper>
+                                        <type>perm</type>
+                                        <prefix>/usr/bin</prefix>
+                                        <filemode>755</filemode>
+                                    </mapper>
+                                </data>
+                                <data>
+                                    <type>template</type>
+                                    <paths>
+                                        <path>/var/log/${project.artifactId}</path>
+                                    </paths>
+                                </data>
+                            </dataSet>
                         </configuration>
                     </execution>
                 </executions>
@@ -355,7 +403,7 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>3.0.0</version>
         </dependency>
-        <!-- https://www.formdev.com/flatlaf/#download -->
+        <!-- Flatlaf https://www.formdev.com/flatlaf/#download -->
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
@@ -367,6 +415,19 @@
             <artifactId>jsoup</artifactId>
             <version>1.21.2</version>
         </dependency>
+        <!-- Try svg Source: https://mvnrepository.com/artifact/com.github.weisj/jsvg -->
+<!--        <dependency>-->
+<!--            <groupId>com.github.weisj</groupId>-->
+<!--            <artifactId>jsvg</artifactId>-->
+<!--            <version>2.1.0</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+        <!-- Get better markdown features -->
+<!--        <dependency>-->
+<!--            <groupId>org.commonmark</groupId>-->
+<!--            <artifactId>commonmark</artifactId>-->
+<!--            <version>0.30.0</version>-->
+<!--        </dependency>-->
     </dependencies>
     <repositories>
         <repository>

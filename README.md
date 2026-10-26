@@ -1,43 +1,29 @@
-# My Personal Edition of Zettelkasten
+# Thot+Amun
 
-## "Zettelkasten MPE"
+## Personal Note and Knowledge Organizer
 
-<img src="src/main/resources/de/danielluedecke/zettelkasten/resources/icons/zkn3-256x256.png" height="128" align="right"/>
-
-<p>
-    <a href="https://github.com/Zettelkasten-Team/Zettelkasten/releases" alt="Release">
-        <img src="https://img.shields.io/github/release/Zettelkasten-Team/Zettelkasten.svg" />
-    </a>
-     <a href="https://github.com/Zettelkasten-Team/Zettelkasten/releases" alt="Downloads">
-        <img src="https://img.shields.io/github/downloads/Zettelkasten-Team/Zettelkasten/total.svg" />
-     </a>
-     <a href="https://github.com/Zettelkasten-Team/Zettelkasten/issues" alt="Resolution time">
-        <img src="http://isitmaintained.com/badge/resolution/Zettelkasten-Team/Zettelkasten.svg" />
-    </a>
-     <a href="https://github.com/Zettelkasten-Team/Zettelkasten/issues" alt="Open Issues">
-        <img src="http://isitmaintained.com/badge/open/Zettelkasten-Team/Zettelkasten.svg" />
-     </a>
-    <a href="https://github.com/Zettelkasten-Team/Zettelkasten/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/Zettelkasten-Team/Zettelkasten" />
-    </a>
-    <img src="https://github.com/Zettelkasten-Team/Zettelkasten/workflows/Java%20CI%20with%20Maven/badge.svg" alt="build status"/>
-</p>
+<img src="src/main/resources/de/danielluedecke/zettelkasten/resources/icons/taa-256.png" height="128" align="right"/>
 
 
-My Personal Edition of Zettelkasten ("Zettelkasten MPE") is based on  the application Zettelkasten Zkn3 conceived and written in most parts by Daniel Lüdecke.  The Zettelkasten app Zkn3 is inspired by the note-taking system of Niklas Luhmann. With the Zettelkasten app Zkn3 you can create and edit notes with attachments, annotations and BibTeX-references. You can link and tag your notes, you can search them and you can connect them to outlines editable in LaTeX, LibreOffice Writer or Microsoft Word. Notes with a meaning for more than one subject are linked to each subject, there is no redundancy and no need to decide between subjects.
 
-I use the Zettelkasten app Zkn3 since the beginning of 2020. However, after a while, certain shortcomings of the Zettelkasten app Zkn3 on Ubuntu Linux with Gnome desktop regarding appearance of fonts and visual integration put me on the track of ways to overcome these issues. Apart from outer appearance I wanted an improved export to HTML and to the native document formats of LibreOffice Writer and Microsoft Word. Zettelkasten MPE is the result, which I like to share here.
 
-![screenshot](Screenshot_Ubuntu_Breeze.png)
-*Zettelkasten main window on Ubuntu with FlatLightLaf and Breeze icons*
+
+Thot+Amun (just say "Thot ['and' in your language] Amun") is for everybody who collects and reuses knowledge fixed in notes.  Use it for scientific projects, to prepare lessons for school, to store and and explore genealogic data, to browse through collections of recipes or lyrics, to keep track of thoughts and many more conceivable purposes.  The name Thot+Amun refers to the discourse of the Egyptian gods Thot and Amun on the impact of writing on humans, passed down in Platons dialogue Phaidros.
+
+Thot+Amun allows you to create, edit and collect notes with attachments, annotations and references. With Thot+Amun, you can link and tag notes in your collection, and you can connect and export notes to outlines editable in LaTeX, LibreOffice or Microsoft Word. Thot+Amun features sophisticated functions to search for specific notes as well as for sets of notes sharing subjects. Notes with a meaning for more than one subject are linked to each subject, so there is not redundancy and no need to decide between subjects. Thot+Amun stores all your data just where you want to have them. Thot+Amun uses standard formats only, so your data are not locked in. 
+
+Thot+Amun is a fork of the Zettelkasten app Zkn3 conceived and developed in most parts by Daniel Lüdecke. During a phase of stagnant Zkn3 development, certain shortcomings on Ubuntu Linux with Gnome desktop regarding appearance of fonts and visual integration put me on the track of ways to overcome these issues. Additionally, a system of help and howtos was introduced to explain the many features of the app. Visual formatting on export to HTML was reduced allowing for better editable documents for LibreOffice Writer and Microsoft Word. 
+
+![screenshot](ThotAndAmun_Screenshot_Ubuntu.png)
+*Thot+Amun main window on Ubuntu with FlatLightLaf and Yaru icons*
 
 ## Download
 
 Find the latest release [here](https://github.com/THgithub19/Zettelkasten/releases).
 
-## Zettelkasten Build
+## Thot+Amun Build
 
-To build Zettelkasten, you need a Java Development Kit (JDK) 8 and Maven 3.
+To build Thot+Amun, you need a Java Development Kit (JDK) 8 or above and Maven 3.
 
 To get a local repository, use Git:
 

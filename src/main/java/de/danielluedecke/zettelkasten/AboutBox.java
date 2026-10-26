@@ -37,6 +37,7 @@ import de.danielluedecke.zettelkasten.util.Constants;
 import de.danielluedecke.zettelkasten.util.Version;
 
 import java.awt.Desktop;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -65,7 +66,7 @@ public class AboutBox extends javax.swing.JDialog {
         initComponents();
         // set application icon
         setIconImage(Constants.zknicon.getImage());
-        setTitle("Zettelkasten "+ Version.get().getVersionString());
+        setTitle("Thot+Amun "+ Version.get().getVersionString());
         // these codelines add an escape-listener to the dialog. so, when the user
         // presses the escape-key, the same action is performed as if the user
         // presses the cancel button...
@@ -77,9 +78,9 @@ public class AboutBox extends javax.swing.JDialog {
             }
         };
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
-        URL licenceText = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/licence.html");
+        URL licenseText = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/thotandamun.html");
         try {
-            jEditorPane1.setPage(licenceText);
+            jEditorPane1.setPage(licenseText);
         } catch (IOException e) {
             Constants.zknlogger.log(Level.SEVERE,e.getLocalizedMessage());
         }
