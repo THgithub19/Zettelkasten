@@ -21,6 +21,6 @@
         <key>NSHighResolutionCapable</key>
         <string>true</string>
         <key>CFBundleIconFile</key>
-        <string>zkn3_2.icns</string>
+        <string>taa.icns</string>
     </dict>
 </plist>

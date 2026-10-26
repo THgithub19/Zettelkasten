@@ -436,7 +436,7 @@ public class Tools {
 											linuxpath.getPath());
 								} else {
 									desk.open(linkfile);
-									Constants.zknlogger.log(Level.INFO, "Using dekstop api with filepath {0}",
+									Constants.zknlogger.log(Level.INFO, "Using desktop api with filepath {0}",
 											linkfile.getPath());
 								}
 							} else {

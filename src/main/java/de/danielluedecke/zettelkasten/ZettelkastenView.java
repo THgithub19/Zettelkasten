@@ -1163,6 +1163,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			public void menuCanceled(MenuEvent evt) {
 			}
 		});
+		// recentDoc1 is going to be Vmn_Help.zkn3
 		recentDoc1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
@@ -1231,6 +1232,15 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			public void actionPerformed(ActionEvent evt) {
 				String fp = settings.getRecentDoc(8);
 				if (fp != null && !fp.isEmpty()) {
+					openRecentDocument(fp);
+				}
+			}
+		});
+		recentDoc9.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				String fp = settings.getRecentDoc(0);
+				if (fp != null) {
 					openRecentDocument(fp);
 				}
 			}
@@ -2814,11 +2824,13 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		setRecentDocumentMenuItem(recentDoc6, 6);
 		setRecentDocumentMenuItem(recentDoc7, 7);
 		setRecentDocumentMenuItem(recentDoc8, 8);
+		setRecentDocumentMenuItem(recentDoc9, 9);
 	}
 
 	private void setRecentDocumentMenuItem(JMenuItem menuItem, int recentDocNr) {
 		menuItem.setVisible(false);
 		String recDoc = settings.getRecentDoc(recentDocNr);
+
 		if (recDoc != null && !recDoc.isEmpty()) {
 			menuItem.setVisible(true);
 			menuItem.setText(FileOperationsUtil.getFileName(recDoc));
@@ -2828,6 +2840,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 
 	private void updateRecentDocumentMenuIcon(JMenuItem menuItem, String recDoc) {
 		File dummyfile = new File(recDoc);
+
 		if (dummyfile.exists()) {
 			ImageIcon zkn3Icon = Constants.zknicon;
 			menuItem.setToolTipText(recDoc);
@@ -6093,7 +6106,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		// create tray-icon with tooltip
 		trayIcon = new TrayIcon((new ImageIcon(
 				Application.getInstance(ZettelkastenApp.class)
-						.getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/zkn3_16x16.png"),
+						.getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/taa-16.png"),
 				"Zettelkasten")).getImage());
 		// retrieve system tray
 		tray = SystemTray.getSystemTray();
@@ -7755,7 +7768,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	}
 
 	/**
-	 * Shows the about box and gives information about the programm and version
+	 * Shows the about box and gives information about the program and version
 	 */
 	@Action
 	public void showAboutBox() {
@@ -7767,6 +7780,22 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		// clear memory allocation
 		zknAboutBox.dispose();
 		zknAboutBox = null;
+	}
+
+	/**
+	 *  Shows the help box and gives help to users of the program
+	 */
+
+	@Action
+	public void showHelpBox() {
+
+		vmnHelpBox = new HelpBox(getFrame());
+		vmnHelpBox.setLocationRelativeTo(getFrame());
+		vmnHelpBox.setVisible(true);
+
+		ZettelkastenApp.getApplication().show(vmnHelpBox);
+		vmnHelpBox.toFront();
+
 	}
 
 	/**
@@ -10784,6 +10813,10 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 								// show settings window
 								settingsWindow();
 							}
+							if (method.getName().equals("handleHelp")) {
+								// show help window
+								showHelpBox();
+							}
 							if (method.getName().equals("handleAbout")) {
 								// show own aboutbox
 								showAboutBox();
@@ -11412,6 +11445,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		recentDoc6 = new JMenuItem();
 		recentDoc7 = new JMenuItem();
 		recentDoc8 = new JMenuItem();
+		recentDoc9 = new JMenuItem();
 		jSeparator107 = new JSeparator();
 		saveMenuItem = new JMenuItem();
 		saveAsMenuItem = new JMenuItem();
@@ -11654,6 +11688,8 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		aboutMenuItem = new JMenuItem();
 		jSeparatorAbout1 = new JSeparator();
 		preferencesMenuItem = new JMenuItem();
+		jSeparatorAbout2 = new JSeparator();
+		helpMenuItem = new JMenuItem();
 		statusPanel = new JPanel();
 		jPanel12 = new JPanel();
 		statusEntryLabel = new JLabel();
@@ -12654,6 +12690,9 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		recentDoc8.setName("recentDoc8"); // NOI18N
 		recentDocsSubMenu.add(recentDoc8);
 
+		recentDoc9.setName("recentDoc9"); // NOI18N
+		recentDocsSubMenu.add(recentDoc9);
+
 		fileMenu.add(recentDocsSubMenu);
 
 		jSeparator107.setName("jSeparator107"); // NOI18N
@@ -13587,6 +13626,13 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		preferencesMenuItem.setName("preferencesMenuItem"); // NOI18N
 		aboutMenu.add(preferencesMenuItem);
 
+		jSeparatorAbout2.setName("jSeparatorAbout2");  // NOI18N
+		aboutMenu.add(jSeparatorAbout2);
+
+		helpMenuItem.setAction(actionMap.get("showHelpBox"));
+		helpMenuItem.setName("helpMenuItem"); // NOI18N
+		aboutMenu.add(helpMenuItem);
+
 		menuBar.add(aboutMenu);
 
 		statusPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0,
@@ -14454,6 +14500,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	private JMenuItem findReplaceMenuItem;
 	private JMenuItem gotoEntryMenuItem;
 	private JCheckBoxMenuItem highlightSegmentsMenuItem;
+	private JMenuItem helpMenuItem;
 	private JMenuItem historyForMenuItem;
 	private JMenuItem histroyBackMenuItem;
 	private JMenuItem goToFirstParentEntryMenuItem;
@@ -14640,6 +14687,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	private JSeparator jSeparator98;
 	private JSeparator jSeparator99;
 	private JSeparator jSeparatorAbout1;
+	private JSeparator jSeparatorAbout2;
 	private JSeparator jSeparatorExit;
 	private JSplitPane jSplitPane1;
 	private JSplitPane jSplitPane2;
@@ -14780,6 +14828,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	private JMenuItem recentDoc6;
 	private JMenuItem recentDoc7;
 	private JMenuItem recentDoc8;
+	private JMenuItem recentDoc9;
 	private JMenu recentDocsSubMenu;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
@@ -14944,6 +14993,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	private CShowMultipleDesktopOccurences multipleOccurencesDlg;
 	private CSetBibKey setBibKeyDlg;
 	private AboutBox zknAboutBox;
+	private HelpBox vmnHelpBox;
 	private FindDoubleEntriesTask doubleEntriesDlg;
 	private CRateEntry rateEntryDlg;
 }

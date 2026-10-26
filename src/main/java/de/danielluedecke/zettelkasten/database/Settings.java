@@ -48,8 +48,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -80,13 +83,13 @@ import org.jdom2.output.XMLOutputter;
 public class Settings {
 
 	/**
-	 * filepath to the currently in use settings file
+	 * filepath to the settings file currently in use
 	 * ("zettelkasten-settings.zks3"). This file is a zip-container with the
 	 * file-extension ".zks3" and contains several XML-Files.
 	 */
 	private final File zipSettingsFile;
 	/**
-	 * filepath to the currently in use metadata file ("zettelkasten-data.zkd3").
+	 * filepath to the metadata file currently in use ("zettelkasten-data.zkd3").
 	 * This file is a zip-container with the file-extension ".zkd3" and contains
 	 * several XML-Files.
 	 */
@@ -107,10 +110,10 @@ public class Settings {
 	private Document foreignWordsFile;
 
 	/**
-	 * Indicates whether the programm is running on a mac with aqua-look and feel or
+	 * Indicates whether the programm is running on a Mac with aqua-look and feel or
 	 * not...
 	 * 
-	 * @return {@code true}, if the programm is running on a mac with aqua-look and
+	 * @return {@code true}, if the programm is running on a Mac with aqua-look and
 	 *         feel
 	 */
 	public boolean isMacAqua() {
@@ -157,16 +160,21 @@ public class Settings {
 	public static final String SETTING_LOGKEYWORDLIST_OR = "OR";
 	public static final String SETTING_LOGKEYWORDLIST_AND = "AND";
 
-	public static final String FONT_ARIAL = "Arial";
-	public static final String FONT_TIMES = "Times";
-	public static final String FONT_HELVETICA = "Helvetica";
-	public static final String FONT_COURIER = "Courier";
+//	public static final String FONT_ARIAL = "Arial";
+//	public static final String FONT_TIMES = "Times";
+//	public static final String FONT_HELVETICA = "Helvetica";
+//
+//	public static final String FONT_LIBERATION = "Liberation Sans";
+//	public static final String FONT_SANS = "sans-serif";
+//	public static final String FONT_COURIER = "Courier";
+//	public static final String FONT_LIBMONO = "Liberation Mono";
+//	public static final String FONT_MONO = "monospace";
 
-	public static final String ZETTELKASTEN_DEFAULT_DIR_NAME = ".Zettelkasten";
+	public static final String THOTANDAMUN_DEFAULT_DIR_NAME = ".ThotAndAmun";
 	/**
 	 * Amount of stored recent documents
 	 */
-	private static final int RECENT_DOC_COUNT = 8;
+	private static final int RECENT_DOC_COUNT = 9;
 	/**
 	 * Here we have constants that refer to the elements that store each setting
 	 */
@@ -263,6 +271,7 @@ public class Settings {
 	private static final String SETTING_DISPLAYEDTOOLBARICONS = "displayedtoolbaricons";
 	private static final String SETTING_MINIMIZETOTRAY = "minimizetotray";
 	private static final String SETTING_COPYPLAIN = "copyplain";
+	private static final String SETTING_HELP_DOC = Constants.HELP_RESOURCE_PATH;
 	private static final String SETTING_RECENT_DOC = "recentDoc";
 	private static final String SETTING_LOCALE = "locale";
 	private static final String SETTING_REMOVELINESFORDESKTOPEXPORT = "removelinesfordeskopexport";
@@ -326,15 +335,9 @@ public class Settings {
 			.getResourceMap(ZettelkastenView.class);
 
 	/**
-	 * This class stores all relevant settings for the Zettelkasten.<br>
-	 * <br>
+	 * This class stores all relevant settings for Thot+Amun.
 	 * We combine several xml-files and compress them into a single zip-container,
 	 * named "zettelkasten-settings.zks3" and "zettelkasten-data.zkd3".
-	 *
-	 * @param ak
-	 * @param ac
-	 * @param syn
-	 * @param stn
 	 */
 	public Settings() {
 		// Init settings file and acceleratorKeys.
@@ -371,9 +374,9 @@ public class Settings {
 			return currentDirFile;
 		}
 
-		// Fallback to Zettelkasten directory in the user's home directory.
+		// Fallback to ThotAndAmun directory in the user's home directory.
 		Path userDir = Paths.get(System.getProperty("user.home"));
-		Path userDirZettelkastenDirPath = Paths.get(userDir.toString(), ZETTELKASTEN_DEFAULT_DIR_NAME);
+		Path userDirZettelkastenDirPath = Paths.get(userDir.toString(), THOTANDAMUN_DEFAULT_DIR_NAME);
 		File userDirZettelkastenDirFile = userDirZettelkastenDirPath.toFile();
 
 		// If that directory doesn't exist, try to create it.
@@ -381,7 +384,7 @@ public class Settings {
 			try {
 				if (!userDirZettelkastenDirFile.mkdir()) {
 					Constants.zknlogger.log(Level.SEVERE,
-							"Failed to create Zettelkasten directory in the user directoy: {0}",
+							"Failed to create ThotAndAmun directory in the user directoy: {0}",
 							userDirZettelkastenDirPath.toString());
 					return null;
 				}
@@ -391,9 +394,9 @@ public class Settings {
 			}
 		}
 
-		// Return settings inside the Zettelkasten directory in the user's home
+		// Return settings inside the ThotAndAmun directory in the user's home
 		// directory.
-		Path settingsPath = Paths.get(userDir.toString(), ZETTELKASTEN_DEFAULT_DIR_NAME, filename);
+		Path settingsPath = Paths.get(userDir.toString(), THOTANDAMUN_DEFAULT_DIR_NAME, filename);
 		return settingsPath.toFile();
 	}
 
@@ -454,6 +457,69 @@ public class Settings {
 		initDefaultSettingsIfMissing();
 	}
 
+	// This creates a path to a temporary copy of the help document
+	public static String helpDocPath;
+	// This returns the path to the temporary copy which can be dynamically read
+	public static synchronized String getHelpDocPath() {
+		if (helpDocPath != null) {
+			File existingFile = new File(helpDocPath);
+			if (existingFile.exists() && existingFile.isFile()) {
+				return helpDocPath;
+			}
+		}
+
+		try {
+			File targetDir = new File(
+					System.getProperty("java.io.tmpdir"),
+					"ThotAndAmun"
+			);
+
+			if (!targetDir.exists()) {
+				targetDir.mkdirs();
+			}
+
+			File targetFile = new File(targetDir, "ThotAndAmun_Start.zkn3");
+
+			try (InputStream in = Constants.class.getResourceAsStream(Constants.HELP_RESOURCE_PATH)) {
+				if (in == null) {
+					throw new IllegalStateException(
+							"Resource not found: " + Constants.HELP_RESOURCE_PATH
+					);
+				}
+
+				Files.copy(
+						in,
+						targetFile.toPath(),
+						StandardCopyOption.REPLACE_EXISTING
+				);
+			}
+
+			helpDocPath = targetFile.getAbsolutePath();
+			return helpDocPath;
+
+		} catch (IOException e) {
+			throw new IllegalStateException(
+					"Help could not be extracted.",
+					e
+			);
+		}
+	}
+
+	private boolean isHelpdocRecentDoc(String fp) {
+		if (fp == null || fp.isEmpty()) {
+			return false;
+		}
+
+		try {
+			File file = new File(fp).getCanonicalFile();
+			File helpdocFile = new File(getHelpDocPath()).getCanonicalFile();
+
+			return file.equals(helpdocFile);
+		} catch (IOException e) {
+			return fp.equals(getHelpDocPath());
+		}
+	}
+
 	/**
 	 * This method adds the file from the filepath {@code fp} to the list of recent
 	 * documents and rotates that list, if necessary.
@@ -466,27 +532,65 @@ public class Settings {
 		if (fp == null || fp.isEmpty()) {
 			return;
 		}
-		// check whether file exists
+
+		boolean fpIsHelpdoc = isHelpdocRecentDoc(fp);
+
+		// check whether file exists, but only for normal files
 		File dummy = new File(fp);
-		if (!dummy.exists()) {
+		if (!fpIsHelpdoc && !dummy.exists()) {
 			return;
 		}
+		// check whether file exists
+//		File dummy = new File(fp);
+//		if (!dummy.exists()) {
+//			return;
+//		}
 		// create linked list
 		LinkedList<String> recdocs = new LinkedList<>();
-		// add new filepath to linked list
-		recdocs.add(fp);
-		// iterate all current recent documents
-		for (int cnt = 1; cnt <= RECENT_DOC_COUNT; cnt++) {
+		// position 1 is always the help document
+		recdocs.add(getHelpDocPath());
+
+		// add new filepath only if it is not the help document
+		if (!fpIsHelpdoc) {
+			recdocs.add(fp);
+		}
+
+//		// create linked list
+//		LinkedList<String> recdocs = new LinkedList<>();
+//		// add new filepath to linked list
+//		// position 1 is always the help document
+//		recdocs.add(SETTING_HELP_DOC);
+//		// add new filepath to linked list, but not if it is the help document itself
+//		if (!SETTING_HELP_DOC.equals(fp)) {
+//			recdocs.add(fp);
+//		}
+		// iterate all current recent documents, starting with 2 because the help document is set as 1
+		for (int cnt = 2; cnt <= RECENT_DOC_COUNT; cnt++) {
 			// retrieve recent document
 			String recentDoc = getRecentDoc(cnt);
 			// check whether the linked list already contains such a document
 			if (recentDoc != null && !recentDoc.isEmpty()) {
+				// never add help document to positions 2-9
+				if (isHelpdocRecentDoc(recentDoc)) {
+					continue;
+				}
+
 				// check for existing file
 				dummy = new File(recentDoc);
-				// if not, add it to the list
+
 				if (dummy.exists() && !recdocs.contains(recentDoc)) {
 					recdocs.add(recentDoc);
 				}
+				// do not add the help document twice
+//				if (SETTING_HELP_DOC.equals(recentDoc)) {
+//					continue;
+//				}
+//				// check for existing file
+//				dummy = new File(recentDoc);
+//				// if not, add it to the list
+//				if (dummy.exists() && !recdocs.contains(recentDoc)) {
+//					recdocs.add(recentDoc);
+//				}
 			}
 		}
 		// iterate all current recent documents again
@@ -528,6 +632,10 @@ public class Settings {
 	 * @param fp the filepath to the recently used document as string
 	 */
 	public void setRecentDoc(int nr, String fp) {
+		// again the help document is always available and always first in this menu
+		if (nr == 1) {
+			fp = getHelpDocPath();
+		}
 		genericStringSetter(SETTING_RECENT_DOC + String.valueOf(nr), fp);
 	}
 
@@ -573,9 +681,16 @@ public class Settings {
 	 */
 	public void initDefaultSettingsIfMissing() {
 		acceleratorKeys.initDefaultAcceleratorKeysIfMissing();
+		// generate list of available Zettelkasten-files, the help document being always present as 1
+		setRecentDoc(1, getHelpDocPath());
 
-		for (int cnt = 0; cnt < RECENT_DOC_COUNT; cnt++) {
-			genericElementInitIfMissing(SETTING_RECENT_DOC + String.valueOf(cnt + 1), "");
+		genericStringSetter(SETTING_RECENT_DOC + "1", SETTING_HELP_DOC);
+
+		for (int cnt = 2; cnt <= RECENT_DOC_COUNT; cnt++) {
+			genericElementInitIfMissing(
+					SETTING_RECENT_DOC + String.valueOf(cnt),
+					""
+			);
 		}
 
 		{
@@ -602,7 +717,7 @@ public class Settings {
 					flatlightlafclassname = laf.getClassName();
 				}
 			}
-			// Set Aqua as default on MacOS, FlatLightLaf on Linux and System Laf on Windows
+			// Set Aqua as default on macOS, FlatLightLaf on Linux and System Laf on Windows
 			if (lafAquaFound) {
 				genericElementInitIfMissing(SETTING_LAF, aquaclassname);
 			} else if (PlatformUtil.isLinux()) {
@@ -616,20 +731,15 @@ public class Settings {
 		// Default font is the "SansSerif" logical font name.
 		String defaultFont = Font.SANS_SERIF;
 
-        //On Linux, point to Fallback-Zkn3 (Auxilium.zkn3) in user.home, avoiding start without zkn3-File
-        //
-        if (PlatformUtil.isLinux()) {
-            String auxilium = System.getProperty("user.home") + File.separatorChar + ".Zettelkasten" + File.separatorChar + "Auxilium.zkn3";
-            genericElementInitIfMissing(SETTING_FILEPATH, auxilium);
-        }
-        else {
-            genericElementInitIfMissing(SETTING_FILEPATH, "");
-        }
+        // How to include a generic help Zettelkasten such that Thot+Amun opens on first start with help?
+        // Place help resources in resources/help, define paths in Constants.java and refer from here Settings.java
+		// genericElementInitIfMissing(SETTING_HELP, String.get...());
 
 		String pandoc = "pandoc";
 		if (PlatformUtil.isMacOS()) {
 			pandoc = "/usr/local/bin/pandoc";
 		} else if (PlatformUtil.isLinux()) {
+			// can this be less hardcoded, smarter?
 			pandoc = "/usr/bin/pandoc";
 		}
 		genericElementInitIfMissing(SETTING_PANDOCPATH, pandoc);
@@ -637,8 +747,10 @@ public class Settings {
 				PlatformUtil.isMacOS() ? "1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,0,0,1,1,1,1,1"
 						: "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
 		genericElementInitIfMissing(SETTING_LOCALE, Locale.getDefault().getLanguage());
-		//genericElementInitIfMissing(SETTING_FILEPATH, "");
-        //genericElementInitIfMissing(SETTING_FILEPATH, "/home/tobias/Mein_Zettelkasten.zkn3");
+		// genericElementInitIfMissing(SETTING_FILEPATH, "");
+		// replaced with the following in order to start with a basic file
+		// and to avoid leaving users without knowing what to do after first start
+		genericElementInitIfMissing(SETTING_FILEPATH, getHelpDocPath());
 		genericElementInitIfMissing(SETTING_SEARCHFRAMESPLITLAYOUT, String.valueOf(JSplitPane.VERTICAL_SPLIT));
 		genericElementInitIfMissing(SETTING_CUSTOMCSSENTRY, "");
 		genericElementInitIfMissing(SETTING_CUSTOMCSSDESKTOP, "");
@@ -675,9 +787,9 @@ public class Settings {
 		genericElementInitIfMissing(SETTING_USECUSTOMCSSENTRY, "0");
 		genericElementInitIfMissing(SETTING_USECUSTOMCSSDESKTOP, "0");
 		genericElementInitIfMissing(SETTING_USEXDGOPEN, "1");
-		genericElementInitIfMissing(SETTING_MANLINKCOLOR, "0033cc");
-		genericElementInitIfMissing(SETTING_FNLINKCOLOR, "0033cc");
-		genericElementInitIfMissing(SETTING_LINKCOLOR, "003399");
+		genericElementInitIfMissing(SETTING_MANLINKCOLOR, "0000ac");
+		genericElementInitIfMissing(SETTING_FNLINKCOLOR, "0000ac");
+		genericElementInitIfMissing(SETTING_LINKCOLOR, "0000ac");
 		genericElementInitIfMissing(SETTING_APPENDIXBACKGROUNDCOLOR, "ffffff");
 		genericElementInitIfMissing(SETTING_TABLEHEADERCOLOR, "e4e4e4");
 		genericElementInitIfMissing(SETTING_TABLEEVENROWCOLOR, "eeeeee");
@@ -803,7 +915,7 @@ public class Settings {
 			Element el = new Element(SETTING_MAINFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "11");
+			el.setAttribute("size", "12");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "normal");
 			el.setAttribute("color", "000000");
@@ -814,7 +926,7 @@ public class Settings {
 			Element el = new Element(SETTING_QUOTEFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "11");
+			el.setAttribute("size", "12");
 			el.setAttribute("color", "333333");
 		}
 
@@ -843,10 +955,10 @@ public class Settings {
 			Element el = new Element(SETTING_CODEFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "11");
+			el.setAttribute("size", "12");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "normal");
-			el.setAttribute("color", "333333");
+			el.setAttribute("color", "000000");
 		}
 
 		if (null == settingsFile.getRootElement().getChild(SETTING_REMARKSFONT)) {
@@ -887,7 +999,7 @@ public class Settings {
 			Element el = new Element(SETTING_DESKTOPITEMFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "10");
+			el.setAttribute("size", "11");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "normal");
 			el.setAttribute("color", "808080");
@@ -898,7 +1010,7 @@ public class Settings {
 			Element el = new Element(SETTING_DESKTOPCOMMENTFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "9");
+			el.setAttribute("size", "10");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "normal");
 			el.setAttribute("color", "333333");
@@ -909,10 +1021,10 @@ public class Settings {
 			Element el = new Element(SETTING_TITLEFONT);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "13");
+			el.setAttribute("size", "14");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "bold");
-			el.setAttribute("color", "800000");
+			el.setAttribute("color", "990033");
 		}
 
 		if (null == settingsFile.getRootElement().getChild(SETTING_APPENDIXHEADERFONT)) {
@@ -931,10 +1043,10 @@ public class Settings {
 			Element el = new Element(SETTING_HEADERFONT1);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "12");
+			el.setAttribute("size", "13");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "bold");
-			el.setAttribute("color", "000040");
+			el.setAttribute("color", "0000ac");
 		}
 
 		if (null == settingsFile.getRootElement().getChild(SETTING_HEADERFONT2)) {
@@ -942,7 +1054,7 @@ public class Settings {
 			Element el = new Element(SETTING_HEADERFONT2);
 			settingsFile.getRootElement().addContent(el);
 			el.setText(defaultFont);
-			el.setAttribute("size", "11");
+			el.setAttribute("size", "12");
 			el.setAttribute("style", "normal");
 			el.setAttribute("weight", "bold");
 			el.setAttribute("color", "000000");
@@ -1413,9 +1525,8 @@ public class Settings {
 	}
 
 	/**
-	 * Sets the filepath for the for the external converter tool "pandoc"
+	 * Sets the filepath for the external converter tool "pandoc"
 	 *
-	 * @param fp the filepath to the external converter tool "pandoc"
 	 */
 	public void setPandocPath(String value) {
 		genericStringSetter(SETTING_PANDOCPATH, value);
@@ -1452,7 +1563,7 @@ public class Settings {
 
 	/**
 	 * Retrieves the image path, where images used in entries are stored. This is
-	 * typically the directory "img", which is a sub directory of the filepath
+	 * typically the directory "img", which is a subdirectory of the filepath
 	 * directory.
 	 *
 	 * @param userpath          a path to the user-defined directory for storing
@@ -1461,7 +1572,7 @@ public class Settings {
 	 *                          this path.
 	 * @param trailingSeparator if true, a file-separator-char will be appended, if
 	 *                          false not
-	 * @return the directory to the img-path, , or an empty string if no path was
+	 * @return the directory to the img-path, or an empty string if no path was
 	 *         found
 	 */
 	public String getImagePath(File userpath, boolean trailingSeparator) {
@@ -1470,7 +1581,7 @@ public class Settings {
 
 	/**
 	 * Retrieves the image path, where images used in entries are stored. This is
-	 * typically the directory "forms", which is a sub directory of the filepath
+	 * typically the directory "forms", which is a subdirectory of the filepath
 	 * directory.
 	 *
 	 * @param userpath          a path to the user-defined directory for storing
@@ -1479,7 +1590,7 @@ public class Settings {
 	 *                          this path.
 	 * @param trailingSeparator if true, a file-separator-char will be appended, if
 	 *                          false not
-	 * @return the directory to the img-path, , or an empty string if no path was
+	 * @return the directory to the img-path, or an empty string if no path was
 	 *         found
 	 */
 	public String getFormImagePath(File userpath, boolean trailingSeparator) {
@@ -1547,7 +1658,7 @@ public class Settings {
 
 	/**
 	 * Retrieves the image path, where attachments used in entries are stored. This
-	 * is typically the directory "attachments", which is a sub directory of the
+	 * is typically the directory "attachments", which is a subdirectory of the
 	 * filepath directory.
 	 *
 	 * @param userpath
@@ -2144,7 +2255,7 @@ public class Settings {
 	}
 
 	/**
-	 * Sets the setting for the keyword-quick-input when editing new entries..
+	 * Sets the setting for the keyword-quick-input when editing new entries.
 	 *
 	 * @param val true if the keyword-quickinput should be activated
 	 */
@@ -2171,7 +2282,7 @@ public class Settings {
 	}
 
 	/**
-	 * Gets the setting for the minimize to tray-option.
+	 * Gets the setting for minimize to tray-option.
 	 *
 	 * @return {@code true} if minimizing to tray should be activated
 	 */
@@ -2608,7 +2719,6 @@ public class Settings {
 
 	/**
 	 *
-	 * @param col
 	 */
 	public void setReflistBackgroundColor(String value) {
 		genericStringSetter(SETTING_APPENDIXBACKGROUNDCOLOR, value);
@@ -2873,7 +2983,7 @@ public class Settings {
 		Element el = settingsFile.getRootElement().getChild(SETTING_TABLEFONTSIZE);
 		if (el != null) {
 			int fontSize = Integer.parseInt(el.getText());
-			// Before August 2022, the default was zero. This is will update the old default
+			// Before August 2022, the default was zero. This will update the old default
 			// to 12.
 			if (fontSize == 0) {
 				return 12;
@@ -2943,7 +3053,6 @@ public class Settings {
 	 * CNewEntry-dialog. The user cannot choose the font or color, but at least a
 	 * bigger font-size for better viewing is possible.
 	 *
-	 * @param size the value for which the original font-size should be increased
 	 */
 	public void setTextfieldFontSize(int value) {
 		genericIntSetter(SETTING_TEXTFIELDFONTSIZE, value);
@@ -3038,7 +3147,7 @@ public class Settings {
 
 	/**
 	 * Sets the setting for the extended keyword-quick-input when editing new
-	 * entries..
+	 * entries.
 	 *
 	 * @param val true if the extended keyword-quickinput should be activated
 	 */
@@ -3130,13 +3239,13 @@ public class Settings {
 	 * Retrieves settings for the mainfont (the font used for the
 	 * main-entry-textfield).
 	 *
-	 * @param what (indicates, which font-characteristic we want to have. use
-	 *             following constants:<br>
-	 *             - FONTNAME<br>
-	 *             - FONTSIZE<br>
-	 *             - FONTCOLOR<br>
-	 *             - FONTSTYLE<br>
-	 *             - FONTWEIGHT<br>
+	 * @param what indicates, which font-characteristic we want to have. use
+	 *             following constants:
+	 *             - FONTNAME
+	 *             - FONTSIZE
+	 *             - FONTCOLOR
+	 *             - FONTSTYLE
+	 *             - FONTWEIGHT
 	 * @return the related font-information as string.
 	 */
 	public String getMainfont(int what) {
@@ -3183,7 +3292,7 @@ public class Settings {
 			fstyle = Font.ITALIC;
 			break;
 		}
-		// in css, the bold-property is not a style-attribute, but a
+		// in CSS, the bold-property is not a style-attribute, but a
 		// font-weight-attribute
 		// that's why we have separated this here
 		if (weight.equals("bold")) {
@@ -3199,7 +3308,7 @@ public class Settings {
 	 * main-entry-textfield).
 	 *
 	 * @param value (the new value for the font-characteristic)
-	 * @param what  (indicates, which font-characteristic we want to have. use
+	 * @param what  (indicates, which font-characteristic we want to have). Use
 	 *              following constants:<br>
 	 *              - FONTNAME<br>
 	 *              - FONTSIZE<br>
@@ -3236,7 +3345,7 @@ public class Settings {
 	 * Retrieves settings for the mainfont (the font used for the
 	 * main-entry-textfield).
 	 *
-	 * @param what (indicates, which font-characteristic we want to have. use
+	 * @param what (indicates, which font-characteristic we want to have.) Use
 	 *             following constants:<br>
 	 *             - FONTNAME<br>
 	 *             - FONTSIZE<br>
@@ -3290,7 +3399,7 @@ public class Settings {
 			fstyle = Font.ITALIC;
 			break;
 		}
-		// in css, the bold-property is not a style-attribute, but a
+		// in CSS, the bold-property is not a style-attribute, but a
 		// font-weight-attribute
 		// that's why we have separated this here
 		if (weight.equals("bold")) {
@@ -3306,7 +3415,7 @@ public class Settings {
 	 * main-entry-textfield).
 	 *
 	 * @param value (the new value for the font-characteristic)
-	 * @param what  (indicates, which font-characteristic we want to have. use
+	 * @param what  (indicates, which font-characteristic we want to have.) Use
 	 *              following constants:<br>
 	 *              - FONTNAME<br>
 	 *              - FONTSIZE<br>
@@ -3384,7 +3493,7 @@ public class Settings {
 			fstyle = Font.ITALIC;
 			break;
 		}
-		// in css, the bold-property is not a style-attribute, but a
+		// in CSS, the bold-property is not a style-attribute, but a
 		// font-weight-attribute
 		// that's why we have separated this here
 		if (weight.equals("bold")) {
@@ -3400,7 +3509,7 @@ public class Settings {
 	 * main-entry-textfield).
 	 *
 	 * @param value (the new value for the font-characteristic)
-	 * @param what  (indicates, which font-characteristic we want to have. use
+	 * @param what  (indicates, which font-characteristic we want to have.) Use
 	 *              following constants:<br>
 	 *              - FONTNAME<br>
 	 *              - FONTSIZE<br>

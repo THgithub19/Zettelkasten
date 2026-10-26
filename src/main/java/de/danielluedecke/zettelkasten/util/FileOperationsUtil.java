@@ -1007,7 +1007,7 @@ public class FileOperationsUtil {
 	 *         user.home directory.
 	 */
 	public static String getZettelkastenHomeDir(boolean addTrailingSeparatorChar) {
-		String fp = System.getProperty("user.home") + File.separatorChar + ".Zettelkasten";
+		String fp = System.getProperty("user.home") + File.separatorChar + ".ThotAndAmun";
 		if (addTrailingSeparatorChar) {
 			fp = fp + File.separatorChar;
 		}
