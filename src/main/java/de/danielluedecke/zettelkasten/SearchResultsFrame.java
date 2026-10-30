@@ -33,6 +33,7 @@
 
 package de.danielluedecke.zettelkasten;
 
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import com.explodingpixels.macwidgets.BottomBar;
 import com.explodingpixels.macwidgets.BottomBarSize;
 import de.danielluedecke.zettelkasten.database.*;
@@ -169,13 +170,13 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(SearchResultsFrame.class);
 	/**
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap toolbarResourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(ToolbarIcons.class);
 
 	/**
@@ -215,7 +216,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		}
 		// init all components
 		Tools.initLocaleForDefaultActions(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class)
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class)
 						.getContext().getActionMap(SearchResultsFrame.class, this));
 		initComponents();
 		initListeners();
@@ -671,7 +672,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		//
 		// get the action map
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(SearchResultsFrame.class, this);
 		// iterate the xml file with the accelerator keys for the main window
 		for (int cnt = 1; cnt <= accKeys.getCount(AcceleratorKeys.SEARCHRESULTSKEYS); cnt++) {
@@ -891,7 +892,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			filterSearchDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(filterSearchDlg);
+		ThotandamunApp.getApplication().show(filterSearchDlg);
 		// when we have any selected keywords, go on and add them all to all the
 		// selected
 		// entries in the search result
@@ -963,7 +964,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			filterSearchDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(filterSearchDlg);
+		ThotandamunApp.getApplication().show(filterSearchDlg);
 		// when we have any selected keywords, go on and add them all to all the
 		// selected
 		// entries in the search result
@@ -1419,7 +1420,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			cleanedContent
 					.append("<body><div style=\"margin:5px;padding:5px;background-color:#dddddd;color:#800000;\">");
 			URL imgURL = org.jdesktop.application.Application
-					.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass()
+					.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass()
 					.getResource("/de/danielluedecke/zettelkasten/resources/icons/error.png");
 			cleanedContent.append("<img border=\"0\" src=\"").append(imgURL).append("\">&#8195;");
 			cleanedContent.append(resourceMap.getString("incorrectNestedTagsText"));
@@ -1604,7 +1605,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			searchDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(searchDlg);
+		ThotandamunApp.getApplication().show(searchDlg);
 		// open the search dialog
 		// the parameters are as following:
 		// - string-array with search results
@@ -1656,7 +1657,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			filterSearchDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(filterSearchDlg);
+		ThotandamunApp.getApplication().show(filterSearchDlg);
 		// open the search dialog
 		// the parameters are as following:
 		// - string-array with search results
@@ -1720,7 +1721,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			filterSearchDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(filterSearchDlg);
+		ThotandamunApp.getApplication().show(filterSearchDlg);
 		// open the search dialog
 		// the parameters are as following:
 		// - string-array with search results
@@ -1757,11 +1758,11 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 	 *                       when we want to filter a certain search result
 	 * @param where          the type of search, i.e. where to look, e.g. searching
 	 *                       for keywords, authors, text etc.
-	 * @param logand         logical-and-combination
+	 * logand         logical-and-combination
 	 * @param wholeword      whether we look for whole words or also parts of a
 	 *                       word/phrase
 	 * @param matchcase      whether the search should be case sensitive or not
-	 * @param synonyms       whether the search should include synonyms or not
+	 * synonyms       whether the search should include synonyms or not
 	 * @param timesearch     whether the user requested a time-search, i.e. a search
 	 *                       for entries that were created or changed within a
 	 *                       certain period
@@ -1787,7 +1788,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 			// center window
 			taskDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(taskDlg);
+		ThotandamunApp.getApplication().show(taskDlg);
 		// we have to manually dispose the window and release the memory
 		// because next time this method is called, the showKwlDlg is still not null,
 		// i.e. the constructor is not called (because the if-statement above is not
@@ -1819,7 +1820,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 					HtmlUbbUtil.HIGHLIGHT_STYLE_SEARCHRESULTS);
 			highlightSettingsDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(highlightSettingsDlg);
+		ThotandamunApp.getApplication().show(highlightSettingsDlg);
 		highlightSettingsDlg.dispose();
 		highlightSettingsDlg = null;
 
@@ -2164,7 +2165,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 							rateEntryDlg = new CRateEntry(this, dataObj, entrynr);
 							rateEntryDlg.setLocationRelativeTo(this);
 						}
-						ZettelkastenApp.getApplication().show(rateEntryDlg);
+						ThotandamunApp.getApplication().show(rateEntryDlg);
 						// check whether dialog was cancelled or not
 						if (!rateEntryDlg.isCancelled()) {
 							// update display
@@ -2186,8 +2187,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 	/**
 	 * This class sets up a selection listener for the tables. each table which
 	 * shall react on selections, e.g. by showing an entry, gets this
-	 * selectionlistener in the method {@link #initSelectionListeners()
-	 * initSelectionListeners()}.
+	 * selectionlistener in the method initSelectionListeners()
 	 */
 	public class SelectionListener implements ListSelectionListener {
 		JTable table;
@@ -2215,9 +2215,8 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 
 	/**
 	 * This variable indicates whether we have selected text or not - and
-	 * en/disables the new-search-functions. see {@link #newSearchFromAuthor()
-	 * newSearchFromAuthor()} and {@link #newSearchFromSelection()
-	 * newSearchFromSelection()}.
+	 * en/disables the new-search-functions. see newSearchFromAuthor() and
+	 * newSearchFromSelection()
 	 */
 	private boolean textSelected = false;
 
@@ -2368,7 +2367,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		viewMenuFullScreen = new javax.swing.JMenuItem();
 
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(SearchResultsFrame.class);
 		setTitle(resourceMap.getString("FormSearchResults.title")); // NOI18N
 		setName("FormSearchResults"); // NOI18N
@@ -2380,7 +2379,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		searchToolbar.setName("searchToolbar"); // NOI18N
 
 		tb_copy.setAction(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class)
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class)
 						.getContext().getActionMap(SearchResultsFrame.class, this).get("copy"));
 		tb_copy.setText(resourceMap.getString("tb_copy.text")); // NOI18N
 		tb_copy.setBorderPainted(false);
@@ -2392,7 +2391,7 @@ public class SearchResultsFrame extends javax.swing.JFrame {
 		searchToolbar.add(tb_copy);
 
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(SearchResultsFrame.class, this);
 		tb_selectall.setAction(actionMap.get("selectAll")); // NOI18N
 		tb_selectall.setText(resourceMap.getString("tb_selectall.text")); // NOI18N

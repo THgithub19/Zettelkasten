@@ -77,7 +77,7 @@ public class StartSearchTask extends org.jdesktop.application.Task<Object, Void>
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(StartSearchTask.class);
 	/**
 	 * The search terms, passed as an array.
@@ -151,7 +151,7 @@ public class StartSearchTask extends org.jdesktop.application.Task<Object, Void>
 	 * @param inputMatchCase      whether the search is case sensitive (true) or not
 	 *                            (false)
 	 * @param syn                 whether the search should include synonyms or not
-	 * @param accentInsensitive   whether the search should be accent insensitive
+	 *    whether the search should be accent insensitive
 	 * @param inputRegex          whether the search terms contain regular
 	 *                            expressions or not
 	 * @param inputTimeSearch     whether the user requested a time-search, i.e. a

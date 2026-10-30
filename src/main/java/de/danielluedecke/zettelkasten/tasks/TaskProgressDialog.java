@@ -161,7 +161,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 		case TASK_SAVE:
 			foregroundTask = new SaveFileTask(
 					org.jdesktop.application.Application
-							.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+							.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 					this, msgLabel, daten, bookmarks, searchRequests, desktopData, synonyms, settings, bibTeX);
 			break;
 		}
@@ -766,7 +766,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> exportDataToTxt(File fp, ArrayList<Object> ee, int type, int part, DefaultMutableTreeNode n,
 			boolean bibtex, boolean ihv, boolean numberprefix, boolean separateFile) {
 		return new ExportToTxtTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, desktopData, settings, bibTeX, fp, ee, type, part, n, bibtex, ihv,
 				numberprefix, separateFile);
 	}
@@ -774,7 +774,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> exportDataToMd(File fp, ArrayList<Object> ee, int type, int part, DefaultMutableTreeNode n,
 			boolean bibtex, boolean ihv, boolean numberprefix, boolean separateFile) {
 		return new ExportToMdTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, desktopData, settings, bibTeX, fp, ee, type, part, n, bibtex, ihv,
 				numberprefix, separateFile);
 	}
@@ -782,7 +782,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> exportDataToTex(File fp, ArrayList<Object> ee, int type, int part, DefaultMutableTreeNode n,
 			boolean bibtex, boolean ihv, boolean numberprefix, boolean contenttable, boolean separateFile) {
 		return new ExportToTexTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, desktopData, settings, bibTeX, fp, ee, type, part, n, bibtex, ihv,
 				numberprefix, contenttable, separateFile);
 	}
@@ -790,7 +790,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> exportDataToHtml(File fp, ArrayList<Object> ee, int type, int part, DefaultMutableTreeNode n,
 			boolean bibtex, boolean ihv, boolean hkws, boolean numberprefix, boolean toc) {
 		return new ExportToHtmlTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, desktopData, settings, bibTeX, fp, ee, type, part, n, bibtex, ihv,
 				hkws, numberprefix, toc);
 	}
@@ -798,32 +798,32 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> exportDataToXml(File fp, ArrayList<Object> ee, int part, boolean bibtex,
 			boolean removeformattags) {
 		return new ExportToXmlTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bibTeX, fp, ee, part, bibtex, removeformattags);
 	}
 
 	private Task<?, ?> exportDataToCsv(File fp, ArrayList<Object> ee, int part, char sep, boolean removeformattags,
 			boolean bibtex) {
 		return new ExportToCsvTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bibTeX, fp, ee, part, sep, removeformattags, bibtex);
 	}
 
 	private Task<?, ?> exportDataToZkn(File fp, ArrayList<Object> ee, boolean bibtex) {
 		return new ExportToZknTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bookmarks, bibTeX, bibtex, fp, ee);
 	}
 
 	private Task<?, ?> importFromZkx(File fp, String defaulttimestamp) {
 		return new ImportFromZkx(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bookmarks, desktopData, searchRequests, fp, defaulttimestamp);
 	}
 
 	private Task<?, ?> importFromZkn(File fp, boolean asciiToUnicode, boolean appendit, String defaulttimestamp) {
 		return new ImportFromZkn(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bookmarks, desktopData, searchRequests, settings, fp, asciiToUnicode,
 				appendit, defaulttimestamp);
 	}
@@ -831,7 +831,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> importFromCSV(File fp, String sepchar, boolean asciiToUnicode, boolean appendit,
 			String defaulttimestamp) {
 		return new ImportFromCSV(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bookmarks, desktopData, searchRequests, settings, fp, sepchar,
 				asciiToUnicode, appendit, defaulttimestamp);
 	}
@@ -848,7 +848,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> mergeAuthors(String oldauthors, String newauthors, String newbibkey, JTable authortable,
 			int selectedrow, LinkedList<Object[]> linkedauthors) {
 		return new MergeAuthorsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, tasksData, oldauthors, newauthors, newbibkey, authortable, selectedrow,
 				linkedauthors);
 	}
@@ -865,7 +865,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> mergeKeywords(String oldkeywords, String newkeywords, JTable kwtable, int selectedrow,
 			LinkedList<Object[]> linkedkeywords) {
 		return new MergeKeywordsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, tasksData, oldkeywords, newkeywords, kwtable, selectedrow, linkedkeywords);
 	}
 
@@ -882,7 +882,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	private Task<?, ?> keywordSuggestions(int eqi, int step, LinkedList<String> sel, LinkedList<String> rest,
 			LinkedList<String> ffs, String t) {
 		return new KeywordSuggestionsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, synonyms, settings, eqi, step, sel, rest, ffs, t);
 	}
 
@@ -893,7 +893,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> setFirstLineAsTitle(int mo) {
 		return new SetFirstLineAsTitleTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, mo);
 	}
 
@@ -904,7 +904,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> deleteEntry(int[] entries) {
 		return new DeleteEntryTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, searchRequests, entries);
 	}
 
@@ -916,7 +916,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> entriesToLuhmann(int[] entries, int insertpos) {
 		return new EntriesToLuhmannTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, entries, insertpos);
 	}
 
@@ -927,7 +927,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> deleteAuthors(String[] authors) {
 		return new DeleteAuthorsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, authors);
 	}
 
@@ -938,7 +938,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> deleteKeywords(String[] keywords) {
 		return new DeleteKeywordsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, keywords);
 	}
 
@@ -950,7 +950,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> showAuthors(int et, DefaultTableModel dtm) {
 		return new ShowAuthorListTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, bibTeX, et, dtm);
 	}
 
@@ -961,7 +961,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> showAttachments(DefaultTableModel dtm) {
 		return new ShowAttachmentListTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, settings, dtm);
 	}
 
@@ -978,7 +978,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> replace(String fs, String rs, int[] re, int w, boolean ww, boolean mc, boolean rex) {
 		return new ReplaceTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, fs, rs, re, w, ww, mc, rex);
 	}
 
@@ -989,7 +989,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> showKeywords(boolean includeSynonyms, DefaultTableModel dtm) {
 		return new ShowKeywordListTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, synonyms, includeSynonyms, dtm);
 	}
 
@@ -1000,7 +1000,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> convertFormatTags(int conv) {
 		return new ConvertFormatTagsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, conv);
 	}
 
@@ -1011,7 +1011,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> showTitles(DefaultTableModel dtm) {
 		return new ShowTitleListTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, dtm);
 	}
 
@@ -1022,13 +1022,13 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 	 */
 	private Task<?, ?> updateFile(boolean resetFreq) {
 		return new UpdateFileTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, desktopData, bibTeX, resetFreq);
 	}
 
 	private Task<?, ?> refreshBibTex() {
 		return new RefreshBibTexTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, tasksData, daten, bibTeX);
 	}
 
@@ -1077,7 +1077,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 		// initiate the "statusbar" (the loading splash screen), giving visiual
 		// feedback during open and save operations
 		return new StartSearchTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class),
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class),
 				this, msgLabel, daten, searchRequests, synonyms, tos, s, se, w, l, ww, mc, syn, accentInsensitive, rex,
 				ts, fr, to, tsi, donly, rt);
 	}
@@ -1121,7 +1121,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 		progressBar.setName("progressBar"); // NOI18N
 
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(TaskProgressDialog.class, this);
 		cancelButton.setAction(actionMap.get("cancel")); // NOI18N
 		cancelButton.setName("cancelButton"); // NOI18N
@@ -1145,7 +1145,7 @@ public class TaskProgressDialog extends javax.swing.JDialog {
 		msgLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(TaskProgressDialog.class);
 		jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
 		jLabel1.setName("jLabel1"); // NOI18N

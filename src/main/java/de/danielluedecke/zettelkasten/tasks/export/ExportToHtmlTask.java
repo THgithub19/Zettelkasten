@@ -156,7 +156,7 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(ExportTask.class);
 
     public ExportToHtmlTask(org.jdesktop.application.Application app, javax.swing.JDialog parent, javax.swing.JLabel label,
@@ -737,8 +737,8 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
      *
      * @param node the starting point for the jTree-enumeration, either the root
      * node or a bullet (if only a bullet should be exported, see
-     * {@link #exportDesktopBullet() exportDesktopBullet()}).
-     * @param sb the stringbuilder which finally will contain all content in
+     * exportDesktopBullet()}).
+     * the stringbuilder which finally will contain all content in
      * html-format
      * @param exportcomments {@code true} if comments should also be exported,
      * {@code false} if comments should not be exported.
@@ -789,11 +789,9 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
 
     /**
      * This method prepares the html-content for an exported entry. this method
-     * is used by {@link #exportEntriesWithComments(javax.swing.tree.DefaultMutableTreeNode, java.lang.StringBuilder, boolean) exportEntriesWithComments()
-     * }
+     * is used by exportEntriesWithComments()
      * and
-     * {@link #exportEntriesWithCommentsOnly(javax.swing.tree.DefaultMutableTreeNode, java.lang.StringBuilder) exportEntriesWithCommentsOnly()}.
-     *
+     * exportEntriesWithCommentsOnly()
      * @param node the entry-node, needed for timestamp and entry-text
      * @return a html-snippet with the entry as content
      */
@@ -859,11 +857,9 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
 
     /**
      * This method prepares the html-content for an exported bullet-point. this
-     * method is used by {@link #exportEntriesWithComments(javax.swing.tree.DefaultMutableTreeNode, java.lang.StringBuilder, boolean) exportEntriesWithComments()
-     * }
+     * method is used by exportEntriesWithComments()
      * and
-     * {@link #exportEntriesWithCommentsOnly(javax.swing.tree.DefaultMutableTreeNode, java.lang.StringBuilder) exportEntriesWithCommentsOnly()}.
-     *
+     * exportEntriesWithCommentsOnly()     *
      * @param node the bullet-node, needed for timestamp and title-text
      * @return a html-snippet with the bullet as headline
      */
@@ -912,10 +908,10 @@ public class ExportToHtmlTask extends org.jdesktop.application.Task<Object, Void
      *
      * @param node the starting point for the jTree-enumeration, either the root
      * node or a bullet (if only a bullet should be exported, see
-     * {@link #exportDesktopBullet() exportDesktopBullet()}).
-     * @param sb the stringbuilder which finally will contain all content in
+     * exportDesktopBullet()}).
+     * the stringbuilder which finally will contain all content in
      * html-format
-     * @param sb the stringbuilder which finally will contain all content in
+     * the stringbuilder which finally will contain all content in
      * html-format
      */
     private void exportEntriesWithCommentsOnly(DefaultMutableTreeNode node) {

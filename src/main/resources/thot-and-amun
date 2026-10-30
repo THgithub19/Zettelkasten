@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar /opt/thot-and-amun/thot-and-amun-3.2026.10.jar "$@"
+java -jar /usr/share/java/thot-and-amun-2026.10.26.jar "$@"

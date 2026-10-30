@@ -32,6 +32,7 @@
  */
 package de.danielluedecke.zettelkasten;
 
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import com.explodingpixels.macwidgets.BottomBar;
 import com.explodingpixels.macwidgets.BottomBarSize;
 import de.danielluedecke.zettelkasten.util.Tools;
@@ -271,13 +272,13 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(DesktopFrame.class);
 	/**
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap toolbarResourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(ToolbarIcons.class);
 
 	/**
@@ -831,7 +832,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		MacWidgetFactory.makeEmphasizedLabel(jLabel1);
 		// get the toolbar-action
 		AbstractAction ac = (AbstractAction) org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(DesktopFrame.class, this).get("findCancel");
 		// and change the large-icon-property, which is applied to the toolbar-icons,
 		// to the new icon
@@ -964,7 +965,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		//
 		// get the action map
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(DesktopFrame.class, this);
 		// iterate the xml file with the accelerator keys for the main window
 		for (int cnt = 1; cnt <= accKeys.getCount(AcceleratorKeys.DESKTOPKEYS); cnt++) {
@@ -1875,11 +1876,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 	 * can scroll to the reference.<br>
 	 * <br>
 	 * A unique reference for each entry is set in the node's text in the jTree via
-	 * the method
-	 * {@link #fillChildren(org.jdom.Element, javax.swing.tree.DefaultMutableTreeNode, javax.swing.tree.DefaultTreeModel)
-	 * fillChildren} and
-	 * {@link #exportEntriesToEditorPane(javax.swing.tree.DefaultMutableTreeNode, java.lang.StringBuilder)
-	 * exportEntriesToEditorPane}.
+	 * the method fillChildren and exportEntriesToEditorPane
 	 */
 	private void scrollToEntry() {
 		// get selected node
@@ -2480,7 +2477,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 			desktopDisplayItemsDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(desktopDisplayItemsDlg);
+		ThotandamunApp.getApplication().show(desktopDisplayItemsDlg);
 		// when the user made changes and applies them...
 		if (desktopDisplayItemsDlg.isNeedsUpdate()) {
 			// tell programm that we need an update to the display.
@@ -2545,7 +2542,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 	 *
 	 * @param newBullet the name of the new bullet that should be inserted as child
 	 *                  of {@code insert}
-	 * @param insert    the parent-bullet, where the bullet {@code newBullet} should
+	 * insert    the parent-bullet, where the bullet {@code newBullet} should
 	 *                  be added to
 	 * @return {@code true} if a bullet which name equals {@code newBullet} already
 	 *         exists, false if {@code newBullet} does not exist and can
@@ -2777,7 +2774,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 					multipleOccurencesDlg.setInfoMsg(multipleOccurencesMessage);
 				}
 				// show window
-				ZettelkastenApp.getApplication().show(multipleOccurencesDlg);
+				ThotandamunApp.getApplication().show(multipleOccurencesDlg);
 			} // if not, just display icon
 			else {
 				jButtonShowMultipleOccurencesDlg.setVisible(true);
@@ -2800,7 +2797,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 				multipleOccurencesDlg.setInfoMsg(multipleOccurencesMessage);
 			}
 			// show window
-			ZettelkastenApp.getApplication().show(multipleOccurencesDlg);
+			ThotandamunApp.getApplication().show(multipleOccurencesDlg);
 			// hide button
 			jButtonShowMultipleOccurencesDlg.setVisible(false);
 		}
@@ -3228,7 +3225,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 			// center window
 			exportWindow.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(exportWindow);
+		ThotandamunApp.getApplication().show(exportWindow);
 		// Here the data (filepath, filetype) from the export window
 		// will be passed to another dialog window, which starts the
 		// background task. these dialogs are separated because it looks
@@ -3259,7 +3256,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 					// center window
 					taskDlg.setLocationRelativeTo(this);
 				}
-				ZettelkastenApp.getApplication().show(taskDlg);
+				ThotandamunApp.getApplication().show(taskDlg);
 				// dispose the window and clear the object
 				taskDlg.dispose();
 				taskDlg = null;
@@ -3300,11 +3297,9 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 	 * export-function for desktop-data (see {@link #exportDesktop()
 	 * exportDesktop()}, this method does not export the desktop-data "as it is"
 	 * (including modified entries, see {@link #modifiyEntry() modifiyEntry()}), but
-	 * only the simple entry-contents.<br>
-	 * <br>
+	 * only the simple entry-contents.
 	 * While the typical desktop-export-functions call the
-	 * {@link #export(org.jdom.Element, javax.swing.tree.DefaultMutableTreeNode)
-	 * export()} method, this method calls the export-method from the mainframe.
+	 * export() method, this method calls the export-method from the mainframe.
 	 */
 	@Action
 	public void exportMultipleDesktop() {
@@ -3320,7 +3315,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 			desktopMultipleExportDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(desktopMultipleExportDlg);
+		ThotandamunApp.getApplication().show(desktopMultipleExportDlg);
 		// check for return-value
 		if (desktopMultipleExportDlg.getChosenDesktops() != null
 				&& desktopMultipleExportDlg.getChosenDesktops().length > 0) {
@@ -3565,7 +3560,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 			modifyEntryDlg = new CModifyDesktopEntry(this, settingsObj, spellObj, stenoObj, accKeys, oldcontent);
 			// center window
 			modifyEntryDlg.setLocationRelativeTo(this);
-			ZettelkastenApp.getApplication().show(modifyEntryDlg);
+			ThotandamunApp.getApplication().show(modifyEntryDlg);
 			// edit window was initialized
 			isEditModeActive = true;
 		}
@@ -4035,7 +4030,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 			biggerEditDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(biggerEditDlg);
+		ThotandamunApp.getApplication().show(biggerEditDlg);
 		// after closing the window, get the new value
 		String newcomment = biggerEditDlg.getNewValue();
 		// delete the input-dialog
@@ -4086,7 +4081,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 	@Action
 	public Task<? extends Object, ? extends Void> displayTask() {
 		return new createDisplayTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
 	}
 
 	private class createDisplayTask extends org.jdesktop.application.Task<Object, Void> {
@@ -4445,7 +4440,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 		jPopupMenuDesktop.setName("jPopupMenuDesktop"); // NOI18N
 
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(DesktopFrame.class, this);
 		popupNewBullet.setAction(actionMap.get("addBullet")); // NOI18N
 		popupNewBullet.setName("popupNewBullet"); // NOI18N
@@ -4541,7 +4536,7 @@ public class DesktopFrame extends javax.swing.JFrame implements WindowListener {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(DesktopFrame.class);
 		setTitle(resourceMap.getString("FormDesktop.title")); // NOI18N
 		setMinimumSize(new java.awt.Dimension(350, 250));

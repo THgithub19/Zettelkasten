@@ -82,20 +82,19 @@ public class DesktopData {
 	public static String ELEMENT_BULLET = "bullet";
 
 	/**
-	 * Constants for the method {@link #importArchivedDesktop(org.jdom.Document)
-	 * importArchivedDesktop()}. Indicates that the import of an desktop-archive was
+	 * Constants for the method
+	 * importArchivedDesktop(). Indicates that the import of an desktop-archive was
 	 * successful.
 	 */
 	public static final int IMPORT_ARCHIVE_OK = 1;
 	/**
-	 * Constants for the method {@link #importArchivedDesktop(org.jdom.Document)
-	 * importArchivedDesktop()}. Indicates that the import of an desktop-archive
+	 * Constants for the method
+	 * importArchivedDesktop(). Indicates that the import of an desktop-archive
 	 * failed, because the desktop-name of the imported archive already exists.
 	 */
 	public static final int IMPORT_ARCHIVE_ERR_DESKTOPNAME_EXISTS = 2;
 	/**
-	 * Constants for the method {@link #importArchivedDesktop(org.jdom.Document)
-	 * importArchivedDesktop()}. Indicates that the import of an desktop-archive
+	 * Constants for the method {	 * importArchivedDesktop()}. Indicates that the import of an desktop-archive
 	 * failed, because a technical error occured.
 	 */
 	public static final int IMPORT_ARCHIVE_ERR_OTHER = 3;
@@ -120,7 +119,7 @@ public class DesktopData {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(DesktopFrame.class);
 
 	/**
@@ -675,7 +674,7 @@ public class DesktopData {
 	 * can get this {@code Element} with this function for further use.
 	 *
 	 * @return the Element of an entry that was found on a desktop (via
-	 *         {@link #desktopHasElement()}, or {@code null} if no element / entry
+	 *          or {@code null} if no element / entry
 	 *         was found.
 	 */
 	public Element getFoundDesktopElement() {
@@ -813,7 +812,6 @@ public class DesktopData {
 	 *              combobox
 	 * @param notes the initial desktop-notes that should be associated with this
 	 *              desktop. use this e.g. when importing an archived desktop (see
-	 *              {@link #importArchivedDesktop(org.jdom.Document)
 	 *              importArchivedDesktop()}. use {@code null} when no notes-content
 	 *              should be added (i.e. the elements are being created, but they
 	 *              have no text).
@@ -1020,7 +1018,6 @@ public class DesktopData {
 	/**
 	 * Pastes the bullet-point {@code clipbullet} into the xml-document. The Element
 	 * {@code clipbullet} must be retrieved by
-	 * {@link #copyBulletToClip(java.util.LinkedList)
 	 * copyBulletToClip(java.util.LinkedList)}.
 	 *
 	 * @param timestamp the timestamp of the bullet that should be inserted

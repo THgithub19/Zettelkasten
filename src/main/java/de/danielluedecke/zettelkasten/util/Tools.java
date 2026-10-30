@@ -90,13 +90,13 @@ public class Tools {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final static org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(ZettelkastenView.class);
 	/**
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final static org.jdesktop.application.ResourceMap toolbarResourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(ToolbarIcons.class);
 	/**
 	 *
@@ -206,9 +206,8 @@ public class Tools {
 	/**
 	 * This method opens a file or URL either from within a clicked link inside the
 	 * jEditorPane (see
-	 * {@link #eventHyperlinkActivated(javax.swing.event.HyperlinkEvent)
-	 * eventHyperlinkActivated(javax.swing.event.HyperlinkEvent)} or from the
-	 * attachment-list (see {@link #openAttachment() openAttachment()}.
+	 * eventHyperlinkActivated(javax.swing.event.HyperlinkEvent) or from the
+	 * attachment-list (see openAttachment().
 	 *
 	 * This method is called from the ZettelkastenView.class, the CDesktop.class and
 	 * the CSearchResults.class.
@@ -850,9 +849,8 @@ public class Tools {
 	 * returned as string.
 	 *
 	 * @param list a linked list which contains the multiple-entry-data. see
-	 *             {@link #retrieveDoubleEntries(zettelkasten.CDesktopData, java.util.LinkedList)
 	 *             retrieveDoubleEntries(zettelkasten.CDesktopData,
-	 *             java.util.LinkedList)} for more details on how this parameter is
+	 *             java.util.LinkedList) for more details on how this parameter is
 	 *             created. use the return result of this method as this parameter
 	 * @return a string with the message which entries are at which position in the
 	 *         desktop-data, or {@code null} if no occurences appear.
@@ -1019,7 +1017,7 @@ public class Tools {
 			aac.putValue(AbstractAction.SHORT_DESCRIPTION,
 					toolbarResourceMap.getString(ac + ".Action.shortDescription"));
 //            // get the new icon-path from the resource-map
-//            URL imgURL = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource(resourceMap.getString(ac+".Action.largeIcon"));
+//            URL imgURL = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass().getResource(resourceMap.getString(ac+".Action.largeIcon"));
 //            // create icon
 //            ImageIcon img = new ImageIcon(imgURL);
 //            aac.putValue(AbstractAction.LARGE_ICON_KEY, img);
@@ -1874,9 +1872,7 @@ public class Tools {
 	/**
 	 * Performant case-insensitive string search. Based on an example from
 	 * StackOverflow.
-	 * 
-	 * @see http://stackoverflow.com/a/25379180
-	 * 
+	 * http://stackoverflow.com/a/25379180
 	 * @param text    the source text
 	 * @param pattern the find pattern
 	 * @return {@code true} if {@code pattern} was found in {@code text},

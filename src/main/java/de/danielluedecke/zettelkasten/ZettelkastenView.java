@@ -45,6 +45,7 @@ import de.danielluedecke.zettelkasten.tasks.TaskProgressDialog;
 import de.danielluedecke.zettelkasten.tasks.export.ExportTools;
 import de.danielluedecke.zettelkasten.util.*;
 import de.danielluedecke.zettelkasten.util.classes.*;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.*;
 import org.jdom2.Document;
@@ -387,7 +388,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final ResourceMap toolbarResourceMap = Application
-			.getInstance(ZettelkastenApp.class).getContext()
+			.getInstance(ThotandamunApp.class).getContext()
 			.getResourceMap(ToolbarIcons.class);
 
 	public ZettelkastenView(SingleFrameApplication app, Settings st, TasksData td) throws ClassNotFoundException,
@@ -1815,7 +1816,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		//
 		// get the action map
 		ActionMap actionMap = Application
-				.getInstance(ZettelkastenApp.class).getContext()
+				.getInstance(ThotandamunApp.class).getContext()
 				.getActionMap(ZettelkastenView.class, this);
 		// iterate the xml file with the accelerator keys for the main window
 		for (int cnt = 1; cnt <= settings.getAcceleratorKeys().getCount(AcceleratorKeys.MAINKEYS); cnt++) {
@@ -2271,7 +2272,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	private void initActionMaps() {
 		// Init the locale for the default actions cut/copy/paste.
 		Tools.initLocaleForDefaultActions(
-				Application.getInstance(ZettelkastenApp.class)
+				Application.getInstance(ThotandamunApp.class)
 						.getContext().getActionMap(ZettelkastenView.class, this));
 
 		// <editor-fold defaultstate="collapsed" desc="Init of action-maps so we have
@@ -3145,7 +3146,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			cleanedContent
 					.append("<body><div style=\"margin:5px;padding:5px;background-color:#dddddd;color:#800000;\">");
 			URL imgURL = Application
-					.getInstance(ZettelkastenApp.class).getClass()
+					.getInstance(ThotandamunApp.class).getClass()
 					.getResource("/de/danielluedecke/zettelkasten/resources/icons/error.png");
 			cleanedContent.append("<img border=\"0\" src=\"").append(imgURL).append("\">&#8195;");
 			cleanedContent.append(getResourceMap().getString("incorrectNestedTagsText"));
@@ -3414,7 +3415,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			updateInfoDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(updateInfoDlg);
+		ThotandamunApp.getApplication().show(updateInfoDlg);
 		// check whether user wants to hide this msg box
 		if (updateInfoDlg.getHideUpdateMsg()) {
 			// set update build number to settings, so this update msg will not be displayed
@@ -3553,7 +3554,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			}
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -3697,7 +3698,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			}
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -3726,7 +3727,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			}
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -3754,7 +3755,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			}
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -3805,7 +3806,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			}
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -3995,7 +3996,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			informationDlg = new CInformation(getFrame(), data, settings);
 			informationDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(informationDlg);
+		ThotandamunApp.getApplication().show(informationDlg);
 		// we have to manually dispose the window and release the memory
 		// because next time this method is called, the showKwlDlg is still not null,
 		// i.e. the constructor is not called (because the if-statement above is not
@@ -4138,10 +4139,8 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 
 	/**
 	 * This method opens a file or URL either from within a clicked link inside the
-	 * jEditorPane (see
-	 * {@link #eventHyperlinkActivated(HyperlinkEvent)
-	 * eventHyperlinkActivated(javax.swing.event.HyperlinkEvent)} or from the
-	 * attachment-list (see {@link #openAttachment() openAttachment()}.
+	 * jEditorPane (see eventHyperlinkActivated(javax.swing.event.HyperlinkEvent) or from the
+	 * attachment-list (see openAttachment()
 	 *
 	 * @param linktype the clicked link as string
 	 */
@@ -4171,7 +4170,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 						rateEntryDlg = new CRateEntry(getFrame(), data, entrynr);
 						rateEntryDlg.setLocationRelativeTo(getFrame());
 					}
-					ZettelkastenApp.getApplication().show(rateEntryDlg);
+					ThotandamunApp.getApplication().show(rateEntryDlg);
 					// check whether dialog was cancelled or not
 					if (!rateEntryDlg.isCancelled()) {
 						setNewDisplayedEntryAndUpdateDisplay(entrynr);
@@ -4438,7 +4437,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			biggerEditDlg.setLocationRelativeTo(getFrame());
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(biggerEditDlg);
+		ThotandamunApp.getApplication().show(biggerEditDlg);
 		// after closing the window, get the new value
 		String newAu = biggerEditDlg.getNewValue();
 		String newBibKey = biggerEditDlg.getNewBibKey();
@@ -4594,7 +4593,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					multipleOccurencesDlg.setInfoMsg(multipleOccurencesMessage);
 				}
 				// show window
-				ZettelkastenApp.getApplication().show(multipleOccurencesDlg);
+				ThotandamunApp.getApplication().show(multipleOccurencesDlg);
 			}
 		}
 		// if we have just a single selection, use phrasing for that message
@@ -5030,7 +5029,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 				biggerEditDlg.setLocationRelativeTo(getFrame());
 			}
 			// show window
-			ZettelkastenApp.getApplication().show(biggerEditDlg);
+			ThotandamunApp.getApplication().show(biggerEditDlg);
 			// after closing the window, get the new value
 			String newAu = biggerEditDlg.getNewValue();
 			String newBibKey = biggerEditDlg.getNewBibKey();
@@ -5106,7 +5105,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			setBibKeyDlg.setLocationRelativeTo(getFrame());
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(setBibKeyDlg);
+		ThotandamunApp.getApplication().show(setBibKeyDlg);
 	}
 
 	/**
@@ -5245,7 +5244,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			newBookmarkDlg.setLocationRelativeTo(getFrame());
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(newBookmarkDlg);
+		ThotandamunApp.getApplication().show(newBookmarkDlg);
 		if (!newBookmarkDlg.isCancelled()) {
 			updateDisplay();
 		}
@@ -5971,7 +5970,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	@Action
 	public Task<?, ?> createLinks() {
 		return new createLinksTask(
-				Application.getInstance(ZettelkastenApp.class));
+				Application.getInstance(ThotandamunApp.class));
 	}
 
 	/**
@@ -6105,7 +6104,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		}
 		// create tray-icon with tooltip
 		trayIcon = new TrayIcon((new ImageIcon(
-				Application.getInstance(ZettelkastenApp.class)
+				Application.getInstance(ThotandamunApp.class)
 						.getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/taa-16.png"),
 				"Zettelkasten")).getImage());
 		// retrieve system tray
@@ -6150,7 +6149,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	public void windowClosing(WindowEvent arg0) {
 		// call the general exit-handler from the desktop-application-api
 		// here we do all the stuff we need when exiting the application
-		ZettelkastenApp.getApplication().exit();
+		ThotandamunApp.getApplication().exit();
 	}
 
 	@Override
@@ -6393,7 +6392,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// show amount of entries
 			statusMsgLabel.setText("(" + String.valueOf(jTableLinks.getRowCount()) + " "
 					+ Application
-							.getInstance(ZettelkastenApp.class).getContext()
+							.getInstance(ThotandamunApp.class).getContext()
 							.getResourceMap(ZettelkastenView.class).getString("statusTextLinks")
 					+ ")");
 		}
@@ -6663,7 +6662,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	@Action
 	public Task<?, ?> autoBackupTask() {
 		return new AutoBackupTask(
-				Application.getInstance(ZettelkastenApp.class),
+				Application.getInstance(ThotandamunApp.class),
 				this, statusMsgLabel, data, desktop, settings, searchRequests, settings.getSynonyms(), bookmarks,
 				bibtex);
 	}
@@ -6680,7 +6679,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	@Action
 	public Task<?, ?> clusterTask() {
 		return new createClusterTask(
-				Application.getInstance(ZettelkastenApp.class));
+				Application.getInstance(ThotandamunApp.class));
 	}
 
 	/**
@@ -6789,7 +6788,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// show amount of entries
 			statusMsgLabel.setText("(" + String.valueOf(jTreeCluster.getRowCount()) + " "
 					+ Application
-							.getInstance(ZettelkastenApp.class).getContext()
+							.getInstance(ThotandamunApp.class).getContext()
 							.getResourceMap(ZettelkastenView.class).getString("statusTextKeywords")
 					+ ")");
 			jTreeCluster.setToolTipText(null);
@@ -6811,7 +6810,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	@Action
 	public Task<?, ?> createFilterLinks() {
 		return new createFilterLinksTask(
-				Application.getInstance(ZettelkastenApp.class));
+				Application.getInstance(ThotandamunApp.class));
 	}
 
 	/**
@@ -6926,7 +6925,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// show amount of entries
 			statusMsgLabel.setText("(" + String.valueOf(jTableLinks.getRowCount()) + " "
 					+ Application
-							.getInstance(ZettelkastenApp.class).getContext()
+							.getInstance(ThotandamunApp.class).getContext()
 							.getResourceMap(ZettelkastenView.class).getString("statusTextLinks")
 					+ ")");
 		}
@@ -6948,7 +6947,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					settings.getSynonyms(), settings.getStenoData());
 			settingsDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(settingsDlg);
+		ThotandamunApp.getApplication().show(settingsDlg);
 		// check for changes to synonyms
 		if (settingsDlg.isSynModified()) {
 			// update indicator for autobackup
@@ -7286,8 +7285,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 * This method adds one or more entries as follower-numbers to the entry that is
 	 * selected in the jTreeLuhmann. <br>
 	 * This method needs to be public, since we want to access it from other frames,
-	 * like for instance {@link CSearchResults}.
-	 *
+	 * like for instance 	 *
 	 * @param entries an int-array containing the entry-numbers of those entries
 	 *                that should be added as follower-entries
 	 * @return {@code true} if everything went OK, false if an error occurred
@@ -7436,10 +7434,8 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 * jTableAuthors, and adds those entries as manual links to the current entry.
 	 * <br>
 	 * <br>
-	 * See {@link #addManLinksFromAuthors() addManLinksFromAuthors()} and
-	 * {@link #addManLinksFromAuthorsLogAnd() addManLinksFromAuthorsLogAnd()} for
+	 * See addManLinksFromAuthors() and addManLinksFromAuthorsLogAnd() for
 	 * more details.
-	 *
 	 * @param log the logical combination of the search, whether at least one author
 	 *            should exist (log-or) or if only entries are added that contain
 	 *            all authors (log-and)
@@ -7493,7 +7489,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			importWindow.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(importWindow);
+		ThotandamunApp.getApplication().show(importWindow);
 		// Here the data (filepath, filetype) from the import window
 		// will be passed to another dialog window, which starts the
 		// background task. these dialogs are separated because it looks
@@ -7621,7 +7617,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			errorDlg = new CErrorLog(getFrame(), this, settings);
 			errorDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(errorDlg);
+		ThotandamunApp.getApplication().show(errorDlg);
 		// we have to manually dispose the window and release the memory
 		// because next time this method is called, the showKwlDlg is still not null,
 		// i.e. the constructor is not called (because the if-statement above is not
@@ -7662,7 +7658,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			exportEntriesDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(exportEntriesDlg);
+		ThotandamunApp.getApplication().show(exportEntriesDlg);
 		// check for valid return-value
 		if (!exportEntriesDlg.isCancelled()) {
 			// now call the export-dialog with more options, so the chosen entries
@@ -7721,7 +7717,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			exportWindow.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(exportWindow);
+		ThotandamunApp.getApplication().show(exportWindow);
 		// Here the data (filepath, filetype) from the export window
 		// will be passed to another dialog window, which starts the
 		// background task. these dialogs are separated because it looks
@@ -7776,7 +7772,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			zknAboutBox = new AboutBox(getFrame(), settings.isMacAqua() | settings.isMacAqua());
 			zknAboutBox.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(zknAboutBox);
+		ThotandamunApp.getApplication().show(zknAboutBox);
 		// clear memory allocation
 		zknAboutBox.dispose();
 		zknAboutBox = null;
@@ -7793,7 +7789,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		vmnHelpBox.setLocationRelativeTo(getFrame());
 		vmnHelpBox.setVisible(true);
 
-		ZettelkastenApp.getApplication().show(vmnHelpBox);
+		ThotandamunApp.getApplication().show(vmnHelpBox);
 		vmnHelpBox.toFront();
 
 	}
@@ -7865,7 +7861,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 *                         which the new entry should be inserted. does only
 	 *                         affect the prev/next attributes of an entry. Use
 	 *                         {@code -1} to add entry to the end of entry order.
-	 * @param String           content
+	 * String           content
 	 */
 	private void openEditWindow(boolean isEditing, int entrynumber, boolean isLuhmann, boolean isDeleted,
 			int insertAfterEntry, String content) {
@@ -7884,7 +7880,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 				settings.getAutoKorrektur(), settings.getSynonyms(), settings.getStenoData(), content, isEditing,
 				entrynumber, isLuhmann, isDeleted);
 		editEntryDlg.setLocationRelativeTo(getFrame());
-		ZettelkastenApp.getApplication().show(editEntryDlg);
+		ThotandamunApp.getApplication().show(editEntryDlg);
 		editEntryDlg.toFront();
 	}
 
@@ -8078,8 +8074,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 * of the to be added entries have to be passed as integer-array.<br>
 	 * <br>
 	 * This method needs to be public, since we want to access it from other frames,
-	 * like for instance {@link CSearchResults}.
-	 *
+	 * like for instance CSearchResults.
 	 * @param entries an int-array conatining the entry-numbers of those entries
 	 *                that should be added to the desktop.
 	 */
@@ -8094,7 +8089,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					settings.getAcceleratorKeys(), bibtex, settings.getAutoKorrektur(), settings.getStenoData());
 		}
 		// show desktop
-		ZettelkastenApp.getApplication().show(desktopDlg);
+		ThotandamunApp.getApplication().show(desktopDlg);
 		// add entyry to desktop
 		desktopDlg.addEntries(entries);
 		// enable window-menu-item, if we have loaded desktop data
@@ -8109,7 +8104,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					settings.getAcceleratorKeys(), bibtex, settings.getAutoKorrektur(), settings.getStenoData());
 		}
 		// show desktop
-		ZettelkastenApp.getApplication().show(desktopDlg);
+		ThotandamunApp.getApplication().show(desktopDlg);
 		// let user create new desktop
 		desktopDlg.newDesktop();
 		// enable window-menu-item, if we have loaded desktop data
@@ -8212,8 +8207,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	 * integer-array.<br>
 	 * <br>
 	 * This method needs to be public, since we want to access it from other frames,
-	 * like for instance {@link CSearchResults}.
-	 *
+	 * like for instance CSearchResults.
 	 * @param entries an int-array conatining the entry-numbers of those entries
 	 *                that should be added as manual links
 	 * @return {@code true} if entries have been successfully added, false if an
@@ -8427,7 +8421,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			doubleEntriesDlg.setLocationRelativeTo(getFrame());
 		}
 		// display window
-		ZettelkastenApp.getApplication().show(doubleEntriesDlg);
+		ThotandamunApp.getApplication().show(doubleEntriesDlg);
 		// and start background task to search for double entries.
 		doubleEntriesDlg.startTask();
 	}
@@ -8963,7 +8957,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 		}
 		// show search results window
-		ZettelkastenApp.getApplication().show(searchResultsDlg);
+		ThotandamunApp.getApplication().show(searchResultsDlg);
 		// show latest search results by auto-selecting the last item in the combo-box
 		searchResultsDlg.showLatestSearchResult();
 		// enable window-menu-item, if we have loaded search results
@@ -9044,7 +9038,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 	public void importAuthors() throws IOException {
 		importBibTexDlg = new CImportBibTex(getFrame(), this, data, bibtex, settings);
 		importBibTexDlg.setLocationRelativeTo(getFrame());
-		ZettelkastenApp.getApplication().show(importBibTexDlg);
+		ThotandamunApp.getApplication().show(importBibTexDlg);
 	}
 
 	/**
@@ -9506,7 +9500,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			searchResultsDlg = new SearchResultsFrame(this, data, searchRequests, desktop, settings,
 					settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 		}
-		ZettelkastenApp.getApplication().show(searchResultsDlg);
+		ThotandamunApp.getApplication().show(searchResultsDlg);
 	}
 
 	@Action
@@ -9530,7 +9524,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		if (null == desktopDlg)
 			desktopDlg = new DesktopFrame(this, taskinfo, data, bookmarks, desktop, settings,
 					settings.getAcceleratorKeys(), bibtex, settings.getAutoKorrektur(), settings.getStenoData());
-		ZettelkastenApp.getApplication().show(desktopDlg);
+		ThotandamunApp.getApplication().show(desktopDlg);
 	}
 
 	/**
@@ -9553,7 +9547,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			desktopDlg = new DesktopFrame(this, taskinfo, data, bookmarks, desktop, settings,
 					settings.getAcceleratorKeys(), bibtex, settings.getAutoKorrektur(), settings.getStenoData());
 		// show frame
-		ZettelkastenApp.getApplication().show(desktopDlg);
+		ThotandamunApp.getApplication().show(desktopDlg);
 		// show entry on desktop
 		desktopDlg.showEntryInDesktop(nr);
 	}
@@ -9688,7 +9682,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			searchDlg.setLocationRelativeTo(getFrame());
 		}
-		ZettelkastenApp.getApplication().show(searchDlg);
+		ThotandamunApp.getApplication().show(searchDlg);
 		// open the search dialog
 		// the parameters are as following:
 		if (!searchDlg.isCancelled())
@@ -9742,7 +9736,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 			// Center new dialog window.
 			replaceDlg.setLocationRelativeTo(frame);
 		}
-		ZettelkastenApp.getApplication().show(replaceDlg);
+		ThotandamunApp.getApplication().show(replaceDlg);
 //      commented, since we want to allow empty find or replace terms
 //        if (!replaceDlg.cancelled && (!replaceDlg.findTerm.isEmpty()&&!replaceDlg.replaceTerm.isEmpty()) ) {
 		// when the user did not cancel, start replacement now.
@@ -9785,7 +9779,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 
 	private void waitForTaskDialog() {
 		// show() will block, wait on completion.
-		ZettelkastenApp.getApplication().show(taskDlg);
+		ThotandamunApp.getApplication().show(taskDlg);
 
 		// Task dialog cleanup.
 		taskDlg.dispose();
@@ -9919,7 +9913,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 				searchResultsDlg = new SearchResultsFrame(this, data, searchRequests, desktop, settings,
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			// show search results window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -10055,7 +10049,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 				searchResultsDlg = new SearchResultsFrame(this, data, searchRequests, desktop, settings,
 						settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 			// show search window
-			ZettelkastenApp.getApplication().show(searchResultsDlg);
+			ThotandamunApp.getApplication().show(searchResultsDlg);
 			// show latest search results by auto-selecting the last item in the combo-box
 			searchResultsDlg.showLatestSearchResult();
 			// enable window-menu-item, if we have loaded search results
@@ -10188,7 +10182,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 					searchResultsDlg = new SearchResultsFrame(this, data, searchRequests, desktop, settings,
 							settings.getAcceleratorKeys(), settings.getSynonyms(), bibtex);
 				// show search window
-				ZettelkastenApp.getApplication().show(searchResultsDlg);
+				ThotandamunApp.getApplication().show(searchResultsDlg);
 				// show latest search results by auto-selecting the last item in the combo-box
 				searchResultsDlg.showLatestSearchResult();
 				// enable window-menu-item, if we have loaded search results
@@ -10218,7 +10212,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 							settings.getAcceleratorKeys(), bibtex, settings.getAutoKorrektur(),
 							settings.getStenoData());
 				// show desktop window
-				ZettelkastenApp.getApplication().show(desktopDlg);
+				ThotandamunApp.getApplication().show(desktopDlg);
 				// add found entries to desktop
 				desktopDlg.addEntries(searchRequests.getCurrentSearchResults());
 				// enable window-menu-item, if we have loaded desktop data
@@ -10807,7 +10801,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 							if (method.getName().equals("handleQuit")) {
 								// call the general exit-handler from the desktop-application-api
 								// here we do all the stuff we need when exiting the application
-								ZettelkastenApp.getApplication().exit();
+								ThotandamunApp.getApplication().exit();
 							}
 							if (method.getName().equals("handlePreferences")) {
 								// show settings window
@@ -10888,7 +10882,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 		// make refresh buttons look like mac
 		// get the action map
 		ActionMap actionMap = Application
-				.getInstance(ZettelkastenApp.class).getContext()
+				.getInstance(ThotandamunApp.class).getContext()
 				.getActionMap(ZettelkastenView.class, this);
 		// init variables
 		AbstractAction ac;
@@ -10915,7 +10909,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 
 	/**
 	 *
-	 * @param bottomBarNeedsUpdate if {@code true}, the bottom bar on mac aqua style
+	 * bottomBarNeedsUpdate if {@code true}, the bottom bar on mac aqua style
 	 *                             will also be re-initialized. Use {@code true}
 	 *                             only the first time the bottom bar is
 	 *                             initialized. For further GUI-updates, e.g. from
@@ -11026,8 +11020,7 @@ public class ZettelkastenView extends FrameView implements WindowListener, DropT
 
 	/**
 	 * Selection listener for the tables. Each table that reacts to selections gets
-	 * this SelectionListener in the {@link #initSelectionListeners()
-	 * initSelectionListeners()} method.
+	 * this SelectionListener in the initSelectionListeners() method.
 	 */
 	private class SelectionListener implements ListSelectionListener {
 		JTable table;

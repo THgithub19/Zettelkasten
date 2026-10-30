@@ -76,7 +76,7 @@ public class CStenoEdit extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap =
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(CStenoEdit.class);
 
 
@@ -278,7 +278,7 @@ public class CStenoEdit extends javax.swing.JDialog {
         jButtonApply = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CStenoEdit.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CStenoEdit.class);
         setTitle(resourceMap.getString("FormStenoEdit.title")); // NOI18N
         setModal(true);
         setName("FormStenoEdit"); // NOI18N
@@ -312,7 +312,7 @@ public class CStenoEdit extends javax.swing.JDialog {
         jTableSteno.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTableSteno.columnModel.title0")); // NOI18N
         jTableSteno.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTableSteno.columnModel.title1")); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CStenoEdit.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CStenoEdit.class, this);
         jButtonCancel.setAction(actionMap.get("cancel")); // NOI18N
         jButtonCancel.setName("jButtonCancel"); // NOI18N
 

@@ -32,7 +32,7 @@
  */
 package de.danielluedecke.zettelkasten.tasks.importtasks;
 
-import de.danielluedecke.zettelkasten.ZettelkastenApp;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import de.danielluedecke.zettelkasten.database.Bookmarks;
 import de.danielluedecke.zettelkasten.database.Daten;
 import de.danielluedecke.zettelkasten.database.DesktopData;
@@ -98,7 +98,7 @@ public class ImportFromZkx extends org.jdesktop.application.Task<Object, Void> {
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(ThotandamunApp.class).
             getContext().getResourceMap(ImportTask.class);
 
     /**

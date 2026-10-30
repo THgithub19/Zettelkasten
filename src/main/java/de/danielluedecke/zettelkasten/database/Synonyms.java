@@ -423,8 +423,7 @@ public class Synonyms {
 	 * and the following elements being the related synonyms. <br>
 	 * <br>
 	 * If a complete synonyme-line from <b>any word</b> is requested, use
-	 * {@link #getSynonymLineFromAny(java.lang.String) #getSynonymLineFromAny()}
-	 *
+	 * #getSynonymLineFromAny()}
 	 * @param indexword string-value of the synonym (original- or index-word) which
 	 *                  is searched for in the list
 	 * @param matchcase
@@ -518,9 +517,8 @@ public class Synonyms {
 	 * getSynonymPosition(java.lang.String)} instead. <br>
 	 * <br>
 	 * If a complete synonyme-line is requested, use
-	 * {@link #getSynonymLine(java.lang.String) #getSynonymLine(java.lang.String)}
-	 * or {@link #getSynonymLineFromAny(java.lang.String)
-	 * getSynonymLineFromAny(java.lang.String)}.
+	 * #getSynonymLine(java.lang.String)}
+	 * or getSynonymLineFromAny(java.lang.String)}.
 	 *
 	 * @param synonym   string-value of the synonym (wither original- or index-word,
 	 *                  or any related synonym) which is searched for in the list.
@@ -610,7 +608,7 @@ public class Synonyms {
 	 * synonym. if the synonym doesn't exist, the return value is null. <br>
 	 * <br>
 	 * If a complete synonyme-line from the <b>index-word</b> only is requested, use
-	 * {@link #getSynonymLine(java.lang.String) #getSynonymLine(java.lang.String)}
+	 * #getSynonymLine(java.lang.String)}
 	 *
 	 * @param synonym   string-value of the synonym (wither original- or index-word,
 	 *                  or any related synonym) which is searched for in the list.

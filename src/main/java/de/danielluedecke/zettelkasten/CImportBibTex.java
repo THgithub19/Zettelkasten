@@ -119,7 +119,7 @@ public class CImportBibTex extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(CImportBibTex.class);
 
     /**
@@ -593,7 +593,7 @@ public class CImportBibTex extends javax.swing.JDialog {
         // disable components
         setComponentsBlocked(true);
         // return task
-        return new addSelectedAuthorsTask(org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+        return new addSelectedAuthorsTask(org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
     }
 
     @Action
@@ -625,7 +625,7 @@ public class CImportBibTex extends javax.swing.JDialog {
 
     @Action
     public Task<?, ?> startImport() {
-        return new startImportTask(org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+        return new startImportTask(org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
     }
 
     @Action

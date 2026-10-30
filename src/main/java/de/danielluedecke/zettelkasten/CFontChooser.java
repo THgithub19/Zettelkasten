@@ -76,7 +76,7 @@ public class CFontChooser extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private org.jdesktop.application.ResourceMap resourceMap = 
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(CFontChooser.class);
     
     
@@ -199,7 +199,7 @@ public class CFontChooser extends javax.swing.JDialog {
         jEditorPanePreview = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CFontChooser.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CFontChooser.class);
         setTitle(resourceMap.getString("FormFontChooser.title")); // NOI18N
         setModal(true);
         setName("FormFontChooser"); // NOI18N
@@ -257,7 +257,7 @@ public class CFontChooser extends javax.swing.JDialog {
         jListStyle.setName("jListStyle"); // NOI18N
         jScrollPane2.setViewportView(jListStyle);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CFontChooser.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CFontChooser.class, this);
         jButtonCancel.setAction(actionMap.get("cancelFont")); // NOI18N
         jButtonCancel.setName("jButtonCancel"); // NOI18N
 
@@ -505,7 +505,7 @@ public class CFontChooser extends javax.swing.JDialog {
         css.append(";font-weight:");
         css.append(weight);
         css.append(";}\n</style>\n</head>\n<body>\n");
-        css.append("<p>abcdef ABCDEG<br>1234567890<br>Zettelkasten3 - Preview!</p></body>\n</html>");
+        css.append("<p>abcdef ABCDEG<br>1234567890<br>Thot+Amun - Preview!</p></body>\n</html>");
         
         jEditorPanePreview.setText(css.toString());
     }

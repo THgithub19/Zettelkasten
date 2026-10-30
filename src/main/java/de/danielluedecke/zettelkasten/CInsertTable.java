@@ -296,7 +296,7 @@ public class CInsertTable extends javax.swing.JDialog {
         jTextFieldCaption = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CInsertTable.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CInsertTable.class);
         setTitle(resourceMap.getString("FormCInsertTable.title")); // NOI18N
         setModal(true);
         setName("FormCInsertTable"); // NOI18N
@@ -313,7 +313,7 @@ public class CInsertTable extends javax.swing.JDialog {
         jCheckBoxTableHeader.setText(resourceMap.getString("jCheckBoxTableHeader.text")); // NOI18N
         jCheckBoxTableHeader.setName("jCheckBoxTableHeader"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CInsertTable.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CInsertTable.class, this);
         jButtonApply.setAction(actionMap.get("insertTable")); // NOI18N
         jButtonApply.setName("jButtonApply"); // NOI18N
 

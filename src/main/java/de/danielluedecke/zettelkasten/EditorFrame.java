@@ -32,6 +32,7 @@
  */
 package de.danielluedecke.zettelkasten;
 
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import de.danielluedecke.zettelkasten.util.classes.TasksStatusBar;
 import de.danielluedecke.zettelkasten.mac.MacSourceList;
 import de.danielluedecke.zettelkasten.database.Settings;
@@ -290,13 +291,13 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(EditorFrame.class);
 	/**
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap toolbarResourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(ToolbarIcons.class);
 
 	/**
@@ -355,7 +356,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		stepcounter = 1;
 		// init locale for the default-actions cut/copy/paste
 		Tools.initLocaleForDefaultActions(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class)
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class)
 						.getContext().getActionMap(EditorFrame.class, this));
 		initComponents();
 		// set application icon
@@ -1196,7 +1197,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		}
 		// get the action map
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(EditorFrame.class, this);
 		// finally, we have to manuall init the actions for the popup-menu, since the
 		// gui-builder always
@@ -1405,7 +1406,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		//
 		// get the action map
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(EditorFrame.class, this);
 		// iterate the xml file with the accelerator keys for the main window
 		for (int cnt = 1; cnt <= accKeys.getCount(AcceleratorKeys.NEWENTRYKEYS); cnt++) {
@@ -1781,7 +1782,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 	 * not. Formatting action only apply to the maintextfield, so disable then when
 	 * other fields have the input focus.
 	 *
-	 * @param focus indicates whether the <b>main textfield</b> has the focus or
+	 * focus indicates whether the <b>main textfield</b> has the focus or
 	 *              nor. if this parameter is false, the undo/redo buttons are
 	 *              always disabled. if the value is true, the buttons are enabled
 	 *              when undo/redo is possible (canUndo() and canRedo()).
@@ -1802,7 +1803,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 	 * undo/redo buttons are then also immediately being updated when the user types
 	 * text.
 	 *
-	 * @param focus indicates whether the main textfield has the focus or nor. if
+	 * focus indicates whether the main textfield has the focus or nor. if
 	 *              this parameter is false, the undo/redo buttons are always
 	 *              disabled. if the value is true, the buttons are enabled when
 	 *              undo/redo is possible (canUndo() and canRedo()).
@@ -1834,7 +1835,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			synonymsDlg = new CSynonymsEdit(null, synonymsObj, settingsObj, dataObj);
 			synonymsDlg.setLocationRelativeTo(null);
 		}
-		ZettelkastenApp.getApplication().show(synonymsDlg);
+		ThotandamunApp.getApplication().show(synonymsDlg);
 		// change modified state and enable apply-button
 		if (synonymsDlg.isModified()) {
 			mainframe.setBackupNecessary();
@@ -2030,7 +2031,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			// center window
 			taskDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(taskDlg);
+		ThotandamunApp.getApplication().show(taskDlg);
 		// dispose the window and clear the object
 		taskDlg.dispose();
 		taskDlg = null;
@@ -2113,7 +2114,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			biggerEditDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(biggerEditDlg);
+		ThotandamunApp.getApplication().show(biggerEditDlg);
 		// after closing the window, get the new value
 		String newAu = biggerEditDlg.getNewValue();
 		String newBibKey = biggerEditDlg.getNewBibKey();
@@ -2263,7 +2264,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 				// center window
 				stenoEdit.setLocationRelativeTo(this);
 			}
-			ZettelkastenApp.getApplication().show(stenoEdit);
+			ThotandamunApp.getApplication().show(stenoEdit);
 			// dispose window
 			stenoEdit.dispose();
 			stenoEdit = null;
@@ -2299,7 +2300,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 				// center window
 				autoKorrektEdit.setLocationRelativeTo(this);
 			}
-			ZettelkastenApp.getApplication().show(autoKorrektEdit);
+			ThotandamunApp.getApplication().show(autoKorrektEdit);
 			// dispose window
 			autoKorrektEdit.dispose();
 			autoKorrektEdit = null;
@@ -2733,7 +2734,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			fontDlg = new CFontChooser(null, lastSelectefFont);
 			fontDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(fontDlg);
+		ThotandamunApp.getApplication().show(fontDlg);
 
 		// if the user has chosen a font, set it
 		if (fontDlg.selectedFont != null) {
@@ -2795,7 +2796,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			// center window
 			insertTableDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(insertTableDlg);
+		ThotandamunApp.getApplication().show(insertTableDlg);
 		// if we have any changes, insert table
 		if (insertTableDlg.isModified()) {
 			jTextAreaEntry.replaceSelection(insertTableDlg.getTableTag());
@@ -2820,7 +2821,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			// center window
 			manualLinkEditDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(manualLinkEditDlg);
+		ThotandamunApp.getApplication().show(manualLinkEditDlg);
 		// retrieve return value
 		String manlink = manualLinkEditDlg.getManlink();
 		// if we have any changes, insert table
@@ -3391,7 +3392,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			findReplaceDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(findReplaceDlg);
+		ThotandamunApp.getApplication().show(findReplaceDlg);
 	}
 
 	/**
@@ -3630,7 +3631,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			// center window
 			formEditDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(formEditDlg);
+		ThotandamunApp.getApplication().show(formEditDlg);
 		// if we have any changes, insert table
 		if (formEditDlg.isModified()) {
 			jTextAreaEntry.replaceSelection(formEditDlg.getFormTag());
@@ -3655,7 +3656,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 			// center window
 			hyperlinkEditDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(hyperlinkEditDlg);
+		ThotandamunApp.getApplication().show(hyperlinkEditDlg);
 		// retrieve return value
 		String hyperlink = hyperlinkEditDlg.getHyperlink();
 		// if we have any changes, insert table
@@ -4178,7 +4179,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 	 * given string is found within the author-textfield, this method returns true,
 	 * false otherwise.
 	 *
-	 * @param kw (the author which should be looked for)
+	 * kw (the author which should be looked for)
 	 * @return {@code true} when the author already exists, false otherwise
 	 */
 	private boolean checkForDoubleAuthors(String au) {
@@ -4435,7 +4436,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		jTabbedPaneNewEntry1.setEnabled(false);
 
 		return new QuickInputAuthorTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
 	}
 
 	private class QuickInputAuthorTask extends org.jdesktop.application.Task<Object, Void> {
@@ -4540,7 +4541,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		// disable tabpane during background task operations
 		jTabbedPaneNewEntry1.setEnabled(false);
 		return new QuickInputKeywordsTask(
-				org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+				org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
 	}
 
 	private class QuickInputKeywordsTask extends org.jdesktop.application.Task<Object, Void> {
@@ -4793,8 +4794,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 	/**
 	 * This class sets up a selection listener for the tables. each table which
 	 * shall react on selections, e.g. by showing an entry, gets this
-	 * selectionlistener in the method {@link #initSelectionListeners()
-	 * initSelectionListeners()}.
+	 * selectionlistener in the method initSelectionListeners()
 	 */
 	public class SelectionListener implements ListSelectionListener {
 
@@ -5156,7 +5156,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		jPopupMenuMain.add(jSeparator26);
 
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(EditorFrame.class, this);
 		popupMainSelectAll.setAction(actionMap.get("selecteAllText")); // NOI18N
 		popupMainSelectAll.setName("popupMainSelectAll"); // NOI18N
@@ -5213,7 +5213,7 @@ public class EditorFrame extends javax.swing.JFrame implements WindowListener, D
 		jPopupMenuMain.add(jSeparator20);
 
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(EditorFrame.class);
 		formatSubmenu.setText(resourceMap.getString("formatSubmenu.text")); // NOI18N
 		formatSubmenu.setName("formatSubmenu"); // NOI18N

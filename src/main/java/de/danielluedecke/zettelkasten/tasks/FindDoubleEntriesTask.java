@@ -80,7 +80,7 @@ public class FindDoubleEntriesTask extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap =
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(FindDoubleEntriesTask.class);
 
     /**
@@ -210,7 +210,7 @@ public class FindDoubleEntriesTask extends javax.swing.JDialog {
     public Task<?, ?> findDoubleEntries() {
         // initiate the "statusbar" (the loading splash screen), giving visiual
         // feedback during open and save operations
-        return new FindDoubleEntryTask(org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+        return new FindDoubleEntryTask(org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
     }
 
     private class FindDoubleEntryTask extends org.jdesktop.application.Task<Object, Void> {
@@ -364,7 +364,7 @@ public class FindDoubleEntriesTask extends javax.swing.JDialog {
         msgLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(FindDoubleEntriesTask.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(FindDoubleEntriesTask.class);
         setTitle(resourceMap.getString("FormFindDoubleEntries.title")); // NOI18N
         setName("FormFindDoubleEntries"); // NOI18N
 

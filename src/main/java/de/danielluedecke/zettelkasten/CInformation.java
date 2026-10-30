@@ -71,7 +71,7 @@ public class CInformation extends javax.swing.JDialog {
     private Daten dataObj;
     private Settings settingsObj;
 
-    private org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+    private org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
                                                        getContext().getResourceMap(CInformation.class);
 
     /**
@@ -261,7 +261,7 @@ public class CInformation extends javax.swing.JDialog {
 
     @Action
     public final Task<?, ?> countWords() {
-        return new countWordsTask(org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class));
+        return new countWordsTask(org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class));
     }
     private class countWordsTask extends org.jdesktop.application.Task<Object, Void> {
         // init variabls
@@ -366,7 +366,7 @@ public class CInformation extends javax.swing.JDialog {
         jButtonBrowseImagePath = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CInformation.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CInformation.class);
         setTitle(resourceMap.getString("FormCInformation.title")); // NOI18N
         setModal(true);
         setName("FormCInformation"); // NOI18N
@@ -382,7 +382,7 @@ public class CInformation extends javax.swing.JDialog {
 
         jTextFieldPath.setName("jTextFieldPath"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CInformation.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CInformation.class, this);
         jButtonOpenDir.setAction(actionMap.get("openFileDir")); // NOI18N
         jButtonOpenDir.setBorderPainted(false);
         jButtonOpenDir.setContentAreaFilled(false);

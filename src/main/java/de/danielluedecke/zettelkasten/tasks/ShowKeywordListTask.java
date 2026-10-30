@@ -74,7 +74,7 @@ public class ShowKeywordListTask extends org.jdesktop.application.Task<Object, V
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap =
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(ShowKeywordListTask.class);
 
     ShowKeywordListTask(org.jdesktop.application.Application app, javax.swing.JDialog parent, javax.swing.JLabel label, Daten d, Synonyms s, boolean is, DefaultTableModel dtm) {

@@ -582,7 +582,7 @@ public class FileOperationsUtil {
 	public static boolean insertAttachments(Daten dataObj, Settings settingsObj, JFrame parentFrame, File[] sources,
 			DefaultListModel<String> lm) {
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(FileOperationsUtil.class);
 		if (lm != null) {
 			linkListModel = lm;
@@ -939,8 +939,7 @@ public class FileOperationsUtil {
 
 	/**
 	 * This method checks whether a given string, usually passed as parameter from
-	 * the {@link #eventHyperlinkActivated(javax.swing.event.HyperlinkEvent)
-	 * eventHyperlinkActivated}, is a hyperlink or not. this is decided from the
+	 * the eventHyperlinkActivated}, is a hyperlink or not. this is decided from the
 	 * prefix, i.e. whether the string starts with common things like "http:" etc.
 	 *
 	 * @param linktype the clicked "hyperlink" from the hyperlink-event, as string

@@ -65,7 +65,7 @@ public class CExport extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(CExport.class);
     /**
      * A reference to the settings class
@@ -769,7 +769,7 @@ public class CExport extends javax.swing.JDialog {
         jCheckBoxExportBibTex = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CExport.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CExport.class);
         setTitle(resourceMap.getString("FormExportDialog.title")); // NOI18N
         setModal(true);
         setName("FormExportDialog"); // NOI18N
@@ -789,7 +789,7 @@ public class CExport extends javax.swing.JDialog {
         jLabelBrowseDir.setText(resourceMap.getString("jLabelBrowseDir.text")); // NOI18N
         jLabelBrowseDir.setName("jLabelBrowseDir"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CExport.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CExport.class, this);
         jButtonBrowse.setAction(actionMap.get("save")); // NOI18N
         jButtonBrowse.setName("jButtonBrowse"); // NOI18N
 

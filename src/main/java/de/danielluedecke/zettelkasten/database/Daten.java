@@ -3013,7 +3013,7 @@ public class Daten {
 	 * In contrary ti the normal
 	 * {@link #addEntry(java.lang.String, java.lang.String, java.lang.String[], java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, int)
 	 * addEntry} method, we use this one to set an additional xml-attribute to that
-	 * entry (see {@link #setContentFromBibTexRemark(int)
+	 * entry (see
 	 * setContentFromBibTexRemark(int)}) to indicate that this entry's content was
 	 * added and automatically created from a bibtex-file. Thus, we can later use
 	 * this indication to update all entries' contents from a bibtex-file, if the
@@ -5712,7 +5712,7 @@ public class Daten {
 	 * XML-datafile. So we have the "plain text" here, [k]with[/k] format-tags, but
 	 * [k]not[/k] prepared for HTML-display.<br>
 	 * * <br>
-	 * Use {@link #getEntryAsHtml(int, java.lang.String[]) getEntryAsHtml()} if you
+	 * Use getEntryAsHtml()} if you
 	 * need the HTML-formatted entry instead.<br>
 	 * <br>
 	 * Use {@link #getCleanZettelContent(int) getCleanZettelContent()} if you need
@@ -5772,7 +5772,7 @@ public class Daten {
 	 * setting the parameter {@code encodeUTF} to {@code true}. This is necessary
 	 * when exporting entries to HTML or PDF. <br>
 	 * <br>
-	 * Use {@link #getEntryAsHtml(int, java.lang.String[]) getEntryAsHtml()} if you
+	 * Use getEntryAsHtml()} if you
 	 * need the HTML-formatted entry instead.<br>
 	 * <br>
 	 * Use {@link #getCleanZettelContent(int) getCleanZettelContent()} if you need
@@ -6411,7 +6411,7 @@ public class Daten {
 	 * trailing entry references with the entries' number. <br>
 	 * <br>
 	 * That means, the trails and manual link child attributes that have been
-	 * converted by the {@link #replaceAttributeNrWithID(org.jdom.Element)
+	 * converted by the
 	 * replaceAttributeNrWithID} method will be "resetted", so these attributes
 	 * contain the entries' numbers again instead of their IDs.
 	 *
@@ -6956,8 +6956,7 @@ public class Daten {
 	 * exists in the current data base or not. <br>
 	 * <br>
 	 * In case you want to look for an existing keyword according to identical
-	 * Strings (not ID!), use {@link #getKeywordPosition(java.lang.String)}.
-	 *
+	 * Strings (not ID!), use	 *
 	 * @param id the unique keyword-ID of a keyword-element which should be checked
 	 *           for existence.
 	 * @return {@code true} when a keyword with the unique ID {@code id} already
