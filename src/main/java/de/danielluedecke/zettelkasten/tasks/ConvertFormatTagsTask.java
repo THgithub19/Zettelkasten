@@ -53,7 +53,7 @@ public class ConvertFormatTagsTask extends org.jdesktop.application.Task<Object,
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap =
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(ConvertFormatTagsTask.class);
 
     ConvertFormatTagsTask(org.jdesktop.application.Application app, javax.swing.JDialog parent, javax.swing.JLabel label, Daten d, int conv) {

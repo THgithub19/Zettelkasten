@@ -2,25 +2,23 @@
  body{
   margin:15px;
   background-color:#f8f8f8;
-  font-family:"Liberation Sans",Arial,Helvetica,sans-serif;
+  font-family:sans-serif;
   font-size:12px;
   color:#000000;
   font-style:normal;
   font-weight:normal}
  h1{
-  font-family:"Liberation Sans",Arial,Helvetica,sans-serif;
   font-size:15px;
   color:#990033;
   font-weight:bold}
  h2{
-  font-family:"Liberation Sans",Arial,Helvetica,sans-serif;
   font-size:14px;
   color:#0000ac;
   font-weight:bold}
- h3{font-family:"Liberation Sans",Arial,Helvetica,sans-serif;
+ h3{
   font-size:13px;
   font-weight:bold}
- h4{font-family:"Liberation Sans",Arial,Helvetica,sans-serif;
+ h4{
   font-size:12px;
   font-weight:bold}
  ul{margin-left:10px}
@@ -31,10 +29,75 @@
  <p>English <a href="#english">here</a> Deutsch <a href="#deutsch">hier</a></p>
  <a name="english"></a>
  <h1>Help for Settings</h1>
- <p>This document provides help for items in the settings dialog of Thot+Amun which are not evident by their names.</p>
+ <p>This document provides help for items in the settings dialog of Thot+Amun which are not evident by their names and which are unsuitable for a tooltip.</p>
+ <h2>General</h2>
+ <h3>Spell-checking while typing (edit-mode)</h3>
+ <p>When this feature is enabled, an spell correction list is taken into account. The spell correction list can be opened via the ‘Edit’ button for entries.
+ Example: Enter the three letters ‘teh’ under ‘Misspelled’ and ‘the’ under ‘Correct’.
+  Finish editing by clicking in the line below the last entry and then clicking ‘Apply’ twice.
+  Now, ‘teh’ will change to ‘the’ in the note field of the note editor when you press the space bar after typing.</p>
+  <h3>Activate stenography</h3>
+ <p>When this option is enabled, a steno list is taken into account. The steno list can be opened via the ‘Edit’ button for entries.
+ Example: Enter the three letters ‘dna’ under ‘Steno word’ and ‘Deoxyribonucleic acid’ under ‘Original’.
+  Finish editing by clicking in the line below the last entry and then clicking ‘Apply’ twice.
+  Now, ‘dna’ will be converted to ‘deoxyribonucleic acid’ in the text field of the note editor when you press the Tab key after entering it.</p>
+  <h3>Activat MarkDown</h3>
+ <p>When enabled, formatting can be entered using MarkDown syntax in the note field of the note editor.
+The decision to enable MarkDown should be made at an early stage. Switching to the default UBB syntax may cause problems.
+MarkDown support in Thot+Amun is still under development. Enabling MarkDown is not currently recommended.</p>
+ <h2>Fonts and Colours</h2>
+ <h3>Custom stylesheet for notes</h3>
+ <p>When enabled, a stylesheet is used to define fonts, colours and spacing in the note view of the main window.
+The stylesheet can be opened in an editor window via the ‘Edit’ button. The entries now visible represent the current settings for
+fonts, colours and spacing. The entries are formatted in CSS notation, following the ‘Cascading Style Sheets’ model. Users with the relevant knowledge can edit the entries directly in the
+editor window and apply the changes by clicking the corresponding button. Alternatively, the entries can be changed using the buttons under ‘Fonts’ and ‘Other colour attributes’.</p>
+   <h3>Custom stylesheet for outliner</h3>
+ <p>When enabled, a stylesheet is used to define fonts, colours and spacing in the Desktop view.
+Settings are configured as described in the section ‘Custom stylesheet for notes’.</p>
+ <h2>Directories</h2>
+ <h3>Path to attachments and Path to images</h3>
+ <p>Here, you can specify directories for attachments and images for the currently Zettelkasten. Attachments and images can be copied or
+moved to these directories when they are attached to a note in this Zettelkasten. In this way, Thot+Amun will still be able to locate the attachments and images even if the Zettelkasten data file
+is moved to a different directory within the file system.</p>
+ <h3>Path to pandoc</h3>
+ <p>Thot+Amun exports notes to LibreOffice Writer and Microsoft Word file formats using the pandoc application.
+Here, you can specify the directory in which pandoc has been installed. This setting is important if Thot+Amun cannot find pandoc.</p>
  <a name="deutsch"></a>
  <h1>Hilfe zu den Einstellungen</h1>
- <p>Dieses Dokument bietet Hilfe zu Elementen im Einstellungsdialog von Thot+Amun, die nicht durch ihre Benennung klar sind.</p>
+ <p>Dieses Dokument bietet Hilfe zu Elementen im Einstellungsdialog von Thot+Amun, die nicht durch ihre Benennung klar sind und die sich nicht für einen Tooltip eignen.</p>
+ <h2>Grundeinstellungen</h2>
+ <h3>Autokorrektur beim Tippen (Neueingabe von Zetteln)</h3>
+ <p>Im aktivierten Zustand wird eine Autokorrekturliste berücksichtigt. Die Autokorrekturliste kann über den Knopf "Bearbeiten" für Eintragungen geöffnet werden. 
+ Beispiel: Tragen sie unter "Falsch" die drei Buchstaben "dsa" ein und unter "Richtig" "das".
+  Beenden sie die Bearbeitung, indem sie in die Zeile unter dem letzten Eintrag klicken und dann zweimal auf "Übernehmen". 
+  Nun wird "dsa" zu "das" im Zettelfeld des Zettel-Editors, wenn sie nach der Eingabe auf die Leertaste drücken.</p>
+  <h3>Steno-Funktion aktivieren</h3>
+ <p>Im aktivierten Zustand wird eine Stenoliste berücksichtigt. Die Stenoliste kann über den Knopf "Bearbeiten" für Eintragungen geöffnet werden. 
+ Beispiel: Tragen sie unter "Abkürzung" die drei Buchstaben "dna" ein und unter "Original" "Desoxyribonukleinsäure".
+  Beenden sie die Bearbeitung, indem sie in die Zeile unter dem letzten Eintrag klicken und dann zweimal auf "Übernehmen". 
+  Nun wird "dna" zu "Desoxyribonukleinsäure" im Zettelfeld des Zettel-Editors, wenn sie nach der Eingabe auf die Tabulatortaste drücken.</p>
+  <h3>Markdown aktivieren</h3>
+ <p>Im aktivierten Zustand können Formatierungen im Zettelfeld des Zettel-Editors in Markdown-Schreibweise eingegeben werden.
+ Die Entscheidung über die Aktivierung von Markdown sollte früh getroffen werden. Ein Wechsel mit der voreingestellten UBB-Schreibweise kann zu Problemen führen.
+ Die Unterstützung von Markdown durch Thot+Amun ist noch in Entwicklung. Die Aktivierung von Markdown wird derzeit nicht empfohlen.</p>
+ <h2>Schriften und Farben</h2>
+ <h3>Eigenes Stylesheet für Zettel</h3>
+ <p>Im aktivierten Zustand wird ein Stylesheet für die Festlegung von Schriften, Farben und Abständen in der Zettel-Ansicht des Hauptfensters verwendet.
+ Das Stylesheet kann über den Knopf "Bearbeiten" in einem Editor-Fenster geöffnet werden. Die nun sichtbaren Einträge stellen die aktuellen Einstellungen für 
+ Schriften, Farben und Abstände dar. Die Einträge erfolgen nach Art der "Cascading Style Sheets" in CSS-Schreibweise. Sachkundige können die Einträge direkt im
+ Editorfenster ändern und durch Klicken des entsprechenden Knopfs übernehmen. Alternativ können die Einträge über die Knöpfe bei "Schriftarten" und "Weitere Farbattribute"
+  geändert werden.</p>
+   <h3>Eigenes Stylesheet für Schreibtisch</h3>
+ <p>Im aktivierten Zustand wird ein Stylesheet für die Festlegung von Schriften, Farben und Abständen in der Schreibtisch-Ansicht verwendet.
+ Einstellungen erfolgen wie im Abschnitt "Eigenes Stylesheet für Zettel" beschrieben.</p>
+ <h2>Verzeichnisse</h2>
+ <h3>Verzeichnis für Anhänge und Verzeichnis für Grafiken</h3>
+ <p>Hier können Verzeichnisse für Anhänge beziehungsweise Grafiken für den aktuell geöffneten Zettelkasten festgelegt werden. Anhänge und Grafiken können in diese Verzeichnisse kopiert oder
+ verschoben werden, wenn sie einem Zettel dieses Zettelkastens beigefügt werden. Auf diese Weise findet Thot+Amun die Anhänge und Bilder auch dann, wenn die Zettelkasten-Datei
+ in ein anderes Verzeichnis im Dateisystem verschoben wird.</p>
+ <h3>Verzeichnis für pandoc</h3>
+ <p>Thot+Amun exportiert Zettel mit Hilfe der Anwendung pandoc in die Dateiformate von LibreOffice Writer und Microsoft Word. 
+ Hier kann das Verzeichnis festgelegt werden, in das pandoc installiert worden ist. Diese Einstellung ist dann von Bedeutung, wenn Thot+Amun pandoc nicht findet.</p>
 </div>
 </body>
 </html>

@@ -65,7 +65,7 @@ public class HtmlUbbUtil {
      * get the strings for file descriptions from the resource map
      */
     private static final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(HtmlUbbUtil.class);
 
     private static final boolean IS_WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
@@ -106,15 +106,15 @@ public class HtmlUbbUtil {
         switch (ratingvalue) {
             // no rating point
             case RATING_VALUE_NONE:
-                imgURL = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_black.png");
+                imgURL = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_black.png");
                 break;
             // half rating point
             case RATING_VALUE_HALF:
-                imgURL = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_yellow.png");
+                imgURL = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_yellow.png");
                 break;
             // full rating point
             case RATING_VALUE_FULL:
-                imgURL = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_green.png");
+                imgURL = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/icons/bullet_green.png");
                 break;
         }
         // append image-src
@@ -744,7 +744,7 @@ public class HtmlUbbUtil {
      * highlighted.
      *
      * @param dummy the string where the searchterms should be highlighted
-     * @param cssclass either {@code null} if this method is a usual call, or a
+     * String cssclass either {@code null} if this method is a usual call, or a
      * style-attribute for the span-tag. the latter is necessary when calling
      * this method when exporting entries to PDF, since the PDF-HTML-Parser
      * cannot handle class-attributes, so instead we directly put the
@@ -2181,8 +2181,7 @@ public static String convertTextAlignStyle(String input) {
     }
 
     /**
-     * Since tables cannot be converted using regular expressions (in the
-     * {@link #convertUbbToHtml(zettelkasten.CSettings, java.lang.String) convertUbbToHtml()}-method),
+     * Since tables cannot be converted using regular expressions (in the convertUbbToHtml()-method),
      * we do this in an extra method. This, this method converts table-tags into
      * HTML-tables.
      *
@@ -2457,7 +2456,7 @@ public static String convertTextAlignStyle(String input) {
 
     /**
      * Since tables cannot be converted using regular expressions (in the
-     * {@link #convertUbbToHtml(zettelkasten.CSettings, java.lang.String) convertUbbToHtml()}-method),
+     * convertUbbToHtml()-method),
      * we do this in an extra method. This, this method converts table-tags into
      * HTML-tables.
      *

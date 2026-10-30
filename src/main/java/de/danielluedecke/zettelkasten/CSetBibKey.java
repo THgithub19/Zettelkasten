@@ -100,7 +100,7 @@ public class CSetBibKey extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(CSetBibKey.class);
 
     /**
@@ -654,7 +654,7 @@ public class CSetBibKey extends javax.swing.JDialog {
      * This class sets up a selection listener for the tables. each table which
      * shall react on selections, e.g. by showing an entry, gets this
      * selectionlistener in the method
-     * {@link #initSelectionListeners() initSelectionListeners()}.
+     * initSelectionListeners()
      */
     private class SelectionListener implements ListSelectionListener {
 
@@ -703,7 +703,7 @@ public class CSetBibKey extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CSetBibKey.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CSetBibKey.class);
         setTitle(resourceMap.getString("CFormSetBibKey.title")); // NOI18N
         setName("CFormSetBibKey"); // NOI18N
 
@@ -724,7 +724,7 @@ public class CSetBibKey extends javax.swing.JDialog {
         jRadioButtonFileBibkey.setToolTipText(resourceMap.getString("jRadioButtonFileBibkey.toolTipText")); // NOI18N
         jRadioButtonFileBibkey.setName("jRadioButtonFileBibkey"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CSetBibKey.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CSetBibKey.class, this);
         jButtonCancel.setAction(actionMap.get("cancel")); // NOI18N
         jButtonCancel.setName("jButtonCancel"); // NOI18N
 

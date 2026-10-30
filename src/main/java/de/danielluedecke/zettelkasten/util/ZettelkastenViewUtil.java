@@ -33,7 +33,7 @@
 package de.danielluedecke.zettelkasten.util;
 
 import de.danielluedecke.zettelkasten.CBiggerEditField;
-import de.danielluedecke.zettelkasten.ZettelkastenApp;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import de.danielluedecke.zettelkasten.ZettelkastenView;
 import de.danielluedecke.zettelkasten.database.*;
 import de.danielluedecke.zettelkasten.database.BibTeX;
@@ -115,8 +115,7 @@ public class ZettelkastenViewUtil {
 	 * <br>
 	 * If no increase or decrease of frequencies (occurences) is requested, but a
 	 * complete removal, call
-	 * {@link #updateTableFrequencyRemove(javax.swing.JTable, java.util.LinkedList)
-	 * updateTableFrequencyRemove(javax.swing.JTable, java.util.LinkedList)}
+	 * updateTableFrequencyRemove(javax.swing.JTable, java.util.LinkedList)
 	 * instead.
 	 *
 	 * @param table the table were we have to add a new value with frequency
@@ -198,8 +197,7 @@ public class ZettelkastenViewUtil {
 	 * tablemodel and the linked list. <br>
 	 * <br>
 	 * If no complete removal is requested, but a decrease in the frequencies, call
-	 * {@link #updateTableFrequencyDelete(javax.swing.JTable, java.util.LinkedList)
-	 * updateTableFrequencyDelete(javax.swing.JTable, java.util.LinkedList)}
+	 * updateTableFrequencyDelete(javax.swing.JTable, java.util.LinkedList)
 	 * instead.
 	 *
 	 * @param table            the table were we have to add a new value with
@@ -449,7 +447,7 @@ public class ZettelkastenViewUtil {
 					// center window
 					taskDlg.setLocationRelativeTo(mainframe.getFrame());
 				}
-				ZettelkastenApp.getApplication().show(taskDlg);
+				ThotandamunApp.getApplication().show(taskDlg);
 				// dispose the window and clear the object
 				taskDlg.dispose();
 				taskDlg = null;
@@ -472,7 +470,7 @@ public class ZettelkastenViewUtil {
 					// center window
 					taskDlg.setLocationRelativeTo(mainframe.getFrame());
 				}
-				ZettelkastenApp.getApplication().show(taskDlg);
+				ThotandamunApp.getApplication().show(taskDlg);
 				// dispose the window and clear the object
 				taskDlg.dispose();
 				taskDlg = null;
@@ -495,7 +493,7 @@ public class ZettelkastenViewUtil {
 					// center window
 					taskDlg.setLocationRelativeTo(mainframe.getFrame());
 				}
-				ZettelkastenApp.getApplication().show(taskDlg);
+				ThotandamunApp.getApplication().show(taskDlg);
 				// dispose the window and clear the object
 				taskDlg.dispose();
 				taskDlg = null;
@@ -511,7 +509,7 @@ public class ZettelkastenViewUtil {
 				// center window
 				biggerEditDlg.setLocationRelativeTo(mainframe.getFrame());
 			} // show window
-			ZettelkastenApp.getApplication().show(biggerEditDlg);
+			ThotandamunApp.getApplication().show(biggerEditDlg);
 			// delete the input-dialog
 			biggerEditDlg.dispose();
 			biggerEditDlg = null;
@@ -529,7 +527,7 @@ public class ZettelkastenViewUtil {
 					// center window
 					biggerEditDlg.setLocationRelativeTo(mainframe.getFrame());
 					// show window
-					ZettelkastenApp.getApplication().show(biggerEditDlg);
+					ThotandamunApp.getApplication().show(biggerEditDlg);
 				} catch (UnsupportedEncodingException ex) {
 				}
 			} // delete the input-dialog
@@ -547,7 +545,7 @@ public class ZettelkastenViewUtil {
 				biggerEditDlg.setLocationRelativeTo(mainframe.getFrame());
 			}
 			// show window
-			ZettelkastenApp.getApplication().show(biggerEditDlg);
+			ThotandamunApp.getApplication().show(biggerEditDlg);
 			// delete the input-dialog
 			biggerEditDlg.dispose();
 			biggerEditDlg = null;
@@ -562,7 +560,7 @@ public class ZettelkastenViewUtil {
 				// center window
 				biggerEditDlg.setLocationRelativeTo(mainframe.getFrame());
 			} // show window
-			ZettelkastenApp.getApplication().show(biggerEditDlg);
+			ThotandamunApp.getApplication().show(biggerEditDlg);
 			// delete the input-dialog
 			biggerEditDlg.dispose();
 			biggerEditDlg = null;
@@ -578,7 +576,7 @@ public class ZettelkastenViewUtil {
 				// center window
 				biggerEditDlg.setLocationRelativeTo(mainframe.getFrame());
 			} // show window
-			ZettelkastenApp.getApplication().show(biggerEditDlg);
+			ThotandamunApp.getApplication().show(biggerEditDlg);
 			// delete the input-dialog
 			biggerEditDlg.dispose();
 			biggerEditDlg = null;

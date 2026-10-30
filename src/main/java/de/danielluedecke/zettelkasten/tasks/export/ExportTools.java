@@ -34,7 +34,7 @@ package de.danielluedecke.zettelkasten.tasks.export;
 
 import bibtex.dom.BibtexEntry;
 import de.danielluedecke.zettelkasten.CTexExportSettings;
-import de.danielluedecke.zettelkasten.ZettelkastenApp;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import de.danielluedecke.zettelkasten.database.BibTeX;
 import de.danielluedecke.zettelkasten.database.Daten;
 import de.danielluedecke.zettelkasten.database.Settings;
@@ -70,7 +70,7 @@ public class ExportTools {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private static final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(de.danielluedecke.zettelkasten.tasks.export.ExportTask.class);
 
 	/**
@@ -497,7 +497,7 @@ public class ExportTools {
 			// center window
 			latexExportSettingsDlg.setLocationRelativeTo(frame);
 			// show window
-			ZettelkastenApp.getApplication().show(latexExportSettingsDlg);
+			ThotandamunApp.getApplication().show(latexExportSettingsDlg);
 			// retrieve cancel-flag
 			boolean expcancelled = latexExportSettingsDlg.isCancelled();
 			// free memory

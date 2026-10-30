@@ -34,6 +34,7 @@
 package de.danielluedecke.zettelkasten;
 
 import de.danielluedecke.zettelkasten.util.Constants;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -71,7 +72,7 @@ public class HelpBox extends JDialog {
         // what to do on close
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         // define resourceMap for strings
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(ZettelkastenApp.class).getContext().getResourceMap(HelpBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(ThotandamunApp.class).getContext().getResourceMap(HelpBox.class);
         // set title depending on language in use
         setTitle(resourceMap.getString("FormHelpBox.title")); // NOI18N
         // these codelines add an escape-listener to the dialog. so, when the user
@@ -117,7 +118,7 @@ public class HelpBox extends JDialog {
         pack();
 
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
-        URL helpText = org.jdesktop.application.Application.getInstance(ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/settingshelp/settingshelp.html");
+        URL helpText = org.jdesktop.application.Application.getInstance(ThotandamunApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/settingshelp/settingshelp.html");
 
         // Show help in editorPane
         try {

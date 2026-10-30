@@ -78,7 +78,7 @@ public class AboutBox extends javax.swing.JDialog {
             }
         };
         getRootPane().registerKeyboardAction(cancelAction, stroke, JComponent.WHEN_IN_FOCUSED_WINDOW);
-        URL licenseText = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/thotandamun.html");
+        URL licenseText = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getClass().getResource("/de/danielluedecke/zettelkasten/resources/thotandamun.html");
         try {
             jEditorPane1.setPage(licenseText);
         } catch (IOException e) {
@@ -99,7 +99,7 @@ public class AboutBox extends javax.swing.JDialog {
         jEditorPane1 = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(AboutBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(AboutBox.class);
         setTitle(resourceMap.getString("FormAboutBox.title")); // NOI18N
         setModal(true);
         setName("FormAboutBox"); // NOI18N

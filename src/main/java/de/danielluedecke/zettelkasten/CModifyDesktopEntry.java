@@ -95,17 +95,17 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap = 
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(CModifyDesktopEntry.class);
 
     private final javax.swing.ActionMap actionMap =
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getActionMap(CModifyDesktopEntry.class, this);
     /**
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap toolbarResourceMap = 
-        org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+        org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
         getContext().getResourceMap(ToolbarIcons.class);
 
     
@@ -133,7 +133,7 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
             WindowUtils.installJComponentRepainterOnWindowFocusChanged(this.getRootPane());
         }
         // init locale for the default-actions cut/copy/paste
-        Tools.initLocaleForDefaultActions(org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CModifyDesktopEntry.class, this));
+        Tools.initLocaleForDefaultActions(org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CModifyDesktopEntry.class, this));
         initComponents();
         // set application icon
         setIconImage(Constants.zknicon.getImage());
@@ -817,8 +817,7 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
      * Usually this method belongs to "updateToolbar()", but we've outsourced this
      * part so we can call this method in the documents change listener. The undo/redo
      * buttons are then also immediately being updated when the user types text.
-     *
-     * @param focus indicates whether the main textfield has the focus or nor. if this
+     * focus indicates whether the main textfield has the focus or nor. if this
      * parameter is false, the undo/redo buttons are always disabled. if the value is
      * true, the buttons are enabled when undo/redo is possible (canUndo() and canRedo()).
      */
@@ -1103,7 +1102,7 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
         jSeparator26.setName("jSeparator26"); // NOI18N
         jPopupMenuMain.add(jSeparator26);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CModifyDesktopEntry.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CModifyDesktopEntry.class, this);
         popupMainSelectAll.setAction(actionMap.get("selectAllText")); // NOI18N
         popupMainSelectAll.setName("popupMainSelectAll"); // NOI18N
         jPopupMenuMain.add(popupMainSelectAll);
@@ -1122,7 +1121,7 @@ public class CModifyDesktopEntry extends javax.swing.JFrame implements WindowLis
         jSeparator20.setName("jSeparator20"); // NOI18N
         jPopupMenuMain.add(jSeparator20);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CModifyDesktopEntry.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CModifyDesktopEntry.class);
         formatSubmenu.setText(resourceMap.getString("formatSubmenu.text")); // NOI18N
         formatSubmenu.setName("formatSubmenu"); // NOI18N
 

@@ -114,7 +114,7 @@ public class ExportToCsvTask extends org.jdesktop.application.Task<Object, Void>
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(ExportTask.class);
 
     public ExportToCsvTask(org.jdesktop.application.Application app, javax.swing.JDialog parent, javax.swing.JLabel label,

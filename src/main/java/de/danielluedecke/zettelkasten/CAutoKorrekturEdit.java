@@ -80,7 +80,7 @@ public class CAutoKorrekturEdit extends javax.swing.JDialog {
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(CAutoKorrekturEdit.class);
 
     /**
@@ -293,7 +293,7 @@ public class CAutoKorrekturEdit extends javax.swing.JDialog {
         jButtonApply = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getResourceMap(CAutoKorrekturEdit.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getResourceMap(CAutoKorrekturEdit.class);
         setTitle(resourceMap.getString("FormAutokorrektur.title")); // NOI18N
         setModal(true);
         setName("FormAutokorrektur"); // NOI18N
@@ -326,7 +326,7 @@ public class CAutoKorrekturEdit extends javax.swing.JDialog {
         jTableAutoKorrektur.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTableAutoKorrektur.columnModel.title0")); // NOI18N
         jTableAutoKorrektur.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTableAutoKorrektur.columnModel.title1")); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext().getActionMap(CAutoKorrekturEdit.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext().getActionMap(CAutoKorrekturEdit.class, this);
         jButtonCancel.setAction(actionMap.get("cancel")); // NOI18N
         jButtonCancel.setName("jButtonCancel"); // NOI18N
 

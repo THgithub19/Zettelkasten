@@ -1405,7 +1405,6 @@ public class AcceleratorKeys {
 	 * SEARCHRESULTSKEYS<br>
 	 * 
 	 * @param what (uses constants, see global field definition at top of source)
-	 * @param af
 	 */
 	public void setDocument(int what, Document newDocument) {
 		switch (what) {
@@ -1570,7 +1569,7 @@ public class AcceleratorKeys {
 	 * an xml-file are searched for the given attribute. If an element contains that
 	 * atrtribut, the method returns true, false otherwise.
 	 * 
-	 * @param doc  (the xml-document where to look for the attribute)
+	 * The xml-document where to look for the attribute
 	 * @param attr (the attribute we want to find)
 	 * @return {@code true} if we have an element that contains that attribute,
 	 *         false otherwise
@@ -1609,7 +1608,7 @@ public class AcceleratorKeys {
 	 * an xml-file are searched for the given attribute. If an element contains that
 	 * atrtribut, it is returned.
 	 *
-	 * @param doc  the xml-document where to look for the attribute
+	 * The xml-document where to look for the attribute
 	 * @param attr the attribute (i.e. the action's name) we want to find
 	 * @return the element which matches the given action-name {@code attr} inside
 	 *         the document {@code doc}, or null if no match was found
@@ -1645,7 +1644,7 @@ public class AcceleratorKeys {
 	 * position is a value from 1 to (size of xml file) - in contrary to usual array
 	 * handling where the range is from 0 to (size-1).
 	 * 
-	 * @param doc (the xml document where to look for elements)
+	 * The xml document where to look for elements)
 	 * @param pos (the position of the element)
 	 * @return the element if a match was found, otherwise null)
 	 */

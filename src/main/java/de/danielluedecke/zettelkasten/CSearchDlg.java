@@ -285,7 +285,7 @@ public class CSearchDlg extends javax.swing.JDialog {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(CSearchDlg.class);
 
 	/**
@@ -476,7 +476,7 @@ public class CSearchDlg extends javax.swing.JDialog {
 		// always be re-arranged by the gui-designer
 		// get the action map
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(CSearchDlg.class, this);
 		popupCCPcut.setAction(actionMap.get("cut"));
 		popupCCPcopy.setAction(actionMap.get("copy"));
@@ -699,7 +699,7 @@ public class CSearchDlg extends javax.swing.JDialog {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getResourceMap(CSearchDlg.class);
 		setTitle(resourceMap.getString("FormSearchDialog.title")); // NOI18N
 		setModal(true);
@@ -834,7 +834,7 @@ public class CSearchDlg extends javax.swing.JDialog {
 						.addContainerGap(12, Short.MAX_VALUE)));
 
 		javax.swing.ActionMap actionMap = org.jdesktop.application.Application
-				.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+				.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 				.getActionMap(CSearchDlg.class, this);
 		jButtonCancel.setAction(actionMap.get("cancel")); // NOI18N
 		jButtonCancel.setName("jButtonCancel"); // NOI18N

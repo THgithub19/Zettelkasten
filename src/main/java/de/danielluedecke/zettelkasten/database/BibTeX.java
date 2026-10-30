@@ -37,7 +37,7 @@ import bibtex.dom.BibtexEntry;
 import bibtex.dom.BibtexFile;
 import bibtex.parser.BibtexParser;
 import bibtex.parser.ParseException;
-import de.danielluedecke.zettelkasten.ZettelkastenApp;
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import de.danielluedecke.zettelkasten.ZettelkastenView;
 import de.danielluedecke.zettelkasten.util.Constants;
 import de.danielluedecke.zettelkasten.util.FileOperationsUtil;
@@ -66,7 +66,6 @@ import javax.swing.JOptionPane;
  * This class is responsible for managing bibtex files.<br>
  * <br>
  * Usually, first of all a file must be opened ("attached") using the
- * {@link #openAttachedFile(java.lang.String)
  * openAttachedFile(java.lang.String)} method. after that, all entries are
  * stored in the variable {@link #bibtexfile bibtexfile}, while the single
  * bibtex entries are stored in {@link #attachedbibtexentries}. <br>
@@ -141,7 +140,7 @@ public class BibTeX {
 	private final List<Map<String, String>> importtypesAPA = new ArrayList<>();
 	/**
 	 * A variable indicating which citation-style is used when requesting a
-	 * formatted bibtex-entry (see {@link #getFormattedEntry(bibtex.dom.BibtexEntry)
+	 * formatted bibtex-entry (see
 	 * getFormattedEntryFromAttachedFile()}).
 	 */
 	private int citestyle = Constants.BIBTEX_CITE_STYLE_GENERAL;
@@ -155,7 +154,7 @@ public class BibTeX {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final static org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(ZettelkastenApp.class).getContext().getResourceMap(ZettelkastenView.class);
+			.getInstance(ThotandamunApp.class).getContext().getResourceMap(ZettelkastenView.class);
 
 	public BibTeX(ZettelkastenView zkn, Settings s) {
 		zknframe = zkn;
@@ -1446,7 +1445,6 @@ public class BibTeX {
 	 * This method returns a formatted string consisting of the author-, year- and
 	 * title-value of an bibtex-entry of the currently attached bibtex-file. This
 	 * method does the work for both
-	 * {@link #getFormattedEntryFromAttachedFile(java.lang.String)
 	 * getFormattedEntryFromAttachedFile(String)} and
 	 * {@link #getFormattedEntryFromAttachedFile(int)
 	 * getFormattedEntryFromAttachedFile(int)}.<br>
@@ -1716,7 +1714,6 @@ public class BibTeX {
 	/**
 	 * This method returns a formatted string wth the author- and year-value of an
 	 * bibtex-entry for in-text-citing. This method does the work for both
-	 * {@link #getFormattedEntryFromAttachedFile(java.lang.String)
 	 * getFormattedEntryFromAttachedFile(String)} and
 	 * {@link #getFormattedEntryFromAttachedFile(int)
 	 * getFormattedEntryFromAttachedFile(int)}.<br>

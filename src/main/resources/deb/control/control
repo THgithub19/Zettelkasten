@@ -1,8 +1,8 @@
-Package: ThotAndAmun
-Version: 3.2026.10
+Package: [[name]]
+Version: [[version]]
 Section: utils
 Priority: optional
 Architecture: all
-Depends: openjdk-25-jre
+Depends: default-jre | openjdk-25-jre
 Maintainer: Tobias Hilbricht <hilbricht@linopus.de>
 Description: Thot+Amun is a tool to take notes and to edit, collect, tag, find, annotate, reference, and connect your notes to document outlines. Thot+Amun exports to HTML and LaTeX and in presence of Pandoc to DOCX and ODT.

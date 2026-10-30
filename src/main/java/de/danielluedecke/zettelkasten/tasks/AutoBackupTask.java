@@ -47,7 +47,7 @@ public class AutoBackupTask extends org.jdesktop.application.Task<Object, Void> 
     private String oldmsg;
     private final javax.swing.JLabel statusMsgLabel;
     private final org.jdesktop.application.ResourceMap rm
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(ZettelkastenView.class);
 
     public AutoBackupTask(org.jdesktop.application.Application app, ZettelkastenView zkn,

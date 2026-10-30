@@ -51,7 +51,7 @@ public class SetFirstLineAsTitleTask extends org.jdesktop.application.Task<Objec
     private final javax.swing.JDialog parentDialog;
     private final javax.swing.JLabel msgLabel;
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(SetFirstLineAsTitleTask.class);
 
     SetFirstLineAsTitleTask(org.jdesktop.application.Application app, javax.swing.JDialog parent, javax.swing.JLabel label, Daten d, int mo) {

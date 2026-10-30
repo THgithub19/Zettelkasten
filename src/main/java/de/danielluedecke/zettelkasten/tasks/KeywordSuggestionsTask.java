@@ -113,7 +113,7 @@ public class KeywordSuggestionsTask extends org.jdesktop.application.Task<Object
      * get the strings for file descriptions from the resource map
      */
     private final org.jdesktop.application.ResourceMap resourceMap
-            = org.jdesktop.application.Application.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).
+            = org.jdesktop.application.Application.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).
             getContext().getResourceMap(KeywordSuggestionsTask.class);
 
     /**

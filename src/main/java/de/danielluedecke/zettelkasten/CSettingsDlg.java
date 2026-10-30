@@ -32,6 +32,7 @@
  */
 package de.danielluedecke.zettelkasten;
 
+import de.tobiashilbricht.thotandamun.ThotandamunApp;
 import static java.awt.event.KeyEvent.VK_ESCAPE;
 
 import java.awt.Color;
@@ -109,7 +110,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 	 * get the strings for file descriptions from the resource map
 	 */
 	private final org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application
-			.getInstance(de.danielluedecke.zettelkasten.ZettelkastenApp.class).getContext()
+			.getInstance(de.tobiashilbricht.thotandamun.ThotandamunApp.class).getContext()
 			.getResourceMap(CSettingsDlg.class);
 	/**
 	 * The different fonts, used to retrieve the font settings and for the
@@ -585,7 +586,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 				// center window
 				autoKorrektEdit.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(autoKorrektEdit);
+			ThotandamunApp.getApplication().show(autoKorrektEdit);
 			// change modified state and enable apply-button
 			if (autoKorrektEdit.isModified()) {
 				setModified(true);
@@ -601,7 +602,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 				fontDlg.setLocationRelativeTo(null);
 			}
 			// Show and wait on user.
-			ZettelkastenApp.getApplication().show(fontDlg);
+			ThotandamunApp.getApplication().show(fontDlg);
 			
 			// If the user has chosen a font, prepare to save.
 			if (fontDlg.selectedFont != null) {
@@ -623,7 +624,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 				fontDlg = new CFontChooser(null, f);
 				fontDlg.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(fontDlg);
+			ThotandamunApp.getApplication().show(fontDlg);
 			// if the user has chosen a font, set it
 			if (fontDlg.selectedFont != null) {
 				desktopfont = fontDlg.selectedFont;
@@ -740,7 +741,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 				// center window
 				stenoEdit.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(stenoEdit);
+			ThotandamunApp.getApplication().show(stenoEdit);
 			// change modified state and enable apply-button
 			if (stenoEdit.isModified()) {
 				setModified(true);
@@ -755,7 +756,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 						HtmlUbbUtil.HIGHLIGHT_STYLE_SEARCHRESULTS);
 				highlightSettingsDlg.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(highlightSettingsDlg);
+			ThotandamunApp.getApplication().show(highlightSettingsDlg);
 			if (!highlightSettingsDlg.isCancelled()) {
 				setModified(true);
 				lafupdate = true;
@@ -770,7 +771,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 						HtmlUbbUtil.HIGHLIGHT_STYLE_KEYWORDS);
 				highlightSettingsDlg.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(highlightSettingsDlg);
+			ThotandamunApp.getApplication().show(highlightSettingsDlg);
 			if (!highlightSettingsDlg.isCancelled()) {
 				setModified(true);
 				lafupdate = true;
@@ -785,7 +786,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 						HtmlUbbUtil.HIGHLIGHT_STYLE_LIVESEARCH);
 				highlightSettingsDlg.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(highlightSettingsDlg);
+			ThotandamunApp.getApplication().show(highlightSettingsDlg);
 			if (!highlightSettingsDlg.isCancelled()) {
 				setModified(true);
 				lafupdate = true;
@@ -799,7 +800,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 				synonymsDlg = new CSynonymsEdit(null, synonyms, settings, dataObj);
 				synonymsDlg.setLocationRelativeTo(null);
 			}
-			ZettelkastenApp.getApplication().show(synonymsDlg);
+			ThotandamunApp.getApplication().show(synonymsDlg);
 			// change modified state and enable apply-button
 			if (synonymsDlg.isModified()) {
 				setModified(true);
@@ -893,7 +894,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 			biggerEditDlg.setLocationRelativeTo(this);
 		}
 		// show window
-		ZettelkastenApp.getApplication().show(biggerEditDlg);
+		ThotandamunApp.getApplication().show(biggerEditDlg);
 		// after closing the window, get the new value
 		String newCss = biggerEditDlg.getNewValue();
 		// delete the input-dialog
@@ -1074,10 +1075,9 @@ public class CSettingsDlg extends javax.swing.JDialog {
 	/**
 	 * This method creates a string-description for the font-settings, which are
 	 * used for the font's combobox.
-	 *
-	 * @param name
-	 * @param size
-	 * @param style
+	 * name
+	 * size
+	 * style
 	 * @return a prepared string containing a description of the font-settings
 	 */
 	private String getFontDataForCombobox(Font f) {
@@ -1424,7 +1424,7 @@ public class CSettingsDlg extends javax.swing.JDialog {
 			fontDlg = new CFontChooser(null, f);
 			fontDlg.setLocationRelativeTo(this);
 		}
-		ZettelkastenApp.getApplication().show(fontDlg);
+		ThotandamunApp.getApplication().show(fontDlg);
 
 		// if the user has chosen a font, set it
 		if (fontDlg.selectedFont != null) {
