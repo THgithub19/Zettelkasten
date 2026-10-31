@@ -8,7 +8,7 @@
     <artifactId>thot-and-amun</artifactId>
     <inceptionYear>2005</inceptionYear>
     <description>Thot+Amun is a note and knowledge organizer.</description>
-    <version>2026.10.26</version>
+    <version>2026.10.31</version>
     <name>ThotAndAmun</name>
     <properties>
         <zkn.launch4jVersion>${project.version}.0</zkn.launch4jVersion>
@@ -308,12 +308,6 @@
                                         <type>perm</type>
                                         <prefix>/usr/share/doc/thot-and-amun</prefix>
                                     </mapper>
-                                </data>
-                                <data>
-                                    <type>template</type>
-                                    <paths>
-                                        <path>/var/log/${project.artifactId}</path>
-                                    </paths>
                                 </data>
                             </dataSet>
                         </configuration>

@@ -1,4 +1,8 @@
-release date=18:00 26.10.2026,version=2026.10.26,urgency=low,by=Tobias Hilbricht <hilbricht@linopus.de>,distribution=stable
+release date=18:00 31.10.2026,version=2026.10.31,urgency=low,by=Tobias Hilbricht <hilbricht@linopus.de>,distribution=stable
+ * Revised information regarding Copyright, Contributors and License
+ * Extended Java Debian packager jdeb in pom.xml with directory doc
+ * Added first drafts of help documents in directory doc
+ * Refactored code to reflect new name
  * Changed name of forked application to Thot+Amun
  * Changed Readme to reflect new name and origin
  * Implemented new application icons and splash image

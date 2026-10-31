@@ -1,3 +1,12 @@
+# 2026-10-31
+
+## Changes
+
+* Revised information regarding Copyright, Contributors and License
+* Extended Java Debian packager jdeb in pom.xml with directory doc
+* Added first drafts of help documents in directory doc
+* Refactored code to reflect new name
+
 # 2026-10-26
 
 ## Changes
@@ -7,7 +16,7 @@
 * Implemented new application icons and splash image
 * Updated About to reflect new name and origin
 * Implemented help document for settings specifically
-* Added Java Debian packager
+* Added Java Debian packager jdeb to pom.xml
 * Removed unused icon files
 
 # 2026-05-31

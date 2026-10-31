@@ -4,7 +4,7 @@
 
 <img src="src/main/resources/thot-and-amun.png" height="128" align="right"/>
 
-Thot+Amun (just say "Thot ['and' in your language] Amun") is for everybody who collects and reuses knowledge fixed in notes.  Use it for scientific projects, to prepare lessons for school, to store and and explore genealogic data, to browse through collections of recipes or lyrics, to keep track of thoughts and many more conceivable purposes.  The name Thot+Amun refers to the discourse of the Egyptian gods Thot and Amun on the impact of writing on humans, passed down in Platons dialogue Phaidros.
+Thot+Amun (just say "Thot ['and' in your language] Amun") is for everybody who collects and reuses knowledge fixed in notes.  Use it for scientific projects, to prepare lessons for school, to store and explore genealogic data, to browse through collections of recipes or lyrics, to keep track of thoughts and many more conceivable purposes.  The name Thot+Amun refers to the discourse of the Egyptian gods Thot and Amun on the impact of writing on humans, passed down in Platons dialogue Phaidros.
 
 Thot+Amun allows you to create, edit and collect notes with attachments, annotations and references. With Thot+Amun, you can link and tag notes in your collection, and you can connect and export notes to outlines editable in LaTeX, LibreOffice or Microsoft Word. Thot+Amun features sophisticated functions to search for specific notes as well as for sets of notes sharing subjects. Notes with a meaning for more than one subject are linked to each subject, so there is not redundancy and no need to decide between subjects. Thot+Amun stores all your data just where you want to have them. Thot+Amun uses standard formats only, so your data are not locked in. 
 
